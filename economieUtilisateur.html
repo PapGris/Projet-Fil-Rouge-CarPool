@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpool - Inscription</title>
+    <link rel="stylesheet" href="CSS/styleEconomieUtilisateur.css"> 
+    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free"/>
+    <script src="JS/scriptInscription.js" defer></script>
+    <script src="JS/script.js" defer></script>
+</head>
+<body>
+
+    <div class="burger">                
+        <div class="profilePicContainer">
+            <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
+        </div>                  
+        <ul>
+            <li><a href="indexConnecte.html" class="nav-item">Accueil</a></li>
+            <li><a href="#" class="nav-item">Qui sommes nous ?</a></li>
+            <li><a href="#" class="nav-item">Proposer un trajet</a></li>
+            <li><a href="#" class="nav-item">Contactez-nous</a></li>
+        </ul>          
+    </div>
+
+    <header>
+        <div class="headerContainer">
+            <i class="material-symbols-outlined" id="logoBurger">
+                search_hands_free
+            </i>
+
+            <div class="title">
+                <a href="indexConnecte.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <h1>CarPool</h1>
+            </div> 
+            <div class="CoDeco">
+                <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
+                <a href="profilUtilisateur.html"><button class="btn">Mon profil</button></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats-container">
+            <h2>Statistiques du Voyage</h2>
+            <div class="stats-card">
+                <h3>Économies financières</h3>
+                <p class="stats-value">€45.60</p>
+                <p class="stats-description">Montant économisé grâce à ce trajet de covoiturage</p>
+            </div>
+
+            <div class="stats-card">
+                <h3>Économie de CO2</h3>
+                <p class="stats-value">18 kg</p>
+                <p class="stats-description">CO2 évité grâce à ce trajet (comparé à un trajet seul en voiture)</p>
+            </div>
+
+            <div class="stats-card">
+                <h3>Nombre d'arbres plantés</h3>
+                <p class="stats-value">1.2 arbres</p>
+                <p class="stats-description">Cela correspond à l'impact écologique positif d'une réduction de CO2 équivalente</p>
+            </div>
+
+            <div class="stats-card">
+                <h3>Distance parcourue</h3>
+                <p class="stats-value">120 km</p>
+                <p class="stats-description">Distance totale parcourue lors de ce trajet</p>
+            </div>
+
+            <div class="button-container">
+                <a href="historiqueUtilisateur.html"><button class="retour">Retour à l'historique</button></a>
+                <a href="profilUtilisateur.html"><button class="retour">Retour au profil</button></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Conditions d'utilisation</a></li>
+                </ul>
+            </div>
+            <div class="footer-logo">
+                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+            </div>
+            <div class="footer-socials">
+                <ul>
+                    <li><a href="#" class="social-link">Facebook</a></li>
+                    <li><a href="#" class="social-link">Twitter</a></li>
+                    <li><a href="#" class="social-link">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CarPool. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

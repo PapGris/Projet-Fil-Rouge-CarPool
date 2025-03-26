@@ -1,0 +1,306 @@
+/* GLOBAL */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* HEADER */
+.title {
+    margin-top: 7px;
+    margin-right: 7px;
+    display: inline-block;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Pure Milk', sans-serif;
+    font-size: 3.0rem;
+    letter-spacing: 3px;
+    color: #2d3e52;
+    margin: 0;
+}
+
+.logoCarPool {
+    width: 50px;
+    height: 50px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #71C4F1;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    height: 20px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.CoDeco {
+    display: none;
+}
+
+/* BURGER */
+
+#logoBurger {
+    font-size: 2.5rem;
+    color: #2d3e52;
+    margin-left: -10px;
+    cursor: pointer;
+}
+
+.burger {
+    background-color: #3db3f2cf;
+    width: 80%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    margin-left: -100%;
+    margin-top: 58px;
+    transition: margin-left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: -70px;
+}
+
+.burger li {
+    list-style: none;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.burger li a {
+    background: #a7c957;
+    padding: 5px 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    color: #2d3e52;
+    font-family: 'Nunito', sans-serif;
+}
+
+.burger li a:hover {
+    background: #88b04b;
+    color: #fff;
+}
+
+.burger.active {
+    margin-left: unset;
+    transition: all 0.3s ease-in-out;
+}
+
+/* FOOTER */
+
+footer {
+    font-family: 'Nunito', sans-serif;
+    background-color: #71C4F1;
+    color: #2d3e52;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 2px solid #a7c957;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.footer-logo img {
+    width: 90px;
+    height: 90px;
+}
+
+.footer-links,
+.footer-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links,
+.footer-socials,
+.footer-logo {
+    width: 33%;
+    text-align: center;
+}
+
+.footer-links ul,
+.footer-socials ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li,
+.footer-socials li {
+    margin: 5px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+    color: #2d3e52;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+    text-align: justify;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+    color: #679436;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #2d3e52;
+    width: 100%;
+}
+
+.footer-bottom p {
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+/* RESPONSIVE */
+
+/* 500 PX */
+@media (min-width: 500px) {}
+
+/* 768 PX */
+@media (min-width: 768px) {
+    h1 {
+        font-family: 'Pure Milk', sans-serif;
+        font-size: 3.0rem;
+        letter-spacing: 3px;
+    }
+}
+
+/* 992 PX */
+@media (min-width: 992px) {
+    body {
+        border-top: 2px solid blue;
+    }
+
+    #logoBurger {
+        display: none;
+    }
+
+    h1 {
+        font-size: 4.0rem;
+    }
+
+    .logoCarPool {
+        margin-bottom: 4px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .CoDeco {
+        display: block;
+        position: absolute;
+        right: 30px;
+    }
+
+    header .btn {
+        background: #88b04b;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 25px;
+        font-size: 18px;
+        font-weight: 600;
+        transition: background 0.3s ease-in-out, transform 0.2s, box-shadow 0.3s ease-in-out;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+        margin: 6px;
+    }
+
+    header .btn:hover {
+        background: #679436;
+        transform: translateY(-4px);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    header .btn:active {
+        transform: translateY(2px);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer-links a,
+    .footer-socials a {
+        font-size: 1.1rem;
+    }
+
+    .footer-logo img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* 1199 PX */
+@media (min-width: 1199px) {
+    header {
+        height: 40px;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .logoCarPool {
+        width: 75px;
+        height: 75px;
+    }
+
+    .footer-logo img {
+        width: 150px;
+        height: 150px;
+    }
+}

@@ -1,0 +1,164 @@
+/* PAGE DES STATISTIQUES */
+body {
+    background: url(../Images/backgroundAcceuil.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Nunito', sans-serif;
+    color: #2d3e52;
+}
+
+main {
+    padding: 15px;
+}
+
+h2 {
+    font-family: 'Pure Milk', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.stats-container {
+    margin-top: 120px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #d1ddb4;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.stats-container h2 {
+    text-align: center;
+    color: #2d3e52;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Cartes de statistiques */
+.stats-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #a7c957;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.stats-card h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #2d3e52;
+}
+
+.stats-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #88b04b;
+    margin: 10px 0;
+}
+
+.stats-description {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.retour {
+    background: #88b04b;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out, transform 0.2s, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    margin: 6px auto;
+    display: block;
+}
+
+.retour:hover {
+    background: #679436;
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* RESPONSIVE - MOBILE FIRST */
+
+@media (min-width: 500px) {}
+
+@media (min-width: 768px) {
+    main {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .stats-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .stats-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .stats-value {
+        font-size: 1.6rem;
+    }
+
+    .stats-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    main {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .stats-container {
+        margin-top: 100px;
+    }
+
+    .stats-container h2 {
+        font-size: 2rem;
+    }
+
+    .stats-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .stats-value {
+        font-size: 1.8rem;
+    }
+
+    .stats-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1199px) {
+    main {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .stats-container {
+        margin-top: 80px;
+    }
+
+    .stats-container h2 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,398 @@
+/* COULEURS 
+police : #2d3e52
+bouttons : #a7c957
+theme bleu : #71C4F1
+*/
+
+/* COULEURS */
+:root {
+    --primary-color: #2d3e52;
+    /* Couleur principale de la police */
+    --button-color: #a7c957;
+    /* Couleur des boutons */
+    --blue-theme: #71C4F1;
+    /* Couleur bleue du thème */
+}
+
+/* ACCUEIL */
+
+@font-face { /*  */
+    font-family: 'Pure Milk';
+    src: url('../fonts/PureMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #CFE0C3;
+}
+
+.acceuil {
+    background: url(../Images/backgroundAcceuil.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 300px; 
+    margin-top: 58px;
+}
+
+.centerSlogan {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    top: 20px;
+}
+
+.slogan {
+    position: absolute;
+    font-size: 1rem;  
+    font-weight: bold;
+    font-family: 'Pure Milk', sans-serif;
+    letter-spacing: 4px;
+    color: #EBF5DF;
+}
+
+.recherche {
+    background: #71c4f19f;
+    max-width: 60%;
+    margin: 0px auto;
+    border-radius: 15px;
+    padding: 3px;  
+    position: relative;
+    top: 70px;
+    border: solid 2px #71C4F1;
+}
+
+.recherche form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.depart, .destination, .date, .passager { 
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #71C4F1;
+    outline: none;
+} 
+
+.btnRechercher {
+    background-color:#a7c957 ;
+    padding: 7px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.btnRechercher:hover {
+    background-color: #cbd7dd;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Nouvelle section pour le texte sous les boîtes */
+.texte-informatif {
+    background-color: #fff;
+    padding: 20px 10px;
+    margin: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.texte-informatif p {
+    font-size: 0.8rem;
+    color: #2d3e52;
+    font-weight: 400;
+    line-height: 1.2;
+    max-width: 800px;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    font-family: 'Nunito', sans-serif;
+}
+
+
+.boxs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin: 10px;
+    max-width: 1000px;
+    position: relative;
+}
+
+.box {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #a7c957, #88b04b);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    font-size: 0.9em;
+}
+
+.box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 2; /* Ajout du z-index pour élever l'élément .step au-dessus des autres */
+}
+
+.box:not(:last-child)::after {
+    content: ''; 
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    width: 35px;
+    height: 35px;
+    border-top: 5px solid #2c6e49;
+    border-right: 5px solid #2c6e49;
+    transform: translateY(-50%) rotate(45deg);
+    transition: z-index 0.3s ease-in-out;
+}
+
+.box:hover::after {
+    z-index: 3; 
+}
+
+
+
+/*=============================================================================================================\
+|                                          500 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
+@media (min-width: 500px) {  
+    body {
+        border-top: 2px solid yellow;
+    }
+}
+
+/*=============================================================================================================\
+|                                          768 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
+@media (min-width: 768px) {
+    body {
+        border-top: 2px solid red;
+    }
+
+    .slogan {
+        position: absolute;
+        font-size: 2rem;  
+        font-weight: bold;
+        font-family: 'Pure Milk', sans-serif;
+        letter-spacing: 4px;
+        text-shadow:
+        3px 3px 2px #00000036,
+        -3px 3px 2px #00000036,
+        -3px -3px 0 #00000036,
+        3px -3px 0 #00000036;
+        color: #EBF5DF;
+    }
+
+    .recherche {
+        margin-top: 20px;
+    }
+
+    .acceuil { 
+        height: 300px;
+        background-position: center;
+    }
+
+    .texte-informatif p {
+        font-size: 1.2rem;
+    }
+
+    .box {
+        font-size: 1em;
+    }
+}
+
+/*=============================================================================================================\
+|                                          992 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
+@media (min-width: 992px) { 
+    body {
+        border-top: 2px solid blue;
+    }
+
+    .slogan {
+        position: absolute;
+        font-size: 2.9rem;  
+        font-weight: bold;
+        font-family: 'Pure Milk', sans-serif;
+        letter-spacing: 4px;
+        margin-top: 150px;
+    }
+    
+    .acceuil { 
+        height: 450px;
+        background-position: center;
+    }
+
+    .recherche{
+        background: #71c4f1aa;
+        max-width: 80%;
+        margin: 0px auto;
+        border-radius: 100px;
+        padding: 10px;
+        position: relative;
+        top: 408px; /* Augmenter la valeur pour descendre plus bas */
+        z-index: 2;
+    }
+
+    .recherche form{
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .depart, .destination, .date, .passager { 
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+    } 
+
+    .depart {
+        width: 100%;
+        padding: 10px;
+        border-radius: 50px 20px 20px 50px;
+        border: none;
+    }
+
+    .btnRechercher {
+        font-size: large;
+        background-color: #a7c957;
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px 50px 50px 20px;
+        border: none;
+    }
+    
+    .btnRechercher:hover {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px 50px 50px 20px;
+        border: none;
+        background: #98B689;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .boxs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        margin: 80px auto;
+        max-width: 1000px;
+        position: relative;
+    }
+    
+    .box {
+        width: 240px;
+        height: 140px;
+        background: linear-gradient(135deg, #a7c957, #88b04b);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    
+    .box:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        z-index: 2; /* Ajout du z-index pour élever l'élément .step au-dessus des autres */
+    }
+    
+    .box:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -50px;
+        width: 35px;
+        height: 35px;
+        border-top: 5px solid #2c6e49;
+        border-right: 5px solid #2c6e49;
+        transform: translateY(-50%) rotate(45deg);
+        transition: z-index 0.3s ease-in-out;
+    }
+    
+    /* Lors du survol de .step, on élève la flèche au-dessus */
+    .box:hover::after {
+        z-index: 3; /* Assure que la flèche est au-dessus des autres éléments */
+    }
+
+    .texte-informatif {
+        margin-top: 100px;
+    }
+
+    .texte-informatif p {
+        font-size: 1.5rem;
+        max-width: 80%;
+    }
+}
+
+/*=============================================================================================================\
+|                                          1199 PX                                                             |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
+@media (min-width: 1199px) {
+    
+    body {
+        border-top: 2px solid pink;
+    }
+
+    .acceuil { 
+        height: 600px;
+        background-position: center;
+    }
+
+    .slogan {
+        font-size: 4.5rem;  
+        margin-top: 200px; /* POUR LE DESCENDRE EN BAS */
+    }   
+
+    .recherche {
+        top: 560px;
+    }
+} 

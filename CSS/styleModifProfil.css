@@ -1,0 +1,344 @@
+/* PROFILE PAGE */
+body {
+    background: url(../Images/backgroundAcceuil.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main {
+    padding: 15px;
+}
+
+.profile-container {
+    margin-top: 120px;
+    /* Added margin-top for space between header and profile content */
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #a7c9577d;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2 {
+    font-family: 'Pure Milk', sans-serif;
+    font-size: 3.0rem;
+    letter-spacing: 3px;
+    color: #2d3e52;
+}
+
+.titleModif {
+    width: 100%;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: #a7c957 solid 4px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.8s ease, border-radius 0.8s ease;
+    z-index: 500;
+}
+
+.profile-pic:hover {
+    transform: scale(1.8);
+    border-radius: 10%;
+    z-index: 500;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    color: #2d3e52;
+    font-weight: bold;
+}
+
+.profile-info {
+    font-family: 'Nunito', sans-serif;
+    color: #444;
+    background-color: #d1ddb4;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    gap: 1px;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], .inputPref {
+    font-size: 0.8rem;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    
+}
+
+.sumbit,
+.annuler {
+    background-color: #88b04b;
+    color: white;
+    border: none;
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+}
+
+.sumbit:hover,
+.annuler:hover {
+    background: #679436;
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.profile-info:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.profile-info p strong {
+    font-weight: 600;
+    color: #2d3e52;
+    font-size: 1em;
+}
+
+.profile-info p {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.profile-info .icon {
+    margin-top: 0;
+}
+
+.profile-info p span.icon {
+    margin-right: 15px;
+    font-size: 1.4rem;
+    color: #88b04b;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-info .icon {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.aPropos {
+    font-family: 'Nunito', sans-serif;
+    color: #444;
+    background-color: #d1ddb4;
+    border-radius: 12px;
+    padding: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    margin-top: 0;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.aPropos:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.aPropos p:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.radio-group {
+    display: inline-flex;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #a7c957;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="radio"]:checked {
+    background-color: #2d3e52;
+    border-color: #a7c957;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* RESPONSIVE */
+
+/*=============================================================================================================\
+|                                          500 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+@media (min-width: 500px) {}
+
+/*=============================================================================================================\
+|                                          768 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+@media (min-width: 768px) {
+
+    main {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], .inputPref {
+        font-size: 1rem;
+        padding: 15px;
+        
+
+    }
+
+}
+/*=============================================================================================================\
+|                                          992 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+@media (min-width: 992px) {
+
+    main {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+        margin-bottom: 20px;
+        gap: 280px;
+    }
+
+    .profile-container {
+        margin-top: 100px;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], .inputPref {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    .inputPref {
+        padding: 15px;
+    }
+
+    .profile-name {
+        font-size: 3em;
+    }
+
+    .profile-pic {
+        width: 190px;
+        height: 190px;
+    }
+
+    .infoButton {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 100px;
+        padding: 15px;
+    }
+
+    .profile-info,
+    .profile-infosBtn {
+        flex: 1;
+    }
+
+    .profile-info {
+        width: 100%;
+        gap: 2px;
+    }
+
+    .profile-info p {
+        font-size: 1.2em;
+    }
+
+    .profile-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 100px;
+        gap: 30px;
+        font-size: 1.2em;
+    }
+
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .profile-actions a {
+        width: 80%;
+    }
+
+}
+
+/*=============================================================================================================\
+|                                          1199 PX                                                             |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+@media (min-width: 1199px) {
+
+    main {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .profile-header {
+        gap: 550px;
+    }
+
+    .profile-actions a {
+        width: 80%;
+    }
+}
