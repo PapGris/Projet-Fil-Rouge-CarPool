@@ -64,6 +64,7 @@ a {
 
 .CoDeco {
     display: none;
+    font-family: 'Nunito', sans-serif;
 }
 
 
@@ -168,7 +169,7 @@ footer {
     width: 100%;
 }
 
-.footer-content {
+.footerContent {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -176,39 +177,39 @@ footer {
     flex-grow: 1;
 }
 
-.footer-logo img {
+.footerLogo img {
     width: 90px;
     height: 90px;
 }
 
-.footer-links,
-.footer-socials {
+.footerLinks,
+.footerSocials {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.footer-links,
-.footer-socials,
-.footer-logo {
+.footerLinks,
+.footerSocials,
+.footerLogo {
     width: 33%;
     text-align: center;
 }
 
-.footer-links ul,
-.footer-socials ul {
+.footerLinks ul,
+.footerSocials ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer-links li,
-.footer-socials li {
+.footerLinks li,
+.footerSocials li {
     margin: 5px 0;
 }
 
-.footer-links a,
-.footer-socials a {
+.footerLinks a,
+.footerSocials a {
     color: #2d3e52;
     text-decoration: none;
     font-size: 0.8rem;
@@ -217,19 +218,19 @@ footer {
     text-align: justify;
 }
 
-.footer-links a:hover,
-.footer-socials a:hover {
+.footerLinks a:hover,
+.footerSocials a:hover {
     color: #679436;
 }
 
-.footer-bottom {
+.footerBottom {
     text-align: center;
     font-size: 0.8rem;
     color: #2d3e52;
     width: 100%;
 }
 
-.footer-bottom p {
+.footerBottom p {
     margin: 10px 0;
     font-weight: 400;
 }
@@ -312,12 +313,12 @@ footer {
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
     }
 
-    .footer-links a,
-    .footer-socials a {
+    .footerLinks a,
+    .footerSocials a {
         font-size: 1.1rem;
     }
 
-    .footer-logo img {
+    .footerLogo img {
         width: 100px;
         height: 100px;
     }
@@ -338,7 +339,7 @@ footer {
         height: 75px;
     }
 
-    .footer-logo img {
+    .footerLogo img {
         width: 150px;
         height: 150px;
     }

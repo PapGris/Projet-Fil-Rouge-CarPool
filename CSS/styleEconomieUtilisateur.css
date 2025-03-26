@@ -18,7 +18,7 @@ h2 {
     margin: 0;
 }
 
-.stats-container {
+.statsContainer {
     margin-top: 120px;
     padding: 20px;
     margin-left: auto;
@@ -29,7 +29,7 @@ h2 {
     max-width: 100%;
 }
 
-.stats-container h2 {
+.statsContainer h2 {
     text-align: center;
     color: #2d3e52;
     font-size: 1.8rem;
@@ -38,7 +38,7 @@ h2 {
 }
 
 /* Cartes de statistiques */
-.stats-card {
+.statsCard {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -47,26 +47,26 @@ h2 {
     margin-bottom: 20px;
 }
 
-.stats-card h3 {
+.statsCard h3 {
     font-size: 1.6rem;
     font-weight: bold;
     color: #2d3e52;
 }
 
-.stats-value {
+.statsValue {
     font-size: 2rem;
     font-weight: bold;
     color: #88b04b;
     margin: 10px 0;
 }
 
-.stats-description {
+.statsDescription {
     font-size: 1rem;
     color: #555;
 }
 
 
-.button-container {
+.buttonContainer {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -104,19 +104,19 @@ h2 {
         padding-right: 50px;
     }
 
-    .stats-container h2 {
+    .statsContainer h2 {
         font-size: 1.8rem;
     }
 
-    .stats-card h3 {
+    .statsCard h3 {
         font-size: 1.2rem;
     }
 
-    .stats-value {
+    .statsValue {
         font-size: 1.6rem;
     }
 
-    .stats-description {
+    .statsDescription {
         font-size: 1.1rem;
     }
 }
@@ -127,23 +127,23 @@ h2 {
         padding-right: 70px;
     }
 
-    .stats-container {
+    .statsContainer {
         margin-top: 100px;
     }
 
-    .stats-container h2 {
+    .statsContainer h2 {
         font-size: 2rem;
     }
 
-    .stats-card h3 {
+    .statsCard h3 {
         font-size: 1.4rem;
     }
 
-    .stats-value {
+    .statsValue {
         font-size: 1.8rem;
     }
 
-    .stats-description {
+    .statsDescription {
         font-size: 1.1rem;
     }
 }
@@ -154,11 +154,11 @@ h2 {
         padding-right: 70px;
     }
 
-    .stats-container {
+    .statsContainer {
         margin-top: 80px;
     }
 
-    .stats-container h2 {
+    .statsContainer h2 {
         font-size: 2rem;
     }
 }

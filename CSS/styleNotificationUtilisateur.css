@@ -19,7 +19,7 @@ h2 {
     margin: 0;
 }
 
-.notifications-container {
+.notificationsContainer {
     margin-top: 120px;
     padding: 20px;
     margin-left: auto;
@@ -31,7 +31,7 @@ h2 {
     max-width: 100%;
 }
 
-.notifications-container h2 {
+.notificationsContainer h2 {
     text-align: center;
     color: #2d3e52;
     font-size: 1.8rem;
@@ -40,7 +40,7 @@ h2 {
 }
 
 /* Liste des notifications */
-.notifications-list {
+.notificationsList {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -54,7 +54,7 @@ h2 {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.notification-header {
+.notificationHeader {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -63,11 +63,11 @@ h2 {
     margin-bottom: 8px;
 }
 
-.notification-icon {
+.notificationIcon {
     font-size: 24px;
 }
 
-.notification-content {
+.notificationContent {
     font-size: 16px;
     color: #555;
     margin-bottom: 10px;
@@ -75,12 +75,12 @@ h2 {
 
 /* Actions des notifications */
 
-.notification-actions {
+.notificationActions {
     display: flex;
     justify-content: space-between;
 }
 
-.notification-btn {
+.notificationBtn {
     display: inline-block;
     padding: 8px 15px;
     text-align: center;
@@ -91,17 +91,17 @@ h2 {
     transition: background-color 0.3s;
 }
 
-.accept-btn {
+.acceptBtn {
     background-color: #a7c957; 
     color: #2d3e52;
 }
 
-.decline-btn {
+.declineBtn {
     background-color: #cf534b;
     color: #2d3e52;
 }
 
-.notification-btn:hover {
+.notificationBtn:hover {
     opacity: 0.8;
     color: white;
 }
@@ -139,19 +139,19 @@ h2 {
         padding-right: 50px;
     }
 
-    .notifications-container h2 {
+    .notificationsContainer h2 {
         font-size: 2rem;
     }
 
-    .notification-header {
+    .notificationHeader {
         font-size: 16px;
     }
 
-    .notification-content {
+    .notificationContent {
         font-size: 14px;
     }
 
-    .notification-btn {
+    .notificationBtn {
         padding: 8px 12px;
         font-size: 12px;
     }
@@ -162,19 +162,19 @@ h2 {
         padding-left: 70px;
         padding-right: 70px;
     }
-    .notifications-container {
+    .notificationsContainer {
         margin-top: 100px;
     }
-    .notifications-container h2 {
+    .notificationsContainer h2 {
         font-size: 2.2rem;
     }
-    .notification-header {
+    .notificationHeader {
         font-size: 18px;
     }
-    .notification-content {
+    .notificationContent {
         font-size: 16px;
     }
-    .notification-btn {
+    .notificationBtn {
         font-size: 14px;
     }
 }
@@ -184,10 +184,10 @@ h2 {
         padding-left: 70px;
         padding-right: 70px;
     }
-    .notifications-container {
+    .notificationsContainer {
         margin-top: 80px;
     }
-    .notifications-container h2 {
+    .notificationsContainer h2 {
         font-size: 2.4rem;
     }
 }

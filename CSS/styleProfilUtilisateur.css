@@ -10,7 +10,7 @@ main {
     padding: 15px;
 }
 
-.profile-container {
+.profileContainer {
     margin-top: 120px;
     padding: 20px;
     margin-left: auto;
@@ -29,7 +29,7 @@ main {
     padding: 10px;
 }
 
-.profile-pic {
+.profilePic {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -40,7 +40,7 @@ main {
     z-index: 500;
 }
 
-.profile-pic:hover {
+.profilePic:hover {
     transform: scale(1.8);
     border-radius: 10%;
     z-index: 500;
@@ -52,7 +52,7 @@ main {
     font-weight: bold;
 }
 
-.profile-info {
+.profileInfo {
     font-family: 'Nunito', sans-serif;
     color: #444;
     background-color: #d1ddb4;
@@ -67,18 +67,18 @@ main {
     transition: all 0.3s ease-in-out;
 }
 
-.profile-info:hover {
+.profileInfo:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
 
-.profile-info p strong {
+.profileInfo p strong {
     font-weight: 600;
     color: #2d3e52;
     font-size: 1em;
 }
 
-.profile-info p {
+.profileInfo p {
     margin: 12px 0;
     display: flex;
     align-items: center;
@@ -89,11 +89,11 @@ main {
     font-size: 2em;
 }
 
-.profile-info .icon {
+.profileInfo .icon {
     margin-top: 0;
 }
 
-.profile-info .icon{
+.profileInfo .icon{
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 5px;
 }
@@ -131,7 +131,7 @@ main {
     border-bottom: 1px solid #f0f0f0;
 }
 
-.profile-actions {
+.profileActions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* Crée deux colonnes de même taille */
@@ -139,7 +139,7 @@ main {
     width: 100%;
 }
 
-.profile-actions a button{
+.profileActions a button{
     background-color: #88b04b;
     color: white;
     border: none;
@@ -151,13 +151,13 @@ main {
     width: 100%;
 }
 
-.profile-actions a button:hover {
+.profileActions a button:hover {
     background: #679436;
     transform: translateY(-4px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 }
 
-.profile-actions a button:active {
+.profileActions a button:active {
     transform: translateY(2px);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
 }
@@ -198,7 +198,7 @@ main {
         padding-right: 70px;
     }
 
-    .profile-header {
+    .profileHeader {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -209,7 +209,7 @@ main {
     }
 
     /* Profile Container and Actions on larger screens */
-    .profile-container {
+    .profileContainer {
         margin-top: 100px;
         /* Ensure there's enough space below fixed header */
     }
@@ -218,7 +218,7 @@ main {
         font-size: 3em;
     }
 
-    .profile-pic {
+    .profilePic {
         width: 190px;
         height: 190px;
     }
@@ -231,16 +231,16 @@ main {
         padding: 15px;
     }
 
-    .profile-info, .profile-infosBtn {
+    .profileInfo, .profileInfosBtn {
         flex: 1;
     }
 
-    .profile-info {
+    .profileInfo {
         width: 100%;
         gap: 2px;
     }
 
-    .profile-info p {
+    .profileInfo p {
         font-size: 1.2em;
     }
 
@@ -250,7 +250,7 @@ main {
         font-size: 1.4em;
     }
 
-    .profile-actions {
+    .profileActions {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -259,7 +259,7 @@ main {
         font-size: 1.2em;
     }
 
-    .profile-actions a {
+    .profileActions a {
         width: 80%;
     }
 }
@@ -276,11 +276,11 @@ main {
             padding-right: 70px;
     }
 
-    .profile-header {
+    .profileHeader {
         gap: 550px;
     }
 
-    .profile-actions a {
+    .profileActions a {
         width: 80%;
     }
 }

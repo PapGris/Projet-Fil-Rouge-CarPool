@@ -100,7 +100,7 @@ body {
 
 
 /* Nouvelle section pour le texte sous les boîtes */
-.texte-informatif {
+.texteInformatif {
     background-color: #fff;
     padding: 20px 10px;
     margin: 30px;
@@ -109,7 +109,7 @@ body {
     text-align: center;
 }
 
-.texte-informatif p {
+.texteInformatif p {
     font-size: 0.8rem;
     color: #2d3e52;
     font-weight: 400;
@@ -220,7 +220,7 @@ body {
         background-position: center;
     }
 
-    .texte-informatif p {
+    .texteInformatif p {
         font-size: 1.2rem;
     }
 
@@ -360,11 +360,11 @@ body {
         z-index: 3; /* Assure que la flèche est au-dessus des autres éléments */
     }
 
-    .texte-informatif {
+    .texteInformatif {
         margin-top: 100px;
     }
 
-    .texte-informatif p {
+    .texteInformatif p {
         font-size: 1.5rem;
         max-width: 80%;
     }
