@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpool</title>
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
+    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <script src="JS/script.js" defer></script>
     <script src="JS/scriptCalendar.js" defer></script>
 
 </head>
+
 <body>
 
-    <div class="burger">            
+    <div class="burger">
+        <div class="profilePicContainer">
+            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
+        </div>
         <ul>
-            <li><a href="connexion.html">Connexion</a></li>
-            <li><a href="inscription.html">Inscription</a></li>
+            <li><a href="profilUtilisateur.php">Mon Profil</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Poposer un trajet</a></li>
+            <li><a href="#">Proposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
-        </ul>           
+            <li><a href="index.php">Déconnexion</a></li>
+        </ul>
     </div>
 
     <header>
@@ -31,15 +36,16 @@
             </i>
 
             <div class="title">
-                <a href="index.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
-            </div> 
+            </div>
             <div class="CoDeco">
-                <a href="connexion.html"><button class="btn">Connexion</button></a>
-                <a href="inscription.html"><button class="btn">Inscription</button></a>
+                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
+                <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
+                <a href="index.php" class="btn">Déconnexion</a>
             </div>
         </div>
-    </header> 
+    </header>
 
     <main>
         <section class="acceuil">
@@ -49,23 +55,23 @@
             <div class="recherche">
                 <form method="POST">
                     <input class="depart" type="text" placeholder="Départ">
-                    <input class="destination" type="text" placeholder="Destination"> 
+                    <input class="destination" type="text" placeholder="Destination">
                     <input class="date" type="date" value="aujourd'hui" id="date">
-        
+
                     <select class="passager">
                         <option>1 passager</option>
                         <option>2 passagers</option>
                         <option>3 passagers</option>
                         <option>4 passagers</option>
                     </select>
-        
+
                     <button class="btnRechercher" type="submit">Rechercher</button>
-                </form> 
-        </div> 
+                </form>
+            </div>
         </section>
-        
+
         <div class="texteInformatif">
-                <p>
+            <p>
                 <strong>Inscris-toi !</strong><br><br>
                 Crée ton compte en quelques clics pour commencer à profiter des avantages du covoiturage au sein de ton entreprise.<br><br>
 
@@ -74,41 +80,23 @@
 
                 <strong>Économise pour ta planète !</strong><br><br>
                 Réduis ton empreinte carbone en covoiturant. Moins de voitures, moins de CO2, plus de bénéfices pour l’environnement ! <br><br>
-                </p>
+            </p>
         </div>
         <section class="boxs">
-            <a href="inscription.html"class="box"><div>Inscris toi !</div></a>
-            <a href="inscription.html"class="box"><div>Cherche un trajet<br>ou<br>Propose un trajet</div></a>
-            <a href="economieUtilisateur.html"class="box"><div>Économise pour ta planète !</div></a>
+            <a href="inscription.php" class="box">
+                <div>Inscris toi !</div>
+            </a>
+            <a href="inscription.php" class="box">
+                <div>Cherche un trajet<br>ou<br>Propose un trajet</div>
+            </a>
+            <a href="economieUtilisateur.php" class="box">
+                <div>Économise pour ta planète !</div>
+            </a>
         </section>
     </main>
-    <footer>
-        <div class="footerContent">
-            <div class="footerLinks">
-                <ul>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Conditions d'utilisation</a></li>
-                </ul>
-            </div>
-            <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-            </div>
-            <div class="footerSocials">
-                <ul>
-                    <li><a href="#" class="social-link">Facebook</a></li>
-                    <li><a href="#" class="social-link">Twitter</a></li>
-                    <li><a href="#" class="social-link">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footerBottom">
-            <p>&copy; 2025 CarPool. Tous droits réservés.</p>
-        </div>
-    </footer>
+    
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
 
 </body>
+
 </html>
-
-

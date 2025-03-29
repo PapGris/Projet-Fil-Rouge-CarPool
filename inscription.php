@@ -15,7 +15,7 @@
 
     <div class="burger">            
         <ul>
-            <li><a href="connexion.html">Connexion</a></li>
+            <li><a href="connexion.php">Connexion</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
             <li><a href="#">Poposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
@@ -29,11 +29,11 @@
             </i>
 
             <div class="title">
-                <a href="index.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
             </div> 
             <div class="CoDeco">
-                <a href="connexion.html"><button class="btn">Connexion</button></a>
+                <a href="connexion.php"><button class="btn">Connexion</button></a>
             </div>
         </div>
     </header>
@@ -76,8 +76,8 @@
                 <div id="divcomp"></div><br>
                 <div>
                     <!-- <input type="submit" id="btn" value="S'inscrire"><br><br> -->
-                    <a href="profilUtilisateur.html"><button class="boutonMdp" type="button" >S'inscrire</button></a><br><br>
-                    <a href="index.html"><button class="boutonAccueil" type="button" >Retour à l'accueil</button></a>
+                    <a href="profilUtilisateur.php"><button class="boutonMdp" type="button" >S'inscrire</button></a><br><br>
+                    <a href="index.php"><button class="boutonAccueil" type="button" >Retour à l'accueil</button></a>
                 </div>
             </form>
         </div>
@@ -106,7 +106,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>

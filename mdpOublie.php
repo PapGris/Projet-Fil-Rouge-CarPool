@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpool - Inscription</title>
+    <title>Carpool - MDP Oublié</title>
     <link rel="stylesheet" href="CSS/styleInscription.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 
     <div class="burger">            
         <ul>
-            <li><a href="inscription.html">Inscription</a></li>
+            <li><a href="inscription.php">Inscription</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
             <li><a href="#">Poposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
@@ -29,11 +29,11 @@
             </i>
 
             <div class="title">
-                <a href="index.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
             </div> 
             <div class="CoDeco">
-                <a href="inscription.html"><button class="btn">Inscription</button></a>
+                <a href="inscription.php"><button class="btn">Inscription</button></a>
             </div>
         </div>
     </header>
@@ -48,8 +48,8 @@
                 </div>
                 <div>
                     <!-- <input type="submit" id="btn" value="Se connecter"><br><br> -->
-                    <a href="index.html"><button class="boutonMdp" type="button" >Envoyer</button></a><br><br>
-                    <a href="index.html"><button class="boutonAccueil" type="button" >Retour à l'accueil</button></a>
+                    <a href="index.php"><button class="boutonMdp" type="button" >Envoyer</button></a><br><br>
+                    <a href="index.php"><button class="boutonAccueil" type="button" >Retour à l'accueil</button></a>
                     
                 </div>
             </form>
@@ -66,7 +66,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpool</title>
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
+    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <script src="JS/script.js" defer></script>
@@ -14,16 +14,13 @@
 </head>
 <body>
 
-    <div class="burger">   
-        <div class="profilePicContainer">
-            <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>          
+    <div class="burger">            
         <ul>
-            <li><a href="profilUtilisateur.html">Mon Profil</a></li>
+            <li><a href="connexion.php">Connexion</a></li>
+            <li><a href="inscription.php">Inscription</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
+            <li><a href="#">Poposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
-            <li><a href="index.html">Déconnexion</a></li>
         </ul>           
     </div>
 
@@ -34,13 +31,12 @@
             </i>
 
             <div class="title">
-                <a href="indexConnecte.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
             </div> 
             <div class="CoDeco">
-                <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.html"><button class="btn">Mon Profil</button></a>
-                <a href="index.html" class="btn">Déconnexion</a>
+                <a href="connexion.php"><button class="btn">Connexion</button></a>
+                <a href="inscription.php"><button class="btn">Inscription</button></a>
             </div>
         </div>
     </header> 
@@ -81,36 +77,13 @@
                 </p>
         </div>
         <section class="boxs">
-            <a href="inscription.html"class="box"><div>Inscris toi !</div></a>
-            <a href="inscription.html"class="box"><div>Cherche un trajet<br>ou<br>Propose un trajet</div></a>
-            <a href="economieUtilisateur.html"class="box"><div>Économise pour ta planète !</div></a>
+            <a href="inscription.php"class="box"><div>Inscris toi !</div></a>
+            <a href="rechercheTrajet.php"class="box"><div>Cherche un trajet<br>ou<br>Propose un trajet</div></a>
+            <a href="economieUtilisateur.php"class="box"><div>Économise pour ta planète !</div></a>
         </section>
     </main>
-    <footer>
-        <div class="footerContent">
-            <div class="footerLinks">
-                <ul>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Conditions d'utilisation</a></li>
-                </ul>
-            </div>
-            <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-            </div>
-            <div class="footerSocials">
-                <ul>
-                    <li><a href="#" class="social-link">Facebook</a></li>
-                    <li><a href="#" class="social-link">Twitter</a></li>
-                    <li><a href="#" class="social-link">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footerBottom">
-            <p>&copy; 2025 CarPool. Tous droits réservés.</p>
-        </div>
-    </footer>
+
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?> 
 
 </body>
 </html>

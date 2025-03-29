@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpool - Inscription</title>
+    <title>Carpool - Mes économies</title>
     <link rel="stylesheet" href="CSS/styleEconomieUtilisateur.css"> 
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
 
     <div class="burger">                
         <div class="profilePicContainer">
-            <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
+            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
         </div>                  
         <ul>
-            <li><a href="indexConnecte.html">Accueil</a></li>
+            <li><a href="indexConnecte.php">Accueil</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
             <li><a href="#">Proposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
-            <li><a href="index.html">Déconnexion</a></li>
+            <li><a href="index.php">Déconnexion</a></li>
         </ul>          
     </div>
 
@@ -33,12 +33,12 @@
             </i>
 
             <div class="title">
-                <a href="indexConnecte.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
             </div> 
             <div class="CoDeco">
-                <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.html"><button class="btn">Mon profil</button></a>
+                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
+                <a href="profilUtilisateur.php"><button class="btn">Mon profil</button></a>
             </div>
         </div>
     </header>
@@ -71,36 +71,13 @@
             </div>
 
             <div class="buttonContainer">
-                <a href="historiqueUtilisateur.html"><button class="retour">Retour à l'historique</button></a>
-                <a href="profilUtilisateur.html"><button class="retour">Retour au profil</button></a>
+                <a href="historiqueUtilisateur.php"><button class="retour">Retour à l'historique</button></a>
+                <a href="profilUtilisateur.php"><button class="retour">Retour au profil</button></a>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footerContent">
-            <div class="footerLinks">
-                <ul>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Conditions d'utilisation</a></li>
-                </ul>
-            </div>
-            <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-            </div>
-            <div class="footerSocials">
-                <ul>
-                    <li><a href="#" class="social-link">Facebook</a></li>
-                    <li><a href="#" class="social-link">Twitter</a></li>
-                    <li><a href="#" class="social-link">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footerBottom">
-            <p>&copy; 2025 CarPool. Tous droits réservés.</p>
-        </div>
-    </footer>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    
 </body>
 </html>

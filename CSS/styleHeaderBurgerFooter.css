@@ -156,45 +156,9 @@ footer {
     height: 90px;
 }
 
-.footerLinks,
-.footerSocials {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footerLinks,
-.footerSocials,
 .footerLogo {
     width: 33%;
     text-align: center;
-}
-
-.footerLinks ul,
-.footerSocials ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footerLinks li,
-.footerSocials li {
-    margin: 5px 0;
-}
-
-.footerLinks a,
-.footerSocials a {
-    color: #2d3e52;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: color 0.3s ease-in-out;
-    text-align: justify;
-}
-
-.footerLinks a:hover,
-.footerSocials a:hover {
-    color: #679436;
 }
 
 .footerBottom {
@@ -209,12 +173,21 @@ footer {
     font-weight: 400;
 }
 
-/* RESPONSIVE */
 
-/* 500 PX */
+/*=============================================================================================================\  
+|                                          500 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
 @media (min-width: 500px) {}
 
-/* 768 PX */
+/*=============================================================================================================\  
+|                                          768 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
 @media (min-width: 768px) {
     h1 {
         font-family: 'Pure Milk', sans-serif;
@@ -222,8 +195,12 @@ footer {
         letter-spacing: 3px;
     }
 }
+/*=============================================================================================================\  
+|                                          992 PX                                                              |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
 
-/* 992 PX */
 @media (min-width: 992px) {
     body {
         border-top: 2px solid blue;
@@ -274,18 +251,18 @@ footer {
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
     }
 
-    .footerLinks a,
-    .footerSocials a {
-        font-size: 1.1rem;
-    }
-
     .footerLogo img {
         width: 100px;
         height: 100px;
     }
 }
 
-/* 1199 PX */
+/*=============================================================================================================\  
+|                                          1199 PX                                                             |
+|                                                                                                              |
+|                                                                                                              |
+\=============================================================================================================*/
+
 @media (min-width: 1199px) {
     header {
         height: 40px;

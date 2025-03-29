@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpool - Inscription</title>
+    <title>Carpool - Messagerie</title>
     <link rel="stylesheet" href="CSS/styleNotificationUtilisateur.css"> 
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -14,14 +14,14 @@
 <body>
     <div class="burger">   
         <div class="profilePicContainer">
-            <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
+            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
         </div>          
         <ul>
-            <li><a href="indexConnecte.html">Accueil</a></li>
+            <li><a href="indexConnecte.php">Accueil</a></li>
             <li><a href="#">Qui sommes nous ?</a></li>
             <li><a href="#">Proposer un trajet</a></li>
             <li><a href="#">Contactez-nous</a></li>
-            <li><a href="index.html">Déconnexion</a></li>
+            <li><a href="index.php">Déconnexion</a></li>
         </ul>           
     </div>
 
@@ -32,13 +32,13 @@
             </i>
 
             <div class="title">
-                <a href="indexConnecte.html"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
             </div> 
             <div class="CoDeco">
-                <a href="profilUtilisateur.html"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.html"><button class="btn">Mon Profil</button></a>
-                <a href="index.html" class="btn">Déconnexion</a>
+                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
+                <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
+                <a href="index.php" class="btn">Déconnexion</a>
             </div>
         </div>
     </header>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="profilUtilisateur.html">
+                    <a href="profilUtilisateur.php">
                         <button type="button" class="retour">Retour au profil</button>
                     </a>
                 </div>
@@ -104,7 +104,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.html"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>
