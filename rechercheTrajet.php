@@ -22,9 +22,9 @@
         </div>
         <ul>
             <li><a href="profilUtilisateur.php">Mon Profil</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="historiqueUtilisateur.php">Historique</a></li>
+            <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="index.php">Déconnexion</a></li>
         </ul>
     </div>
@@ -62,7 +62,7 @@
                     <input class="date" type="date" id="date">
 
                     <p><strong>Nombre de passager :</strong></p>
-                    <select class="passager">
+                    <select>
                         <option>1 passager</option>
                         <option>2 passagers</option>
                         <option>3 passagers</option>
@@ -81,6 +81,12 @@
                             <label><input type="radio" name="musique" value="non"> Non</label>
                         </span>
                     </div>
+                    <p><strong>Type de voyage :</strong></p>
+                    <span class="voyage">
+                        <label><input type="radio" name="musique" value="oui" checked> Aller</label>
+                        <label><input type="radio" name="musique" value="non"> Retour</label>
+                        <label><input type="radio" name="musique" value="non"> Aller/Retour</label>
+                    </span>
                     <button class="btnRechercher" type="submit">Rechercher</button>
                 </form>
             </section>
@@ -117,6 +123,12 @@
                             <label><input type="radio" name="musique-proposer" value="non"> Non</label>
                         </span>
                     </div>
+                    <p><strong>Type de voyage :</strong></p>
+                    <span class="voyage">
+                        <label><input type="radio" name="musique" value="oui" checked> Aller</label>
+                        <label><input type="radio" name="musique" value="non"> Retour</label>
+                        <label><input type="radio" name="musique" value="non"> Aller/Retour</label>
+                    </span>
                     <button class="btnRechercher" type="submit">Proposer</button>
                 </form>
             </section>

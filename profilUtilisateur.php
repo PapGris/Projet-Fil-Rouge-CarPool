@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpool - Mon Profil</P></title>
-    <link rel="stylesheet" href="CSS/styleProfilUtilisateur.css"> 
+    <title>Carpool - Mon Profil</P>
+    </title>
+    <link rel="stylesheet" href="CSS/styleProfilUtilisateur.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <script src="JS/scriptInscription.js" defer></script>
     <script src="JS/script.js" defer></script>
 </head>
+
 <body>
 
-    <div class="burger">  
+    <div class="burger">
         <div class="profilePicContainer">
             <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>           
+        </div>
         <ul>
             <li><a href="indexConnecte.php">Accueil</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="historiqueUtilisateur.php">Historique</a></li>
+            <li><a href="modifProfil.php">Modifier mon profil</a></li>
+            <li><a href="backoffice.php">Déconnexion</a></li>
             <li><a href="index.php">Déconnexion</a></li>
-        </ul>           
+        </ul>
     </div>
 
     <header>
@@ -35,7 +40,7 @@
             <div class="title">
                 <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
-            </div> 
+            </div>
             <div class="CoDeco">
                 <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
                 <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
@@ -49,12 +54,13 @@
                 <img src="Images/person.jpg" alt="Photo de profil" class="profilePic">
                 <h1 class="profile-name">Papillon-Gris</h1>
             </div>
-            
+
             <div class="infoButton">
                 <div class="profileInfo">
                     <p class="icon">👤</p><strong>Nom :</strong><span>John Doe</span></p>
                     <p class="icon">✉</p><strong>Email :</strong><span>johndoe@exemple.com</span></p>
                     <p class="icon">📞</p><strong>Téléphone :</strong><span>06 25 54 43 61</span></p>
+                    <p class="icon">👔</p><strong>Service :</strong><span>Développement Web</span></p>
                     <p class="icon">🌍</p><strong>Lieu :</strong><span>Paris, France</span></p>
                 </div>
 
@@ -71,6 +77,7 @@
                         <a href="modifProfil.php"><button class="edit-button">Modifier le profil</button></a>
                         <a href="historiqueUtilisateur.php"><button class="history-button">Historique des trajets</button></a>
                         <a href="notificationUtilisateur.php"><button class="notifications-button">Notifications</button></a>
+                        <a href="backoffice.php"><button class="logout-button">Backoffice</button></a>
                         <a href="index.php"><button class="logout-button">Déconnexion</button></a>
                     </div>
                 </div>
@@ -88,7 +95,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>
@@ -103,4 +110,5 @@
         </div>
     </footer>
 </body>
+
 </html>

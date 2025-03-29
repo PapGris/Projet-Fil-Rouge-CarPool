@@ -22,9 +22,10 @@
         </div>
         <ul>
             <li><a href="profilUtilisateur.php">Mon Profil</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="historiqueUtilisateur.php">Historique</a></li>
+            <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="index.php">Déconnexion</a></li>
         </ul>
     </div>
@@ -86,7 +87,7 @@
             <a href="inscription.php" class="box">
                 <div>Inscris toi !</div>
             </a>
-            <a href="inscription.php" class="box">
+            <a href="rechercheTrajet.php" class="box">
                 <div>Cherche un trajet<br>ou<br>Propose un trajet</div>
             </a>
             <a href="economieUtilisateur.php" class="box">
@@ -94,7 +95,7 @@
             </a>
         </section>
     </main>
-    
+
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
 
 </body>

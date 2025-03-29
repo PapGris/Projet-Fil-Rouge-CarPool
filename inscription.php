@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,18 @@
     <link rel="stylesheet" href="CSS/styleInscription.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <script src="JS/scriptInscription.js" defer></script>
     <script src="JS/script.js" defer></script>
 </head>
+
 <body>
 
-    <div class="burger">            
+    <div class="burger">
         <ul>
             <li><a href="connexion.php">Connexion</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Poposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
-        </ul>           
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+        </ul>
     </div>
 
     <header>
@@ -31,15 +31,15 @@
             <div class="title">
                 <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
-            </div> 
+            </div>
             <div class="CoDeco">
                 <a href="connexion.php"><button class="btn">Connexion</button></a>
             </div>
         </div>
     </header>
     <main>
-        
-        <div class="formI-container" >
+
+        <div class="formI-container">
             <form method="post" id="form">
                 <div>
                     <label for="nom">Nom <span class="required">*</span>:</label>
@@ -66,18 +66,18 @@
                 <div>
                     <label for="mot_de_passe">Mot de passe<span class="required">*</span> :</label>
                     <input type="password" id="mot_de_passe" name="mot_de_passe" autocomplete="new-password" required>
-                    <button class="butonCond" type="button" id="displayModal">conditions MDP</button>                                                  
+                    <button class="butonCond" type="button" id="displayModal">conditions MDP</button>
                 </div>
                 <div>
                     <label for="confirmer_mot_de_passe">Confirmer le mot de passe<span class="required">*</span>:</label>
-                    <input type="password" id="confirmer_mot_de_passe" name="confirme_mot_de_passe" onBlur="checkPass()"  autocomplete="new-password" required>
+                    <input type="password" id="confirmer_mot_de_passe" name="confirme_mot_de_passe" onBlur="checkPass()" autocomplete="new-password" required>
 
                 </div>
                 <div id="divcomp"></div><br>
                 <div>
                     <!-- <input type="submit" id="btn" value="S'inscrire"><br><br> -->
-                    <a href="profilUtilisateur.php"><button class="boutonMdp" type="button" >S'inscrire</button></a><br><br>
-                    <a href="index.php"><button class="boutonAccueil" type="button" >Retour à l'accueil</button></a>
+                    <a href="profilUtilisateur.php"><button class="boutonMdp" type="button">S'inscrire</button></a><br><br>
+                    <a href="index.php"><button class="boutonAccueil" type="button">Retour à l'accueil</button></a>
                 </div>
             </form>
         </div>
@@ -93,7 +93,7 @@
                 </ul>
                 <button id="closeModal">OK</button>
             </div>
-        </div> 
+        </div>
     </main>
     <footer>
         <div class="footerContent">
@@ -106,7 +106,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>
@@ -121,4 +121,5 @@
         </div>
     </footer>
 </body>
+
 </html>

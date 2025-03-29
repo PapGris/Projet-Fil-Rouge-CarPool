@@ -21,9 +21,9 @@
         </div>
         <ul>
             <li><a href="indexConnecte.php">Accueil</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="index.php">Déconnexion</a></li>
         </ul>
     </div>
@@ -97,7 +97,7 @@
     </main>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
-    
+
 </body>
 
 </html>

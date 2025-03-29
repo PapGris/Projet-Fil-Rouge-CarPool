@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,16 +13,15 @@
     <script src="JS/scriptCalendar.js" defer></script>
 
 </head>
+
 <body>
 
-    <div class="burger">            
+    <div class="burger">
         <ul>
             <li><a href="connexion.php">Connexion</a></li>
             <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Poposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
-        </ul>           
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+        </ul>
     </div>
 
     <header>
@@ -33,13 +33,13 @@
             <div class="title">
                 <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
-            </div> 
+            </div>
             <div class="CoDeco">
                 <a href="connexion.php"><button class="btn">Connexion</button></a>
                 <a href="inscription.php"><button class="btn">Inscription</button></a>
             </div>
         </div>
-    </header> 
+    </header>
 
     <main>
         <section class="acceuil">
@@ -49,23 +49,23 @@
             <div class="recherche">
                 <form method="POST">
                     <input class="depart" type="text" placeholder="Départ">
-                    <input class="destination" type="text" placeholder="Destination"> 
+                    <input class="destination" type="text" placeholder="Destination">
                     <input class="date" type="date" value="aujourd'hui" id="date">
-        
+
                     <select class="passager">
                         <option>1 passager</option>
                         <option>2 passagers</option>
                         <option>3 passagers</option>
                         <option>4 passagers</option>
                     </select>
-        
+
                     <button class="btnRechercher" type="submit">Rechercher</button>
-                </form> 
-        </div> 
+                </form>
+            </div>
         </section>
-        
+
         <div class="texteInformatif">
-                <p>
+            <p>
                 <strong>Inscris-toi !</strong><br><br>
                 Crée ton compte en quelques clics pour commencer à profiter des avantages du covoiturage au sein de ton entreprise.<br><br>
 
@@ -74,18 +74,23 @@
 
                 <strong>Économise pour ta planète !</strong><br><br>
                 Réduis ton empreinte carbone en covoiturant. Moins de voitures, moins de CO2, plus de bénéfices pour l’environnement ! <br><br>
-                </p>
+            </p>
         </div>
         <section class="boxs">
-            <a href="inscription.php"class="box"><div>Inscris toi !</div></a>
-            <a href="rechercheTrajet.php"class="box"><div>Cherche un trajet<br>ou<br>Propose un trajet</div></a>
-            <a href="economieUtilisateur.php"class="box"><div>Économise pour ta planète !</div></a>
+            <a href="inscription.php" class="box">
+                <div>Inscris toi !</div>
+            </a>
+            <a href="rechercheTrajet.php" class="box">
+                <div>Cherche un trajet<br>ou<br>Propose un trajet</div>
+            </a>
+            <a href="economieUtilisateur.php" class="box">
+                <div>Économise pour ta planète !</div>
+            </a>
         </section>
     </main>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?> 
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
 
 </body>
+
 </html>
-
-

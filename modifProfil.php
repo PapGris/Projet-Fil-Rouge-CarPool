@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpool - Mon Profil</title>
-    <link rel="stylesheet" href="CSS/styleModifProfil.css"> 
+    <link rel="stylesheet" href="CSS/styleModifProfil.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <script src="JS/scriptInscription.js" defer></script>
     <script src="JS/script.js" defer></script>
 </head>
+
 <body>
-    <div class="burger">   
+    <div class="burger">
         <div class="profilePicContainer">
             <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>          
+        </div>
         <ul>
             <li><a href="indexConnecte.php">Accueil</a></li>
-            <li><a href="#">Qui sommes nous ?</a></li>
-            <li><a href="#">Proposer un trajet</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="historiqueUtilisateur.php">Historique</a></li>
             <li><a href="index.php">Déconnexion</a></li>
-        </ul>           
+        </ul>
     </div>
 
     <header>
@@ -34,7 +36,7 @@
             <div class="title">
                 <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
                 <h1>CarPool</h1>
-            </div> 
+            </div>
             <div class="CoDeco">
                 <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
                 <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
@@ -42,7 +44,7 @@
             </div>
         </div>
     </header>
-    
+
     <main>
         <div class="profileContainer">
             <div class="profileHeader">
@@ -56,17 +58,25 @@
                 <form method="">
                     <div class="infoButton">
                         <div class="profileInfo">
-                                <p class="icon">👤</p><strong>Nom :</strong>
-                                    <input type="text" placeholder="John" id="nom" name="nom"><br><br>
+                            <p class="icon">👤</p><strong>Nom :</strong>
+                            <input type="text" placeholder="John" id="nom" name="nom"><br><br>
 
-                                <p class="icon">✉</p><strong>Email :</strong>  
-                                    <input type="text" placeholder="John.doe@stagiairesmns.fr" id="email" name="email"><br><br>
+                            <p class="icon">✉</p><strong>Email :</strong>
+                            <input type="text" placeholder="John.doe@stagiairesmns.fr" id="email" name="email"><br><br>
 
-                                <p class="icon">📞</p><strong>Téléphone :</strong>
-                                    <input type="tel" placeholder="00 00 00 00 00" id="numero" name="numero"><br><br>
+                            <p class="icon">📞</p><strong>Téléphone :</strong>
+                            <input type="tel" placeholder="00 00 00 00 00" id="numero" name="numero"><br><br>
 
-                                <p class="icon">🌍</p><strong>Lieu :</strong> 
-                                    <input type="text" placeholder="Paris" id="lieu" name="lieu "><br><br>
+                            <p class="icon">👔</p><strong>Service :</strong>
+                            <select class="service">
+                                <option>Développement web</option>
+                                <option>Technicien résaux </option>
+                                <option>Cyber sécurité</option>
+                                <option>Web design</option>
+                            </select><br><br>
+
+                            <p class="icon">🌍</p><strong>Lieu :</strong>
+                            <input type="text" placeholder="Paris" id="lieu" name="lieu "><br><br>
 
                         </div>
 
@@ -83,7 +93,7 @@
                                     </label>
                                 </span>
                                 <p class="icon">❤</p><strong>Préférences :</strong>
-                                    <textarea class="inputPref" name="Texte" placeholder="Non Fumeur, Animaux, Pas de nourriture"></textarea><br><br>
+                                <textarea class="inputPref" name="Texte" placeholder="Non Fumeur, Animaux, Pas de nourriture"></textarea><br><br>
 
                             </div>
                             <div class="profileActions">
@@ -95,7 +105,7 @@
                         </div>
                     </div>
                 </form>
-            </div>           
+            </div>
         </div>
     </main>
 
@@ -111,7 +121,7 @@
                 </ul>
             </div>
             <div class="footerLogo">
-                <a href="index2.php"><img class="logoCarPool"  src="Images/logoCarPool.png" alt="Logo CarPool"></a>
+                <a href="index2.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
             </div>
             <div class="footerSocials">
                 <ul>
@@ -126,7 +136,5 @@
         </div>
     </footer>
 </body>
+
 </html>
-
-
-
