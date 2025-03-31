@@ -25,8 +25,7 @@
             <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
             <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>
-            <li><a href="modifProfil.php">Modifier mon profil</a></li>
-            <li><a href="backoffice.php">Déconnexion</a></li>
+            <li><a href="backoffice.php">Backoffice</a></li>
             <li><a href="index.php">Déconnexion</a></li>
         </ul>
     </div>

@@ -9,19 +9,19 @@ document.getElementById("closeModal").addEventListener("click",function(){
     document.getElementById("modal").style.display="none";   
 });
 
-// Vérification en direct des critères du mot de passe
+
 document.getElementById('mot_de_passe').addEventListener('input', function () {
     let password = this.value;
 
-    // Fonction pour mettre à jour les critères avec une icône rouge ❌ ou verte ✅
+
     function updateCriteria(id, condition) {
         let element = document.getElementById(id);
         if (condition) {
             element.style.color = "green";
-            element.innerText = "✅ " + element.innerText.slice(2); // Remplace ❌ par ✅
+            element.innerText = "✅ " + element.innerText.slice(2); 
         } else {
             element.style.color = "red";
-            element.innerText = "❌ " + element.innerText.slice(2); // Remet ❌ si la condition est fausse
+            element.innerText = "❌ " + element.innerText.slice(2); 
         }
     }
 

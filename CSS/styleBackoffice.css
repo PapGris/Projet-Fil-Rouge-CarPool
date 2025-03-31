@@ -33,11 +33,10 @@ main {
     max-width: 100%;
 }
 
-/* Réduction de la margin-top sur les écrans mobiles */
+
 @media (max-width: 500px) {
     .userContainer {
         margin-top: 50px;
-        /* Réduit la marge du haut sur mobile */
     }
 }
 
@@ -74,7 +73,6 @@ h2 {
     text-align: left;
     border-bottom: 1px solid #e5e5e5;
     border-right: 1px solid #e5e5e5;
-    /* Bordure droite pour séparer les colonnes */
     font-size: 0.9rem;
 }
 
@@ -87,61 +85,50 @@ h2 {
     background-color: #c8da92;
 }
 
-/* Enlever la bordure à droite de la dernière colonne */
 .userTable th:last-child,
 .userTable td:last-child {
     border-right: none;
 }
 
-/* Boutons Modifier et Supprimer */
 .btn-container {
     display: flex;
     justify-content: flex-start;
-    /* Aligne les boutons sur la même ligne */
     gap: 10px;
-    /* Espacement entre les boutons */
 }
 
 .btn-modifier,
 .btn-supprimer {
     padding: 10px 20px;
-    /* Même taille pour les deux boutons */
     border: none;
     border-radius: 25px;
     font-size: 1em;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
     width: auto;
-    /* Laisse la largeur s'ajuster au contenu */
 }
 
 .btn-supprimer {
-    background-color: #f8a5b2;
-    /* Rouge pâle */
+
+    background-color: #f77f8e;
     color: white;
 }
 
 .btn-modifier {
-    background-color: #f9c74f;
-    /* Orange pâle */
+    background-color: #f9b23f;
+
     color: white;
 }
 
-/* Effet de survol */
+
 .btn-supprimer:hover {
-    background-color: #f77f8e;
-    /* Rouge plus intense */
+    background-color: #f8a5b2;
     transform: translateY(-4px);
-    /* Légère élévation */
 }
 
 .btn-modifier:hover {
-    background-color: #f9b23f;
-    /* Orange plus intense */
+    background-color: #f9c74f;
     transform: translateY(-4px);
-    /* Légère élévation */
 }
-
 /* Media Queries */
 @media (min-width: 500px) {}
 
