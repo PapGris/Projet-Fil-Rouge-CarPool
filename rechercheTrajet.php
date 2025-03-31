@@ -62,7 +62,7 @@
                     <input class="date" type="date" id="date">
 
                     <p><strong>Nombre de passager :</strong></p>
-                    <select>
+                    <select class="places">
                         <option>1 passager</option>
                         <option>2 passagers</option>
                         <option>3 passagers</option>
