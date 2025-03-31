@@ -22,7 +22,7 @@
         <ul>
             <li><a href="indexConnecte.php">Accueil</a></li>
             <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="index.php">Déconnexion</a></li>
         </ul>

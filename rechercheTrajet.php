@@ -22,7 +22,7 @@
         </div>
         <ul>
             <li><a href="profilUtilisateur.php">Mon Profil</a></li>
-            <li><a href="notifications.php">Notifications</a></li>
+            <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>
             <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="index.php">Déconnexion</a></li>

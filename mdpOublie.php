@@ -55,31 +55,9 @@
             </form>
         </div>
     </main>
-    <footer>
-        <div class="footerContent">
-            <div class="footerLinks">
-                <ul>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Conditions d'utilisation</a></li>
-                </ul>
-            </div>
-            <div class="footerLogo">
-                <a href="index2.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-            </div>
-            <div class="footerSocials">
-                <ul>
-                    <li><a href="#" class="social-link">Facebook</a></li>
-                    <li><a href="#" class="social-link">Twitter</a></li>
-                    <li><a href="#" class="social-link">Instagram</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footerBottom">
-            <p>&copy; 2025 CarPool. Tous droits réservés.</p>
-        </div>
-    </footer>
+    
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+
 </body>
 
 </html>
