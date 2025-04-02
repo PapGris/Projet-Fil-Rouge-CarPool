@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
+    <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
     <script src="JS/scriptInscription.js" defer></script>
     <script src="JS/script.js" defer></script>
 </head>

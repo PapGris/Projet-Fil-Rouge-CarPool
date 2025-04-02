@@ -2,8 +2,8 @@
 
 function calendrier() {
     let aujourdhui = new Date();
-    let formattedDate = aujourdhui.toISOString().split('T')[0]; // Format YYYY-MM-DD
-    document.getElementById("date").value = formattedDate; // Met la date du jour par défaut
+    let formattedDate = aujourdhui.toISOString().split('T')[0]; 
+    document.getElementById("date").value = formattedDate; 
 }
 
-calendrier(); // Met la date du jour par défaut
+calendrier(); 
