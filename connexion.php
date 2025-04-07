@@ -1,3 +1,37 @@
+<?php
+session_start(); 
+require 'config/db.php';
+
+if (isset($_POST['pseudoEmail']) && $_POST['pseudoEmail'] !== '' && isset($_POST['mot_de_passe']) && $_POST['mot_de_passe'] !== '') {
+    $email = htmlspecialchars($_POST['pseudoEmail']);
+    $password = htmlspecialchars($_POST['mot_de_passe']);
+
+
+    $user = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_email = :email');
+    $user->bindParam('email', $email);
+    $user->execute();
+    $user = $user->fetch();
+
+    if (!$user) {
+        echo 'Utilisateur non trouvé';
+        exit;
+    }
+
+    // if (password_verify($password, $user['utilisateur_password'])) {
+    if ($password === $user['utilisateur_mdp']) {
+        session_start();
+        $_SESSION['id'] = $user['utilisateur_id'];
+        $_SESSION['email'] = $user['utilisateur_email'];
+        $_SESSION['photo'] = $user['utilisateur_photo']; 
+        header("Location: indexConnecte.php");
+        exit;
+    } else {
+        echo 'Mot de Passe incorrect';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -52,8 +86,7 @@
                 </div>
 
                 <div>
-                    <!-- <input type="submit" id="btn" value="Se connecter"><br><br> -->
-                    <a href="profilUtilisateur.php"><button class="boutonMdp" type="button">Connexion</button></a><br><br>
+                    <input type="submit" id="btn" value="Se connecter"><br><br>
                     <a href="mdpOublie.php"><button class="boutonMdp" type="button">Mot de passe oublié</button></a><br><br>
                     <a href="index.php"><button class="boutonAccueil" type="button">Retour à l'accueil</button></a>
 

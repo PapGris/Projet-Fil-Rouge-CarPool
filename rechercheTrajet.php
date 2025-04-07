@@ -1,3 +1,8 @@
+<?php
+require 'config/db.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -84,9 +89,9 @@
                     </div>
                     <p><strong>Type de voyage :</strong></p>
                     <span class="voyage">
-                        <label><input type="radio" name="musique" value="oui" checked> Aller</label>
-                        <label><input type="radio" name="musique" value="non"> Retour</label>
-                        <label><input type="radio" name="musique" value="non"> Aller/Retour</label>
+                        <label><input type="radio" name="voyage" value="oui" checked> Aller</label>
+                        <label><input type="radio" name="voyage" value="non"> Retour</label>
+                        <label><input type="radio" name="voyage" value="non"> Aller/Retour</label>
                     </span>
                     <button class="btnRechercher" type="submit">Rechercher</button>
                 </form>
@@ -114,21 +119,21 @@
 
                     <div class="preferences">
                         <p><strong>Fumeur :</strong></p>
-                        <span class="fumeur">
-                            <label><input type="radio" name="fumeur-proposer" value="oui" checked> Oui</label>
-                            <label><input type="radio" name="fumeur-proposer" value="non"> Non</label>
+                        <span class="fumeurProposer">
+                            <label><input type="radio" name="fumeurProposer" value="oui" checked> Oui</label>
+                            <label><input type="radio" name="fumeurProposer" value="non"> Non</label>
                         </span>
                         <p><strong>Musique :</strong></p>
-                        <span class="musique">
-                            <label><input type="radio" name="musique-proposer" value="oui" checked> Oui</label>
-                            <label><input type="radio" name="musique-proposer" value="non"> Non</label>
+                        <span class="musiqueProposer">
+                            <label><input type="radio" name="musiqueProposer" value="oui" checked> Oui</label>
+                            <label><input type="radio" name="musiqueProposer" value="non"> Non</label>
                         </span>
                     </div>
                     <p><strong>Type de voyage :</strong></p>
-                    <span class="voyage">
-                        <label><input type="radio" name="musique" value="oui" checked> Aller</label>
-                        <label><input type="radio" name="musique" value="non"> Retour</label>
-                        <label><input type="radio" name="musique" value="non"> Aller/Retour</label>
+                    <span class="voyageProposer">
+                        <label><input type="radio" name="voyageProposer" value="oui" checked> Aller</label>
+                        <label><input type="radio" name="voyageProposer" value="non"> Retour</label>
+                        <label><input type="radio" name="voyageProposer" value="non"> Aller/Retour</label>
                     </span>
                     <button class="btnRechercher" type="submit">Proposer</button>
                 </form>

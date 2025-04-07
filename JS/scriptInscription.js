@@ -108,25 +108,65 @@ function formsubmit(event) {
     if(!allValid){    
         event.preventDefault();  
     } 
-
-    // GESTION PSEUDO AVEC AJAX 
-
-    let pseudo = document.getElementById('pseudo');
-    if (pseudo.value.trim() !== '') {
-        fetch("checkPseudo.php")
-        .then(response => response.text())
-        .then(data => {
-            if (data === "0") {
-                input.closest('div').classList.add('error'); 
-                let div = document.createElement('div'); 
-                let text = document.createTextNode('Ce pseudo n\'est pas disponible'); 
-                div.append(text); 
-                input.closest('div').appendChild(div); 
-                allValid = false;
-            }
-        })
-    }
 }
+
+// GESTION EMAIL AVEC AJAX
+
+
+let inputEmail = document.getElementById('email');
+inputEmail.addEventListener('blur', function() {
+    let formData = new FormData();
+    formData.append('email', this.value);
+    fetch('ajax/checkEmail.php', {
+        method: 'POST',       
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => { 
+        if(inputEmail.value != ""){
+            let div = document.createElement('div'); 
+            div.classList.add('error');
+            let text = document.createTextNode(data); 
+            div.append(text); 
+            inputEmail.closest('div').appendChild(div); 
+        }else{
+            document.querySelector('.error').remove();
+        }
+    })
+}); 
+
+
+inputEmail.addEventListener('click', function() {
+    document.querySelector('.error').remove();
+});
+
+// GESTION PSEUDO AVEC AJAX 
+let inputPseudo = document.getElementById('pseudo');
+inputPseudo.addEventListener('blur', function() {
+    let formData = new FormData();
+    formData.append('pseudo', this.value);
+    fetch('ajax/checkPseudo.php', {
+        method: 'POST',       
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => { 
+        if(inputPseudo.value != ""){
+            let div = document.createElement('div'); 
+            div.classList.add('error');
+            let text = document.createTextNode(data); 
+            div.append(text); 
+            inputPseudo.closest('div').appendChild(div); 
+        }else{
+            document.querySelector('.error').remove();
+        }
+    })
+}); 
+
+
+inputPseudo.addEventListener('click', function() {
+    document.querySelector('.error').remove();
+});
 
 document.getElementById('form').addEventListener('submit',formsubmit); 
 document.getElementById('btn').addEventListener('click',formsubmit);

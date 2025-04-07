@@ -1,3 +1,8 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

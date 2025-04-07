@@ -93,7 +93,9 @@ p {
     flex-direction: column;
 }
 
-.fumeur, .musique, .voyage {
+.fumeur,
+.musique,
+.voyage {
     margin-bottom: 20px;
     margin-top: 3px;
     outline: none;
@@ -101,6 +103,17 @@ p {
     padding: 3px;
     border-radius: 5px;
 }
+
+.fumeurProposer, .musiqueProposer, .voyageProposer {
+    margin-bottom: 20px;
+    margin-top: 3px;
+    outline: none;
+    background-color: #f2f2f2;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+
 
 input[type="radio"] {
     appearance: none;

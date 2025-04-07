@@ -1,3 +1,8 @@
+<?php
+require 'config/db.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -76,9 +81,10 @@
                 </div>
                 <div id="divcomp"></div><br>
                 <div>
-                    <!-- <input type="submit" id="btn" value="S'inscrire"><br><br> -->
-                    <a href="profilUtilisateur.php"><button class="boutonMdp" type="button">S'inscrire</button></a><br><br>
-                    <a href="index.php"><button class="boutonAccueil" type="button">Retour à l'accueil</button></a>
+                    <input type="submit" id="btn" value="S'inscrire"><br><br>
+                    <!-- <a href="profilUtilisateur.php"><button class="boutonMdp" type="button">S'inscrire</button></a><br><br> -->
+                    <a href="index.php"><button class="boutonAccueil" type="button">Retour à l'accueil</button></a><br><br>
+                    <span class="champsObligatoires">*Champs obligatoires</span>
                 </div>
             </form>
         </div>
