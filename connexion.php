@@ -23,7 +23,7 @@ if (isset($_POST['pseudoEmail']) && $_POST['pseudoEmail'] !== '' && isset($_POST
         $_SESSION['id'] = $user['utilisateur_id'];
         $_SESSION['email'] = $user['utilisateur_email'];
         $_SESSION['photo'] = $user['utilisateur_photo']; 
-        header("Location: indexConnecte.php");
+        header("Location: index.php");
         exit;
     } else {
         echo 'Mot de Passe incorrect';

@@ -1,6 +1,6 @@
 <?php
 require 'config/db.php';
-
+session_start();
 ?>
 
 
@@ -12,7 +12,17 @@ require 'config/db.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpool</title>
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
+    <?php
+    if (!isset($_SESSION['id'])) {
+    ?>
+        <link rel="stylesheet" href="CSS/styleHeaderBurgerFooter.css">
+    <?php
+    } else {
+    ?>
+        <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
+    <?php
+    }
+    ?>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link rel="icon" type="Images/png" href="Images/favicon.ico" sizes="96x96" />
@@ -23,30 +33,9 @@ require 'config/db.php';
 
 <body>
 
-    <div class="burger">
-        <ul>
-            <li><a href="connexion.php">Connexion</a></li>
-            <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-        </ul>
-    </div>
-
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="connexion.php"><button class="btn">Connexion</button></a>
-                <a href="inscription.php"><button class="btn">Inscription</button></a>
-            </div>
-        </div>
-    </header>
+    <?php
+    require_once 'templates/header.php';
+    ?>
 
     <main>
         <section class="acceuil">

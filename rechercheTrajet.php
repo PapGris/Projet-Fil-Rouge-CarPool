@@ -1,6 +1,5 @@
 <?php
-require 'config/db.php';
-
+require 'config/db.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -22,36 +21,11 @@ require 'config/db.php';
 
 <body>
 
-    <div class="burger">
-        <div class="profilePicContainer">
-            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>
-        <ul>
-            <li><a href="profilUtilisateur.php">Mon Profil</a></li>
-            <li><a href="notificationUtilisateur.php">Notifications</a></li>
-            <li><a href="historiqueUtilisateur.php">Historique</a></li>
-            <li><a href="modifProfil.php">Modifier mon profil</a></li>
-            <li><a href="index.php">Déconnexion</a></li>
-        </ul>
-    </div>
-
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
-                <a href="index.php" class="btn">Déconnexion</a>
-            </div>
-        </div>
-    </header>
+    <!-- LA -->
+    <?php
+    require_once 'templates/header.php';
+    ?>
+    <!-- A LA -->
 
     <main>
         <div class="container">
