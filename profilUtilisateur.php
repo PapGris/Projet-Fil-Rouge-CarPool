@@ -1,5 +1,26 @@
 <?php
-require 'config/db.php';
+require_once 'config/db.php';
+require_once 'config/session.php';
+
+
+
+$utilisateur_id = $_SESSION['id'];
+
+
+$sql = "SELECT 
+            u.utilisateur_nom, u.utilisateur_prenom, u.utilisateur_pseudo, 
+            u.utilisateur_email, u.utilisateur_telephone, u.utilisateur_photo,
+            u.utilisateur_conducteur, u.utilisateur_lieu,
+            p.poste_nom,
+            pr.preference_fumeur, pr.preference_nourriture, pr.preference_musique
+        FROM utilisateur u
+        LEFT JOIN poste p ON u.poste_id = p.poste_id
+        LEFT JOIN preference pr ON u.utilisateur_id = pr.utilisateur_id
+        WHERE u.utilisateur_id = :id";
+
+$stmt = $db->prepare($sql);
+$stmt->execute(['id' => $utilisateur_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -9,8 +30,7 @@ require 'config/db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpool - Mon Profil</P>
-    </title>
+    <title>Carpool - Mon Profil</title>
     <link rel="stylesheet" href="CSS/styleProfilUtilisateur.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -22,61 +42,36 @@ require 'config/db.php';
 
 <body>
 
-    <div class="burger">
-        <div class="profilePicContainer">
-            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>
-        <ul>
-            <li><a href="indexConnecte.php">Accueil</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-            <li><a href="notificationUtilisateur.php">Notifications</a></li>
-            <li><a href="historiqueUtilisateur.php">Historique</a></li>
-            <li><a href="backoffice.php">Backoffice</a></li>
-            <li><a href="index.php">Déconnexion</a></li>
-        </ul>
-    </div>
+    <?php require_once 'templates/header.php'; ?>
 
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
-                <a href="index.php" class="btn">Déconnexion</a>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="profileContainer">
             <div class="profileHeader">
-                <img src="Images/person.jpg" alt="Photo de profil" class="profilePic">
-                <h1 class="profile-name">Papillon-Gris</h1>
+                <img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/person.jpg') ?>" alt="Photo de profil" class="profilePic">
+                <h1 class="profile-name"><?= htmlspecialchars($user['utilisateur_pseudo']) ?></h1>
             </div>
 
             <div class="infoButton">
                 <div class="profileInfo">
-                    <p class="icon">👤</p><strong>Nom :</strong><span>John Doe</span></p>
-                    <p class="icon">✉</p><strong>Email :</strong><span>johndoe@exemple.com</span></p>
-                    <p class="icon">📞</p><strong>Téléphone :</strong><span>06 25 54 43 61</span></p>
-                    <p class="icon">👔</p><strong>Service :</strong><span>Développement Web</span></p>
-                    <p class="icon">🌍</p><strong>Lieu :</strong><span>Paris, France</span></p>
+                    <p class="icon">👤</p><strong>Nom :</strong> <span><?= htmlspecialchars($user['utilisateur_nom'] . ' ' . $user['utilisateur_prenom']) ?></span></p>
+                    <p class="icon">✉</p><strong>Email :</strong> <span><?= htmlspecialchars($user['utilisateur_email']) ?></span></p>
+                    <p class="icon">📞</p><strong>Téléphone :</strong> <span><?= htmlspecialchars($user['utilisateur_telephone']) ?></span></p>
+                    <p class="icon">👔</p><strong>Service :</strong> <span><?= htmlspecialchars($user['poste_nom'] ?? 'Non défini') ?></span></p>
+                    <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= $user['utilisateur_lieu']? htmlspecialchars($user['utilisateur_lieu']):''?></span></p>
                 </div>
 
                 <div class="profileInfosBtn">
                     <div class="aPropos">
                         <p class="icon">🚗</p>
                         <strong>Conducteur :</strong>
-                        <span> Oui </span>
+                        <span><?= $user['utilisateur_conducteur'] ? 'Oui' : 'Non' ?></span>
                         <p class="icon">❤</p>
                         <strong>Préférences :</strong>
-                        <span>Non Fumeur, Animaux, Pas de nourriture</span>
+                        <span>
+                            <?= $user['preference_fumeur'] == 1 ? ' Fumeur' : 'Non fumeur' ?>
+                            <?= $user['preference_nourriture'] == 1 ? ' , Nourriture ok' : ' , Sans nourriture' ?>
+                            <?= $user['preference_musique'] == 1 ? ' , Musique ok' : ' , Sans musique' ?> 
+                        </span>
                     </div>
                     <div class="profileActions">
                         <a href="modifProfil.php"><button class="edit-button">Modifier le profil</button></a>
@@ -90,7 +85,7 @@ require 'config/db.php';
         </div>
     </main>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
 </body>
 

@@ -1,6 +1,6 @@
 <?php
 require 'config/db.php';
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,28 +21,10 @@ require 'config/db.php';
 
 <body>
 
-    <div class="burger">
-        <ul>
-            <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-        </ul>
-    </div>
+    <?php
+    require_once 'templates/header.php';
+    ?>
 
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="inscription.php"><button class="btn">Inscription</button></a>
-            </div>
-        </div>
-    </header>
     <main>
 
         <div class="formC-container">
@@ -62,7 +44,7 @@ require 'config/db.php';
         </div>
     </main>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
 </body>
 

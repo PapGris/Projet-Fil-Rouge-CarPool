@@ -1,6 +1,49 @@
 <?php
 require 'config/db.php';
 
+
+if (isset($_POST['nom']) && $_POST['nom'] !== '' && 
+    isset($_POST['prenom']) && $_POST['prenom'] !== '' && 
+    isset($_POST['email']) && $_POST['email'] !== '' &&  
+    isset($_POST['numero']) && $_POST['numero'] !== '' &&
+    isset($_POST['pseudo']) && $_POST['pseudo'] !== '' &&
+    isset($_POST['mot_de_passe']) && $_POST['mot_de_passe'] !== '' && 
+    isset($_POST['confirmer_mot_de_passe']) && $_POST['confirmer_mot_de_passe'] !== '') {
+
+
+        $nom = htmlspecialchars($_POST['nom']);
+        $prenom = htmlspecialchars($_POST['prenom']);
+        $email = htmlspecialchars($_POST['email']);
+        $numero = htmlspecialchars($_POST['numero']);
+        $pseudo = htmlspecialchars($_POST['pseudo']);
+        $password = htmlspecialchars($_POST['mot_de_passe']);
+        $confirmPassword = htmlspecialchars($_POST['confirmer_mot_de_passe']);
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password)");
+        $query->bindValue(":nom", $nom);
+        $query->bindValue(":prenom", $prenom);
+        $query->bindValue(":email", $email);
+        $query->bindValue(":numero", $numero);
+        $query->bindValue(":pseudo", $pseudo);
+        $query->bindValue(":password", $password);
+        $query->execute();
+
+        $id = $db->lastInsertId();
+
+
+        $query2 = $db->prepare("INSERT INTO preference (preference_fumeur, preference_nourriture, preference_musique, utilisateur_id) VALUES (:preferenceFumeur, :preferenceNourriture, :preferenceMusique, :id)");
+        $query2->bindValue(":preferenceFumeur", 0);
+        $query2->bindValue(":preferenceNourriture", 0);
+        $query2->bindValue(":preferenceMusique", 0);
+        $query2->bindValue(":id", $db->lastInsertId());
+        $query2->execute();
+
+        header("Location: connexion.php");
+        exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,28 +64,10 @@ require 'config/db.php';
 
 <body>
 
-    <div class="burger">
-        <ul>
-            <li><a href="connexion.php">Connexion</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-        </ul>
-    </div>
+    <?php
+    require_once 'templates/header.php';
+    ?>
 
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="connexion.php"><button class="btn">Connexion</button></a>
-            </div>
-        </div>
-    </header>
     <main>
 
         <div class="formI-container">
@@ -76,7 +101,7 @@ require 'config/db.php';
                 </div>
                 <div>
                     <label for="confirmer_mot_de_passe">Confirmer le mot de passe<span class="required">*</span>:</label>
-                    <input type="password" id="confirmer_mot_de_passe" name="confirme_mot_de_passe" onBlur="checkPass()" autocomplete="new-password" required>
+                    <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" onBlur="checkPass()" autocomplete="new-password" required>
 
                 </div>
                 <div id="divcomp"></div><br>
@@ -103,7 +128,7 @@ require 'config/db.php';
         </div>
     </main>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
 </body>
 

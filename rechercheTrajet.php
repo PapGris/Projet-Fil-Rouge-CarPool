@@ -1,5 +1,6 @@
 <?php
-require 'config/db.php'; 
+require 'config/db.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +22,9 @@ require 'config/db.php';
 
 <body>
 
-    <!-- LA -->
     <?php
     require_once 'templates/header.php';
     ?>
-    <!-- A LA -->
 
     <main>
         <div class="container">
@@ -54,6 +53,11 @@ require 'config/db.php';
                         <span class="fumeur">
                             <label><input type="radio" name="fumeur" value="oui" checked> Oui</label>
                             <label><input type="radio" name="fumeur" value="non"> Non</label>
+                        </span>
+                        <p><strong>Nourriture :</strong></p>
+                        <span class="nourriture">
+                            <label><input type="radio" name="nourriture" value="oui" checked> Oui</label>
+                            <label><input type="radio" name="nourriture" value="non"> Non</label>
                         </span>
                         <p><strong>Musique :</strong></p>
                         <span class="musique">
@@ -97,6 +101,11 @@ require 'config/db.php';
                             <label><input type="radio" name="fumeurProposer" value="oui" checked> Oui</label>
                             <label><input type="radio" name="fumeurProposer" value="non"> Non</label>
                         </span>
+                        <p><strong>Nourriture :</strong></p>
+                        <span class="nourritureProposer">
+                            <label><input type="radio" name="nourritureProposer" value="oui" checked> Oui</label>
+                            <label><input type="radio" name="nourritureProposer" value="non"> Non</label>
+                        </span>
                         <p><strong>Musique :</strong></p>
                         <span class="musiqueProposer">
                             <label><input type="radio" name="musiqueProposer" value="oui" checked> Oui</label>
@@ -115,7 +124,7 @@ require 'config/db.php';
         </div>
     </main>
 
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
 </body>
 

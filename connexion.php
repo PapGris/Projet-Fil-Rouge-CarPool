@@ -1,28 +1,29 @@
 <?php
-session_start(); 
+session_start();
 require 'config/db.php';
 
 if (isset($_POST['pseudoEmail']) && $_POST['pseudoEmail'] !== '' && isset($_POST['mot_de_passe']) && $_POST['mot_de_passe'] !== '') {
     $email = htmlspecialchars($_POST['pseudoEmail']);
+    $pseudo = htmlspecialchars($_POST['pseudoEmail']);
     $password = htmlspecialchars($_POST['mot_de_passe']);
 
 
-    $user = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_email = :email');
+    $user = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_email = :email OR utilisateur_pseudo = :pseudo');
     $user->bindParam('email', $email);
+    $user->bindParam('pseudo', $pseudo);
     $user->execute();
-    $user = $user->fetch();
+    $user = $user->fetch(); 
 
     if (!$user) {
         echo 'Utilisateur non trouvé';
         exit;
     }
 
-    // if (password_verify($password, $user['utilisateur_password'])) {
-    if ($password === $user['utilisateur_mdp']) {
+    if (password_verify($password, $user['utilisateur_mdp'])) {
         session_start();
         $_SESSION['id'] = $user['utilisateur_id'];
         $_SESSION['email'] = $user['utilisateur_email'];
-        $_SESSION['photo'] = $user['utilisateur_photo']; 
+        $_SESSION['photo'] = $user['utilisateur_photo'];
         header("Location: index.php");
         exit;
     } else {
@@ -50,28 +51,10 @@ if (isset($_POST['pseudoEmail']) && $_POST['pseudoEmail'] !== '' && isset($_POST
 
 <body>
 
-    <div class="burger">
-        <ul>
-            <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-        </ul>
-    </div>
-
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="index.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="inscription.php"><button class="btn">Inscription</button></a>
-            </div>
-        </div>
-    </header>
+    <?php
+    require_once 'templates/header.php';
+    ?>
+    
     <main>
 
         <div class="formC-container">
@@ -94,7 +77,7 @@ if (isset($_POST['pseudoEmail']) && $_POST['pseudoEmail'] !== '' && isset($_POST
             </form>
         </div>
     </main>
-    <?php include("footer.php"); ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 </body>
 
 </html>

@@ -1,7 +1,92 @@
 <?php
 require 'config/db.php';
+require_once 'config/session.php';
+$utilisateur_id = $_SESSION['id'];  
 
-?>
+// Récupérer les informations actuelles de l'utilisateur
+$sql = "SELECT 
+            u.utilisateur_nom, u.utilisateur_prenom, u.utilisateur_pseudo, 
+            u.utilisateur_email, u.utilisateur_telephone, u.utilisateur_photo,
+            u.utilisateur_conducteur, u.utilisateur_lieu,
+            p.poste_nom,
+            pr.preference_fumeur, pr.preference_nourriture, pr.preference_musique
+        FROM utilisateur u
+        LEFT JOIN poste p ON u.poste_id = p.poste_id
+        LEFT JOIN preference pr ON u.utilisateur_id = pr.utilisateur_id
+        WHERE u.utilisateur_id = :id";
+
+$stmt = $db->prepare($sql);
+$stmt->execute(['id' => $utilisateur_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Mettre à jour les informations si le formulaire est soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // 1. Récupération des données du formulaire
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $email = $_POST['email'];
+        $numero = $_POST['numero'];
+        $service_nom = $_POST['service']; // <-- ce champ est un NOM (ex: "Technicien réseau")
+        $lieu = $_POST['lieu'];
+        // $conducteur = $_POST['conducteur'];
+        $fumeur = $_POST['fumeur'];
+        $nourriture = $_POST['nourriture'];
+        $musique = $_POST['musique'];
+
+        // 2. Récupère l'ID du poste à partir de son nom
+        $stmt = $db->prepare("SELECT poste_id FROM poste WHERE poste_nom = :service");
+        $stmt->bindValue(':service', $service_nom);
+        $stmt->execute();
+        $poste = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($poste) {
+            $poste_id = $poste['poste_id'];
+
+            // 3. Mise à jour de la table utilisateur
+            $updateSql = "UPDATE utilisateur SET 
+                        utilisateur_nom = :nom, 
+                        utilisateur_prenom = :prenom, 
+                        utilisateur_email = :email, 
+                        utilisateur_telephone = :numero,
+                        -- utilisateur_conducteur = :conducteur, 
+                        utilisateur_lieu = :lieu, 
+                        poste_id = :poste_id
+                      WHERE utilisateur_id = :id";
+
+            $stmt = $db->prepare($updateSql);
+            $stmt->bindValue(':nom', $nom);
+            $stmt->bindValue(':prenom', $prenom);
+            $stmt->bindValue(':email', $email);
+            $stmt->bindValue(':numero', $numero);
+            // $stmt->bindValue(':conducteur', $conducteur);
+            $stmt->bindValue(':lieu', $lieu);
+            $stmt->bindValue(':poste_id', $poste_id);
+            $stmt->bindValue(':id', $utilisateur_id);
+            $stmt->execute();
+
+            // 4. Mise à jour des préférences
+            $updatePrefSql = "UPDATE preference SET 
+                            preference_fumeur = :fumeur, 
+                            preference_nourriture = :nourriture, 
+                            preference_musique = :musique 
+                          WHERE utilisateur_id = :id";
+
+            $stmt = $db->prepare($updatePrefSql);
+            $stmt->bindValue(':fumeur', $fumeur);
+            $stmt->bindValue(':nourriture', $nourriture);
+            $stmt->bindValue(':musique', $musique);
+            $stmt->bindValue(':id', $utilisateur_id);
+            $stmt->execute();
+
+            // 5. Redirection
+            header("Location: profilUtilisateur.php");
+            exit();
+        } else {
+            echo "Erreur : poste introuvable.";
+        }
+    }
+
+    ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,87 +105,99 @@ require 'config/db.php';
 </head>
 
 <body>
-    <div class="burger">
-        <div class="profilePicContainer">
-            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
-        </div>
-        <ul>
-            <li><a href="indexConnecte.php">Accueil</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
-            <li><a href="notificationUtilisateur.php">Notifications</a></li>
-            <li><a href="historiqueUtilisateur.php">Historique</a></li>
-            <li><a href="index.php">Déconnexion</a></li>
-        </ul>
-    </div>
 
-    <header>
-        <div class="headerContainer">
-            <i class="material-symbols-outlined" id="logoBurger">
-                search_hands_free
-            </i>
-
-            <div class="title">
-                <a href="indexConnecte.php"><img class="logoCarPool" src="Images/logoCarPool.png" alt="Logo CarPool"></a>
-                <h1>CarPool</h1>
-            </div>
-            <div class="CoDeco">
-                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
-                <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
-                <a href="index.php" class="btn">Déconnexion</a>
-            </div>
-        </div>
-    </header>
+    <?php require_once 'templates/header.php'; ?>
 
     <main>
         <div class="profileContainer">
             <div class="profileHeader">
-                <img src="Images/person.jpg" alt="Photo de profil" class="profile-pic">
-                <h1 class="profile-name">Papillon-Gris</h1>
+                <div>
+                    <img src="Images/iconeModifier.png" alt="icone de modification" style="width: 30px;" class="iconModif">
+                    <img src="Images/person.jpg" alt="Photo de profil" class="profile-pic">
+                </div>
+                <div class="modifierPseudo">
+                    <img src="Images/iconeModifier.png" alt="icone de modification" style="width: 30px;" class="iconModif">
+                    <h1 class="profile-name"><?= $user['utilisateur_pseudo'] ?></h1>
+                </div>
             </div>
             <div class="modifProfil">
                 <div class="titleModif">
                     <h2>Modifier le Profil</h2>
                 </div>
-                <form method="">
+                <form method="POST">
                     <div class="infoButton">
                         <div class="profileInfo">
                             <p class="icon">👤</p><strong>Nom :</strong>
-                            <input type="text" placeholder="John" id="nom" name="nom"><br><br>
+                            <input type="text" value="<?= $user['utilisateur_nom'] ?>" id="nom" name="nom"><br><br>
+
+                            <p class="icon">👤</p><strong>Prenom :</strong>
+                            <input type="text" value="<?= $user['utilisateur_prenom'] ?>" id="prenom" name="prenom"><br><br>
 
                             <p class="icon">✉</p><strong>Email :</strong>
-                            <input type="text" placeholder="John.doe@stagiairesmns.fr" id="email" name="email"><br><br>
+                            <input type="email" value="<?= $user['utilisateur_email'] ?>" id="email" name="email"><br><br>
 
                             <p class="icon">📞</p><strong>Téléphone :</strong>
-                            <input type="tel" placeholder="00 00 00 00 00" id="numero" name="numero"><br><br>
+                            <input type="tel" value="<?= $user['utilisateur_telephone'] ?>" id="numero" name="numero"><br><br>
 
                             <p class="icon">👔</p><strong>Service :</strong>
-                            <select class="service">
-                                <option>Développement web</option>
-                                <option>Technicien résaux </option>
-                                <option>Cyber sécurité</option>
-                                <option>Web design</option>
+                            <select class="service" name="service">
+                                <option value="Développeur web" <?= $user['poste_nom'] == 'Développeur web' ? 'selected' : '' ?>>Développeur web</option>
+                                <option value="Technicien réseau" <?= $user['poste_nom'] == 'Technicien réseau' ? 'selected' : '' ?>>Technicien réseau</option>
+                                <option value="Cyber sécurité" <?= $user['poste_nom'] == 'Cyber sécurité' ? 'selected' : '' ?>>Cyber sécurité</option>
+                                <option value="Web designer" <?= $user['poste_nom'] == 'Web designer' ? 'selected' : '' ?>>Web designer</option>
                             </select><br><br>
 
                             <p class="icon">🌍</p><strong>Lieu :</strong>
-                            <input type="text" placeholder="Paris" id="lieu" name="lieu "><br><br>
-
+                            <input type="text" value="<?= $user['utilisateur_lieu'] ?>" id="lieu" name="lieu"><br><br>
                         </div>
 
                         <div class="profileInfosBtn">
                             <div class="aPropos">
                                 <p class="icon">🚗</p>
-                                <strong>Conducteur :</strong>
+                                <!-- <strong>Conducteur :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="conducteur" value="oui" checked> Oui
+                                        <input type="radio" name="conducteur" value="1" <?= $user['utilisateur_conducteur'] == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="conducteur" value="non"> Non
+                                        <input type="radio" name="conducteur" value="0" <?= $user['utilisateur_conducteur'] == '0' ? 'checked' : '' ?>> Non
+                                    </label>
+                                </span> -->
+
+                                <p class="icon">❤</p><strong>Préférences :</strong><br>
+
+                                <!-- Fumeur -->
+                                <p class="icon">🚬</p><strong>Fumeur :</strong>
+                                <span class="radio-group">
+                                    <label>
+                                        <input type="radio" name="fumeur" value="1" <?= $user['preference_fumeur'] == '1' ? 'checked' : '' ?>> Oui
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="fumeur" value="0" <?= $user['preference_fumeur'] == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
-                                <p class="icon">❤</p><strong>Préférences :</strong>
-                                <textarea class="inputPref" name="Texte" placeholder="Non Fumeur, Animaux, Pas de nourriture"></textarea><br><br>
 
+                                <!-- Nourriture -->
+                                <p class="icon">🍗</p><strong>Nourriture :</strong>
+                                <span class="radio-group">
+                                    <label>
+                                        <input type="radio" name="nourriture" value="1" <?= $user['preference_nourriture'] == '1' ? 'checked' : '' ?>> Oui
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="nourriture" value="0" <?= $user['preference_nourriture'] == '0' ? 'checked' : '' ?>> Non
+                                    </label>
+                                </span>
+
+                                <!-- Musique -->
+                                <p class="icon">🎵</p><strong>Musique :</strong>
+                                <span class="radio-group">
+                                    <label>
+                                        <input type="radio" name="musique" value="1" <?= $user['preference_musique'] == '1' ? 'checked' : '' ?>> Oui
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="musique" value="0" <?= $user['preference_musique'] == '0' ? 'checked' : '' ?>> Non
+                                    </label>
+                                </span>
                             </div>
                             <div class="profileActions">
                                 <button type="submit" class="sumbit">Enregistrer les modifications</button>
@@ -115,8 +212,7 @@ require 'config/db.php';
         </div>
     </main>
 
-
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
 </body>
 

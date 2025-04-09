@@ -94,6 +94,7 @@ p {
 }
 
 .fumeur,
+.nourriture,
 .musique,
 .voyage {
     margin-bottom: 20px;
@@ -102,15 +103,21 @@ p {
     background-color: #f2f2f2;
     padding: 3px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
 }
 
-.fumeurProposer, .musiqueProposer, .voyageProposer {
+.fumeurProposer, .musiqueProposer,.nourritureProposer, .voyageProposer {
     margin-bottom: 20px;
     margin-top: 3px;
     outline: none;
     background-color: #f2f2f2;
     padding: 3px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
 }
 
 
@@ -231,7 +238,7 @@ input[type="radio"]:checked {
     .preferences {
         display: flex;
         flex-direction: row;
-        gap: 50px;
+        gap: 25px;
     }
 
     .recherche,

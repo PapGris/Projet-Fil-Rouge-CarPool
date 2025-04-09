@@ -19,7 +19,7 @@
             <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>
             <li><a href="modifProfil.php">Modifier mon profil</a></li>
-            <li><a href="/config/logout.php">Déconnexion</a></li>
+            <li><a href="../action/logout.php">Déconnexion</a></li>
         </ul>
     <?php
     }
@@ -48,7 +48,7 @@
             ?>
                 <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
                 <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
-                <a href="/config/logout.php" class="btn">Déconnexion</a>
+                <a href="../action/logout.php" class="btn">Déconnexion</a>
             <?php
             }
             ?>

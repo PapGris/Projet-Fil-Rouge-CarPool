@@ -58,16 +58,19 @@ h2 {
     z-index: 500;
 }
 
-.profile-pic:hover {
-    transform: scale(1.8);
-    border-radius: 10%;
-    z-index: 500;
-}
 
 .profile-name {
     font-size: 1.8rem;
     color: #2d3e52;
     font-weight: bold;
+}
+
+.modifierPseudo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap : 10px;
 }
 
 .profileInfo {
