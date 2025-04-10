@@ -18,16 +18,18 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $password = htmlspecialchars($_POST['mot_de_passe']);
         $confirmPassword = htmlspecialchars($_POST['confirmer_mot_de_passe']);
+        $conducteur = 0;
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password)");
+        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur)");
         $query->bindValue(":nom", $nom);
         $query->bindValue(":prenom", $prenom);
         $query->bindValue(":email", $email);
         $query->bindValue(":numero", $numero);
         $query->bindValue(":pseudo", $pseudo);
         $query->bindValue(":password", $password);
+        $query->bindValue(":conducteur", $conducteur);
         $query->execute();
 
         $id = $db->lastInsertId();
