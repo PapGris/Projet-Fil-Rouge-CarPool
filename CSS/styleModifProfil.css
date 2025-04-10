@@ -58,8 +58,88 @@ h2 {
     z-index: 500;
 }
 
+.iconModif {
+    width: 20px;    
+}
 
-.profile-name {
+#modifierPseudoForm, #modifierPhotoForm {
+    display: flex;
+    align-items: center;
+}
+
+#photoUpload, #submitPhotoBtn {
+    display: none;
+}
+
+.photoEdit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
+
+#photoModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#closeModalBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modalContent {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    position: relative;
+}
+
+.profilePseudoInput {
+    display:none;
+}
+
+.savePseudoBtn, .savePhotoBtn {
+    display: none;
+}
+
+.editPseudoBtn, .editPhotoBtn, .savePseudoBtn, .savePhotoBtn {
+    border-radius: 50%;
+    border: solid 1px #2d3e52;
+    cursor: pointer;
+    background-color: #d1ddb4;
+}
+
+.editPseudoBtn:hover, .editPhotoBtn:hover, .savePseudoBtn:hover, .savePhotoBtn:hover  {
+    background-color: #a7c957a2;
+}
+
+.savePseudoBtn,
+.savePhotoBtn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8em;
+}
+
+.editPhotoBtn {
+    position: relative;
+    right: 60px;
+    z-index: 1000;
+}
+
+.profilePseudo {
     font-size: 1.8rem;
     color: #2d3e52;
     font-weight: bold;
@@ -283,8 +363,19 @@ input[type="radio"]:checked {
         padding: 15px;
     }
 
-    .profile-name {
+    .profilePseudo {
         font-size: 3em;
+    }
+
+    .iconModif {
+        width: 30px;
+    }
+
+    .savePseudoBtn,
+    .savePhotoBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
     }
 
     .profile-pic {

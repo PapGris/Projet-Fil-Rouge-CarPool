@@ -69,8 +69,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         <strong>Préférences :</strong>
                         <span>
                             <?= $user['preference_fumeur'] == 1 ? ' Fumeur' : 'Non fumeur' ?>
-                            <?= $user['preference_nourriture'] == 1 ? ' , Nourriture ok' : ' , Sans nourriture' ?>
-                            <?= $user['preference_musique'] == 1 ? ' , Musique ok' : ' , Sans musique' ?> 
+                            <?= $user['preference_nourriture'] == 1 ? ', Nourriture' : ', Sans nourriture' ?>
+                            <?= $user['preference_musique'] == 1 ? ', Musique' : ', Sans musique' ?> 
                         </span>
                     </div>
                     <div class="profileActions">
