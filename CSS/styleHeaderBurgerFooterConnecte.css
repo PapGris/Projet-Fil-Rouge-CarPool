@@ -111,6 +111,7 @@ a {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     display: block;
     margin: 20px auto;
+    object-fit: cover;
     
 }
 
@@ -255,12 +256,13 @@ footer {
     }
 
     .profile-picMini {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: #a7c957 solid 2px;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
         margin-top: 3px;
+        object-fit: cover;
     }
 
     header .btn {
@@ -270,7 +272,7 @@ footer {
         padding: 12px 20px;
         cursor: pointer;
         border-radius: 25px;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 600;
         transition: background 0.3s ease-in-out, transform 0.2s, box-shadow 0.3s ease-in-out;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
@@ -307,6 +309,15 @@ footer {
 
     h1 {
         font-size: 4rem;
+    }
+    
+    .profile-picMini {
+        width: 40px;
+        height: 40px;
+    }
+
+    header .btn {
+        font-size: 18px;
     }
 
     .logoCarPool {

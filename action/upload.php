@@ -6,7 +6,7 @@ function uploadImage($file, $pathName, $subFolder = '')
     if (isset($file)) {
         $tmp_dir = $file['tmp_name'];
         $img_name = strtolower($file['name']);
-        $extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'jfif', 'bmp'];
         $ext = explode('.', $img_name);
         $final_name = strtotime('now') . $file['name'];
         if (!is_dir($_SERVER['DOCUMENT_ROOT']) . $pathName . $subFolder) {

@@ -22,7 +22,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur)");
+        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique)");
         $query->bindValue(":nom", $nom);
         $query->bindValue(":prenom", $prenom);
         $query->bindValue(":email", $email);
@@ -30,17 +30,12 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
         $query->bindValue(":pseudo", $pseudo);
         $query->bindValue(":password", $password);
         $query->bindValue(":conducteur", $conducteur);
+        $query->bindValue(":preferenceFumeur", 0);
+        $query->bindValue(":preferenceNourriture", 0);
+        $query->bindValue(":preferenceMusique", 0);
         $query->execute();
 
         $id = $db->lastInsertId();
-
-
-        $query2 = $db->prepare("INSERT INTO preference (preference_fumeur, preference_nourriture, preference_musique, utilisateur_id) VALUES (:preferenceFumeur, :preferenceNourriture, :preferenceMusique, :id)");
-        $query2->bindValue(":preferenceFumeur", 0);
-        $query2->bindValue(":preferenceNourriture", 0);
-        $query2->bindValue(":preferenceMusique", 0);
-        $query2->bindValue(":id", $db->lastInsertId());
-        $query2->execute();
 
         header("Location: connexion.php");
         exit;

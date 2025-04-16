@@ -1,5 +1,10 @@
+
+
+
+
 <div class="burger">
     <?php
+
     if (!isset($_SESSION['id'])) {
     ?>
         <ul>
@@ -9,9 +14,10 @@
         </ul>
     <?php
     } else {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
     ?>
         <div class="profilePicContainer">
-            <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini-burger"></a>
+            <a href="profilUtilisateur.php"><img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/photoProfilParDefaut.png') ?>" alt="Photo de profil" class="profile-picMini-burger"></a>
         </div>
         <ul>
             <li><a href="profilUtilisateur.php">Mon Profil</a></li>
@@ -46,7 +52,7 @@
             <?php
             } else {
             ?>
-                <a href="profilUtilisateur.php"><img src="Images/person.jpg" alt="Photo de profil" class="profile-picMini"></a>
+                <a href="profilUtilisateur.php"><img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/photoProfilParDefaut.png') ?>" alt="Photo de profil" class="profile-picMini"></a>
                 <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
                 <a href="../action/logout.php" class="btn">Déconnexion</a>
             <?php

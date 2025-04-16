@@ -1,29 +1,13 @@
 <?php
-require 'config/db.php';
-require_once 'config/session.php';
-$utilisateur_id = $_SESSION['id'];
-
-// Récupérer les informations actuelles de l'utilisateur
-$sql = "SELECT 
-            u.utilisateur_nom, u.utilisateur_prenom, u.utilisateur_pseudo, 
-            u.utilisateur_email, u.utilisateur_telephone, u.utilisateur_photo,
-            u.utilisateur_conducteur, u.utilisateur_lieu,
-            p.poste_nom,
-            pr.preference_fumeur, pr.preference_nourriture, pr.preference_musique
-        FROM utilisateur u
-        LEFT JOIN poste p ON u.poste_id = p.poste_id
-        LEFT JOIN preference pr ON u.utilisateur_id = pr.utilisateur_id
-        WHERE u.utilisateur_id = :id";
-
-$stmt = $db->prepare($sql);
-$stmt->execute(['id' => $utilisateur_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);  
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 // modif Photo
 if (isset($_POST['save_photo']) && isset($_FILES['photo'])) {
     $photo = $_FILES['photo'];
 
-    if ($photo['error'] == 0 && $photo['size'] < 2 * 1024 * 1024) {
+    if ($photo['error'] == 0 && $photo['size'] < 10 * 1024 * 1024) {
         $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
         $fileName = 'uploads/profil_' . $utilisateur_id . '_' . time() . '.' . $ext;
 
@@ -39,9 +23,30 @@ if (isset($_POST['save_photo']) && isset($_FILES['photo'])) {
 
         header("Location: profilUtilisateur.php");
         exit();
-    } else {
-        echo "Erreur lors de l'upload de la photo.";
     }
+}
+
+// Supprimer la photo de profil
+if (isset($_POST['delete_photo'])) {
+    // Récupère l'ancienne photo
+    $stmt = $db->prepare("SELECT utilisateur_photo FROM utilisateur WHERE utilisateur_id = :id");
+    $stmt->execute(['id' => $utilisateur_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Supprime l'ancien fichier s'il n'est pas la photo par défaut
+    if ($result && $result['utilisateur_photo'] && $result['utilisateur_photo'] !== 'Images/photoProfilParDefaut.png') {
+        $oldPhoto = $result['utilisateur_photo'];
+        if (file_exists($oldPhoto)) {
+            unlink($oldPhoto);
+        }
+    }
+
+    // Met à jour le champ avec l'image par défaut
+    $stmt = $db->prepare("UPDATE utilisateur SET utilisateur_photo = 'Images/photoProfilParDefaut.png' WHERE utilisateur_id = :id");
+    $stmt->execute(['id' => $utilisateur_id]);
+
+    header("Location: profilUtilisateur.php");
+    exit();
 }
 
 
@@ -58,19 +63,19 @@ if (isset($_POST['save_pseudo'])) {
 // Mettre à jour les informations si le formulaire est soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // 1. Récupération des données du formulaire
+    //Récupération des données du formulaire
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $numero = $_POST['numero'];
-    $service_nom = $_POST['service']; // <-- ce champ est un NOM (ex: "Technicien réseau")
+    $service_nom = $_POST['service'];
     $lieu = $_POST['lieu'];
     $conducteur = $_POST['conducteur'];
     $fumeur = $_POST['fumeur'];
     $nourriture = $_POST['nourriture'];
     $musique = $_POST['musique'];
 
-    // 2. Récupère l'ID du poste à partir de son nom
+    //Récupère l'ID du poste à partir de son nom
     $stmt = $db->prepare("SELECT poste_id FROM poste WHERE poste_nom = :service");
     $stmt->bindValue(':service', $service_nom);
     $stmt->execute();
@@ -79,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $poste_id = null;
     if ($poste) {
         $poste_id = $poste['poste_id'];
-    } 
+    }
 
     // Mise à jour utilisateur (poste_id optionnel)
     $updateSql = "UPDATE utilisateur SET 
@@ -88,7 +93,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 utilisateur_email = :email, 
                 utilisateur_telephone = :numero,
                 utilisateur_conducteur = :conducteur, 
-                utilisateur_lieu = :lieu" .
+                utilisateur_lieu = :lieu,              
+                utilisateur_preference_fumeur = :fumeur, 
+                utilisateur_preference_nourriture = :nourriture, 
+                utilisateur_preference_musique = :musique" .
+
         ($poste_id !== null ? ", poste_id = :poste_id" : "") .
         " WHERE utilisateur_id = :id";
 
@@ -99,6 +108,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindValue(':numero', $numero);
     $stmt->bindValue(':conducteur', $conducteur);
     $stmt->bindValue(':lieu', $lieu);
+    $stmt->bindValue(':fumeur', $fumeur);
+    $stmt->bindValue(':nourriture', $nourriture);
+    $stmt->bindValue(':musique', $musique);
 
     if ($poste_id !== null) {
         $stmt->bindValue(':poste_id', $poste_id);
@@ -106,26 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindValue(':id', $utilisateur_id);
     $stmt->execute();
 
-    // 4. Mise à jour des préférences
-    $updatePrefSql = "UPDATE preference SET 
-                            preference_fumeur = :fumeur, 
-                            preference_nourriture = :nourriture, 
-                            preference_musique = :musique 
-                            WHERE utilisateur_id = :id";
 
-    $stmt = $db->prepare($updatePrefSql);
-    $stmt->bindValue(':fumeur', $fumeur);
-    $stmt->bindValue(':nourriture', $nourriture);
-    $stmt->bindValue(':musique', $musique);
-    $stmt->bindValue(':id', $utilisateur_id);
-    $stmt->execute();
 
-    // 5. Redirection
+
+
+    //Redirection
     header("Location: profilUtilisateur.php");
     exit();
-} else {
-    echo "Erreur : poste introuvable.";
-}
+} 
 
 ?>
 
@@ -142,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
     <script src="JS/script.js" defer></script>
+    <script src="JS/scriptModifProfil.js" defer></script>
 </head>
 
 <body>
@@ -155,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST" id="modifierPhotoForm" enctype="multipart/form-data">
                         <input type="file" id="photoUpload" name="photo" accept="image/*">
                         <button type="submit" name="save_photo" id="submitPhotoBtn">Upload</button>
-                        <img src="<?= $user['utilisateur_photo'] ? $user['utilisateur_photo'] : 'Images/person.jpg' ?>" alt="Photo de profil" class="profile-pic">
+                        <img src="<?= $user['utilisateur_photo'] ? $user['utilisateur_photo'] : 'Images/photoProfilParDefaut.png' ?>" alt="Photo de profil" class="profile-pic">
                     </form>
                     <button type="button" class="editPhotoBtn">
                         <img src="Images/iconeModifier.png" alt="modifier pseudo" class="iconModif">
@@ -170,8 +171,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span id="closeModalBtn">&times;</span>
                         <h3>Changer la photo de profil</h3>
                         <form method="POST" enctype="multipart/form-data">
-                            <input type="file" name="photo" accept="image/*" required style="margin-top: 10px;">
-                            <button type="submit" name="save_photo" style="margin-top: 15px; display: block;">Envoyer</button>
+                            <input type="file" id="filePhoto" name="photo" accept="image/*" required >
+                            <button type="submit" name="save_photo">Envoyer</button>
+                        </form>
+
+                        <form method="POST" id="deletePhotoForm">
+                            <input type="hidden" name="delete_photo" value="1">
+                            <button type="submit" onclick="return confirm('Supprimer la photo de profil ?')">🗑 Supprimer la photo</button>
                         </form>
                     </div>
                 </div>
@@ -213,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     $selected = ($user['poste_nom'] == $poste) ? 'selected' : '';
                                     echo "<option value=\"$poste\" $selected>$poste</option>";
                                 }
-                                ?> 
+                                ?>
                             </select>
 
                             <br><br>
@@ -241,10 +247,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="icon">🚬</p><strong>Fumeur :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="fumeur" value="1" <?= $user['preference_fumeur'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="fumeur" value="1" <?= $user['utilisateur_preference_fumeur'] == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="fumeur" value="0" <?= $user['preference_fumeur'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="fumeur" value="0" <?= $user['utilisateur_preference_fumeur'] == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
 
@@ -252,10 +258,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="icon">🍗</p><strong>Nourriture :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="nourriture" value="1" <?= $user['preference_nourriture'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="nourriture" value="1" <?= $user['utilisateur_preference_nourriture'] == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="nourriture" value="0" <?= $user['preference_nourriture'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="nourriture" value="0" <?= $user['utilisateur_preference_nourriture'] == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
 
@@ -263,10 +269,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="icon">🎵</p><strong>Musique :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="musique" value="1" <?= $user['preference_musique'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="musique" value="1" <?= $user['utilisateur_preference_musique'] == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="musique" value="0" <?= $user['preference_musique'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="musique" value="0" <?= $user['utilisateur_preference_musique'] == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
                             </div>
@@ -282,48 +288,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </main>
-
-    <script>
-        // Script pour ouvrir et fermer la modale
-        document.addEventListener("DOMContentLoaded", () => {
-            const openBtn = document.querySelector(".editPhotoBtn"); // Bouton Modifier photo
-            const modal = document.getElementById("photoModal");
-            const closeBtn = document.getElementById("closeModalBtn");
-
-            // Ouvrir la modale
-            openBtn.addEventListener("click", () => {
-                modal.style.display = "block";
-            });
-
-            // Fermer la modale en cliquant sur la croix
-            closeBtn.addEventListener("click", () => {
-                modal.style.display = "none";
-            });
-
-            // Fermer la modale si on clique en dehors de celle-ci
-            window.addEventListener("click", (e) => {
-                if (e.target == modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-
-        // modif Pseudo
-        document.addEventListener("DOMContentLoaded", () => {
-            const editBtn = document.querySelector(".editPseudoBtn");
-            const saveBtn = document.querySelector(".savePseudoBtn");
-            const nameText = document.querySelector(".profilePseudo");
-            const nameInput = document.querySelector(".profilePseudoInput");
-
-            editBtn.addEventListener("click", () => {
-                nameText.style.display = "none";
-                nameInput.style.display = "inline-block";
-                saveBtn.style.display = "inline-block";
-                editBtn.style.display = "none";
-                nameInput.focus();
-            });
-        });
-    </script>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
 
