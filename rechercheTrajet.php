@@ -71,7 +71,7 @@ session_start();
                         <label><input type="radio" name="voyage" value="non"> Retour</label>
                         <label><input type="radio" name="voyage" value="non"> Aller/Retour</label>
                     </span>
-                    <button class="btnRechercher" type="submit">Rechercher</button>
+                    <button class="btnRechercher" type="submit"><a href="resultatRecherche.php">Rechercher</a></button>
                 </form>
             </section>
 
