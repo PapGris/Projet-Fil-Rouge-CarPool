@@ -54,26 +54,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                         <option value="4">4 passagers</option>
                     </select>
 
-                    <div class="preferences">
-                        <p><strong>Fumeur :</strong></p>
-                        <span class="fumeur">
-                            <label><input type="radio" name="fumeur" value="oui" checked> Oui</label>
-                            <label><input type="radio" name="fumeur" value="non"> Non</label>
-                        </span>
-
-                        <p><strong>Nourriture :</strong></p>
-                        <span class="nourriture">
-                            <label><input type="radio" name="nourriture" value="oui" checked> Oui</label>
-                            <label><input type="radio" name="nourriture" value="non"> Non</label>
-                        </span>
-
-                        <p><strong>Musique :</strong></p>
-                        <span class="musique">
-                            <label><input type="radio" name="musique" value="oui" checked> Oui</label>
-                            <label><input type="radio" name="musique" value="non"> Non</label>
-                        </span>
-                    </div>
-
                     <p><strong>Type de voyage :</strong></p>
                     <span class="voyage">
                         <label><input type="radio" name="voyage" value="aller" checked> Aller</label>
@@ -112,26 +92,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                         <option value="3">3 places</option>
                         <option value="4">4 places</option>
                     </select>
-
-                    <div class="preferences">
-                        <p><strong>Fumeur :</strong></p>
-                        <span class="fumeurProposer">
-                            <label><input type="radio" name="fumeurProposer" value="1" checked> Oui</label>
-                            <label><input type="radio" name="fumeurProposer" value="0"> Non</label>
-                        </span>
-
-                        <p><strong>Nourriture :</strong></p>
-                        <span class="nourritureProposer">
-                            <label><input type="radio" name="nourritureProposer" value="1" checked> Oui</label>
-                            <label><input type="radio" name="nourritureProposer" value="0"> Non</label>
-                        </span>
-
-                        <p><strong>Musique :</strong></p>
-                        <span class="musiqueProposer">
-                            <label><input type="radio" name="musiqueProposer" value="1" checked> Oui</label>
-                            <label><input type="radio" name="musiqueProposer" value="0"> Non</label>
-                        </span>
-                    </div>
 
                     <p><strong>Type de voyage :</strong></p>
                     <span class="voyageProposer">

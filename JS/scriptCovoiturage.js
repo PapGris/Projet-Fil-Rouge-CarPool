@@ -4,10 +4,10 @@ var confirmBtn = document.getElementById("confirmBtn");
 var form = document.getElementById("formProposer");
 var errorMessage = document.getElementById("error-message");
 
-// Quand on clique sur "Proposer"
+
 proposerBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    errorMessage.style.display = "none"; // On cache l'erreur au début
+    errorMessage.style.display = "none"; 
 
     var depart = form.querySelector('.depart').value.trim();
     var destination = form.querySelector('.destination').value.trim();
@@ -28,15 +28,15 @@ proposerBtn.addEventListener('click', function(event) {
 
     if (erreurs.length > 0) {
         errorMessage.innerHTML = "Merci de remplir les champs obligatoires suivants : <strong>" + erreurs.join(", ") + "</strong>.";
-        errorMessage.style.display = "block"; // On affiche l'erreur
-        return; // NE PAS ouvrir la modale
+        errorMessage.style.display = "block"; 
+        return; 
     }
 
-    // Pas d'erreurs => on ouvre la modale
+
     modal.style.display = "block";
 });
 
-// Quand on clique sur "OK" dans la modale
+
 confirmBtn.addEventListener('click', function() {
     form.submit();
 });

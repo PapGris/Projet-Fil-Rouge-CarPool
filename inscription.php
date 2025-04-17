@@ -22,23 +22,33 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique)");
-        $query->bindValue(":nom", $nom);
-        $query->bindValue(":prenom", $prenom);
-        $query->bindValue(":email", $email);
-        $query->bindValue(":numero", $numero);
-        $query->bindValue(":pseudo", $pseudo);
-        $query->bindValue(":password", $password);
-        $query->bindValue(":conducteur", $conducteur);
-        $query->bindValue(":preferenceFumeur", 0);
-        $query->bindValue(":preferenceNourriture", 0);
-        $query->bindValue(":preferenceMusique", 0);
+        $query = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_pseudo = :user');
+        $query->bindValue(':user', $pseudo);
         $query->execute();
 
-        $id = $db->lastInsertId();
+        $resultat = $query->fetch();
+        
+        if($resultat){
+            $erreur = "Le pseudo existe déjà !";
+        }else{
+            $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique)");
+            $query->bindValue(":nom", $nom);
+            $query->bindValue(":prenom", $prenom);
+            $query->bindValue(":email", $email);
+            $query->bindValue(":numero", $numero);
+            $query->bindValue(":pseudo", $pseudo);
+            $query->bindValue(":password", $password);
+            $query->bindValue(":conducteur", $conducteur);
+            $query->bindValue(":preferenceFumeur", 0);
+            $query->bindValue(":preferenceNourriture", 0);
+            $query->bindValue(":preferenceMusique", 0);
+            $query->execute();
 
-        header("Location: connexion.php");
-        exit;
+            $id = $db->lastInsertId();
+
+            header("Location: connexion.php");
+            exit;
+        } 
 }
 
 ?>
@@ -88,6 +98,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
                     <span class="exemple">ex: + 33 6 03 30 03 33</span>
                 </div>
                 <div>
+                    <?php if(!empty($erreur)) { echo $erreur; } ?>
                     <label for="pseudo">Pseudo<span class="required">*</span> :</label>
                     <input type="text" id="pseudo" name="pseudo" required>
                 </div>

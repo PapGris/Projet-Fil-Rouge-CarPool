@@ -2,10 +2,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
 
-// Récupération des critères de recherche
 $depart = isset($_GET['depart']) ? htmlspecialchars($_GET['depart']) : '';
 $destination = isset($_GET['destination']) ? htmlspecialchars($_GET['destination']) : '';
 $date = isset($_GET['date']) ? $_GET['date'] : '';
+$nbPlaces = isset($_GET['nombre_passagers']) ? (int)$_GET['nombre_passagers'] : 1;
 
 $trajets = [];
 
@@ -22,12 +22,14 @@ if ($depart && $destination && $date) {
             JOIN utilisateur u ON u.utilisateur_id = ut.utilisateur_id
             WHERE t.trajet_lieu_depart LIKE :depart 
             AND t.trajet_lieu_arrivee LIKE :destination
-            AND t.trajet_date_depart = :date";
+            AND t.trajet_date_depart = :date
+            AND t.trajet_nombre_places_disponibles >= :nombre_passagers";
 
     $stmt = $db->prepare($query);
     $stmt->bindValue(':depart', "%$depart%");
     $stmt->bindValue(':destination', "%$destination%");
     $stmt->bindValue(':date', $date);
+    $stmt->bindValue(':nombre_passagers', $nbPlaces, PDO::PARAM_INT);
     $stmt->execute();
     $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -42,8 +44,10 @@ if ($depart && $destination && $date) {
     <title>Carpool - Résultat de recherche</title>
     <link rel="stylesheet" href="CSS/styleResultatRecherche.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
+    <script src="JS/script.js" defer></script>
 </head>
 
 <body>
@@ -62,40 +66,44 @@ if ($depart && $destination && $date) {
             <?php if (count($trajets) > 0): ?>
                 <?php foreach ($trajets as $trajet): ?>
                     <div class="trajetCard">
-                        <p><strong>🅰️ Départ :</strong> <?php echo htmlspecialchars($trajet['trajet_lieu_depart']); ?></p>
-                        <p><strong>🅱️ Arrivée :</strong> <?php echo htmlspecialchars($trajet['trajet_lieu_arrivee']); ?></p>
-                        <p><strong>📆 Date :</strong> <?php echo htmlspecialchars($trajet['trajet_date_depart']); ?></p>
+                        <div class="infosTrajet">
+                            <div class="left">
+                                <p><strong>🅰️ Départ :</strong> <?php echo htmlspecialchars($trajet['trajet_lieu_depart']); ?></p>
+                                <p><strong>🅱️ Arrivée :</strong> <?php echo htmlspecialchars($trajet['trajet_lieu_arrivee']); ?></p>
+                                <p><strong>📆 Date :</strong> <?php echo htmlspecialchars($trajet['trajet_date_depart']); ?></p>
 
-                        <?php if (!empty($trajet['trajet_heure_depart'])): ?>
-                            <p><strong>🕰️ Heure de départ :</strong> <?php echo htmlspecialchars($trajet['trajet_heure_depart']); ?></p>
-                        <?php endif; ?>
+                                <?php if (!empty($trajet['trajet_heure_depart'])): ?>
+                                    <p><strong>🕰️ Heure de départ :</strong> <?php echo htmlspecialchars($trajet['trajet_heure_depart']); ?></p>
+                                <?php endif; ?>
 
-                        <?php if (!empty($trajet['trajet_nombre_places_disponibles'])): ?>
-                            <p><strong>👤 Places disponibles :</strong> <?php echo htmlspecialchars($trajet['trajet_nombre_places_disponibles']); ?></p>
-                        <?php endif; ?>
+                                <?php if (!empty($trajet['trajet_nombre_places_disponibles'])): ?>
+                                    <p><strong>👤 Places disponibles :</strong> <?php echo htmlspecialchars($trajet['trajet_nombre_places_disponibles']); ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="right">
+                                <p><strong>🫡 Proposé par :</strong> <?php echo htmlspecialchars($trajet['utilisateur_prenom'] . ' ' . $trajet['utilisateur_nom']); ?></p>
 
-                        <p><strong>🫡 Proposé par :</strong> <?php echo htmlspecialchars($trajet['utilisateur_prenom'] . ' ' . $trajet['utilisateur_nom']); ?></p>
+                                <!-- Préférences utilisateur -->
+                                <p><strong>🚬 Fumeur :</strong> <?php echo ($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
+                                <p><strong>🍗 Nourriture acceptée :</strong> <?php echo ($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
+                                <p><strong>🎵 Musique acceptée :</strong> <?php echo ($trajet['utilisateur_preference_musique'] == 1) ? 'Oui' : 'Non'; ?></p>
 
-                        <!-- Préférences utilisateur -->
-                        <p><strong>🚬 Fumeur :</strong> <?php echo ($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
-                        <p><strong>🍗 Nourriture acceptée :</strong> <?php echo ($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
-                        <p><strong>🎵 Musique acceptée :</strong> <?php echo ($trajet['utilisateur_preference_musique'] == 1) ? 'Oui' : 'Non'; ?></p>
-
-                        <!-- Type de voyage -->
-                        <p><strong>🚗 Type de trajet :</strong>
-                            <?php
-                                if ($trajet['trajet_aller_retour'] == 1) {
-                                    echo 'Aller';
-                                } elseif ($trajet['trajet_aller_retour'] == 2) {
-                                    echo 'Retour';
-                                } elseif ($trajet['trajet_aller_retour'] == 3) {
-                                    echo 'Aller/Retour';
-                                } else {
-                                    echo 'Inconnu';
-                                }
-                            ?>
-                        </p>
-
+                                <!-- Type de voyage -->
+                                <p><strong>🚗 Type de trajet :</strong>
+                                    <?php
+                                    if ($trajet['trajet_aller_retour'] == 1) {
+                                        echo 'Aller';
+                                    } elseif ($trajet['trajet_aller_retour'] == 2) {
+                                        echo 'Retour';
+                                    } elseif ($trajet['trajet_aller_retour'] == 3) {
+                                        echo 'Aller/Retour';
+                                    } else {
+                                        echo 'Inconnu';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
                         <button type="button" class="demandeBtn">Faire une demande de covoiturage pour ce trajet</button>
                     </div>
                 <?php endforeach; ?>

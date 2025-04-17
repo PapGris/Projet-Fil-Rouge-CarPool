@@ -43,12 +43,12 @@ session_start();
                 <span class="slogan">"Le covoiturage simplifié, pour un trajet partagé."</span>
             </div>
             <div class="recherche">
-                <form method="POST">
-                    <input class="depart" type="text" placeholder="Départ">
-                    <input class="destination" type="text" placeholder="Destination">
-                    <input class="date" type="date" value="aujourd'hui" id="date">
+                <form method="GET" action="resultatRecherche.php">
+                    <input class="depart" type="text" name="depart" placeholder="Départ">
+                    <input class="destination" type="text" name="destination" placeholder="Destination">
+                    <input class="date" type="date" name="date" value="aujourd'hui" id="date">
 
-                    <select class="passager">
+                    <select class="passager" name="nombre_passagers">
                         <option>1 passager</option>
                         <option>2 passagers</option>
                         <option>3 passagers</option>
