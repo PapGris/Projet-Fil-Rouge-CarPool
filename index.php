@@ -76,7 +76,7 @@ session_start();
             <a href="inscription.php" class="box">
                 <div>Inscris toi !</div>
             </a>
-            <a href="rechercheTrajet.php" class="box">
+            <a href="covoiturage.php" class="box">
                 <div>Cherche un trajet<br>ou<br>Propose un trajet</div>
             </a>
             <a href="economieUtilisateur.php" class="box">

@@ -57,7 +57,7 @@ p {
 }
 
 .recherche {
-    margin-top: 800px;
+    margin-top: 1100px;
 }
 
 .recherche,
@@ -138,7 +138,7 @@ input[type="radio"]:checked {
     border-color: #a7c957;
 }
 
-.btnRechercher {
+.btnRechercher, .btnProposer {
     background-color: #a7c957;
     padding: 7px;
     border: none;
@@ -150,11 +150,69 @@ input[type="radio"]:checked {
     display: block;
 }
 
-.btnRechercher:hover {
+.btnRechercher:hover, .btnProposer:hover {
     background-color: #cbd7dd;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
+
+.obligatoire {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.obligatoire p {
+    padding: 5px;
+    font-size: 0.9em;
+    color: #2d3e52;
+    background-color: #71C4F1;
+    border-radius: 10px;
+}
+
+/* Modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #71c4f1;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+    border: #a7c957 solid 2px;
+    border-radius: 10px;
+}
+
+.modal-content button {
+    background-color: #a7c957;
+    padding: 7px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: none;
+    width: 40%;
+    font-size: 1em;
+    margin: 10px auto;
+    display: block;
+}
+
+.modal-content button:hover {
+    background-color: #cbd7dd;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
 
 /*=============================================================================================================\  
 |                                          500 PX                                                              |
@@ -164,7 +222,7 @@ input[type="radio"]:checked {
 
 @media (min-width: 500px) {
     .recherche {
-        margin-top: 1000px;
+        margin-top: 1200px;
     }
 
     .depart,
@@ -184,7 +242,7 @@ input[type="radio"]:checked {
 
 @media (min-width: 768px) {
     .recherche {
-        margin-top: 1000px;
+        margin-top: 1300px;
     }
     
 }
@@ -209,7 +267,7 @@ input[type="radio"]:checked {
     .recherche,
     .proposer {
         width: 45%;
-        margin-top: 500px;
+        margin-top: 450px;
     }
 
     .depart,
@@ -243,7 +301,7 @@ input[type="radio"]:checked {
 
     .recherche,
     .proposer {
-        margin-top: 200px;
+        margin-top: 350px;
         padding-top: 0px;
     }
 
