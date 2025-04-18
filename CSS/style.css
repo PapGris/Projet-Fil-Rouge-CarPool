@@ -74,6 +74,7 @@ body {
     flex-direction: column;
     padding: 10px;
     gap: 10px;
+    width: 100%;
 }
 
 .depart, .destination, .date, .passager { 
@@ -83,6 +84,47 @@ body {
     border: 1px solid #71C4F1;
     outline: none;
 } 
+
+/* Div API ville */
+.recherche form input{
+    width: 85%;
+}
+
+.recherche form select, .recherche form button {
+    width: 90%;
+}
+
+#depart, #destination {
+    position: relative;
+}
+
+.suggestionsListDepart, .suggestionsListDestination {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 20%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
 
 .btnRechercher {
     background-color:#a7c957 ;
@@ -262,23 +304,51 @@ a {
         border-radius: 100px;
         padding: 10px;
         position: relative;
-        top: 408px; /* Augmenter la valeur pour descendre plus bas */
+        top: 408px; 
         z-index: 2;
     }
 
     .recherche form{
         display: flex;
         flex-direction: row;
-        padding: 10px;
-        gap: 10px;
+        padding: 5px;
+        gap: 20px;
     }
 
-    .depart, .destination, .date, .passager { 
+    .inputForm {
         width: 100%;
+    }
+
+    .recherche form .depart, 
+    .recherche form .destination, 
+    .recherche form .date { 
+        width: 95%;
         padding: 10px;
         border-radius: 5px;
         border: none;
+        height: 50%;
     } 
+
+    .recherche form .passager {
+        width: 95%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        height: 100%;
+    }
+
+    .recherche form .passager {
+        margin: 0;
+    }
+
+    .recherche form .depart {
+        border-radius: 50px 15px 15px 50px;
+    }
+
+    .recherche form .btnRechercher {
+        border-radius: 15px 50px 50px 15px;
+        width: 90%;
+    }
 
     .depart {
         width: 100%;

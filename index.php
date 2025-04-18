@@ -26,6 +26,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link rel="icon" type="Images/png" href="Images/favicon.ico" sizes="96x96" />
+    <script src="JS/scriptAPIvilles.js"></script>
     <script src="JS/script.js" defer></script>
     <script src="JS/scriptCalendar.js" defer></script>
 
@@ -44,18 +45,32 @@ session_start();
             </div>
             <div class="recherche">
                 <form method="GET" action="resultatRecherche.php">
-                    <input class="depart" type="text" name="depart" placeholder="Départ">
-                    <input class="destination" type="text" name="destination" placeholder="Destination">
-                    <input class="date" type="date" name="date" value="aujourd'hui" id="date">
+                    <div class="inputForm">
+                        <input class="depart" type="text" name="depart" id="depart" placeholder="Départ" autocomplete="off">
+                        <div id="suggestionsDepart" class="suggestionsListDepart"></div>
+                    </div>
 
-                    <select class="passager" name="nombre_passagers">
-                        <option>1 passager</option>
-                        <option>2 passagers</option>
-                        <option>3 passagers</option>
-                        <option>4 passagers</option>
-                    </select>
+                    <div class="inputForm">
+                        <input class="destination" type="text" name="destination" id="destination" placeholder="Destination" autocomplete="off">
+                        <div id="suggestionsDestination" class="suggestionsListDestination"></div>
+                    </div>
 
-                    <button class="btnRechercher" type="submit">Rechercher</button>
+                    <div class="inputForm">
+                        <input class="date" type="date" name="date" value="aujourd'hui" id="date">
+                    </div>
+
+                    <div class="inputForm">
+                        <select class="passager" name="nombre_passagers">
+                            <option>1 passager</option>
+                            <option>2 passagers</option>
+                            <option>3 passagers</option>
+                            <option>4 passagers</option>
+                        </select>
+                    </div>
+
+                    <div class="inputForm">
+                        <button class="btnRechercher" type="submit">Rechercher</button>
+                    </div>
                 </form>
             </div>
         </section>
