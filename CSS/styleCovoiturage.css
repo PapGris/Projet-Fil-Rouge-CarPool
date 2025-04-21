@@ -57,7 +57,7 @@ p {
 }
 
 .recherche {
-    margin-top: 1100px;
+    margin-top: 800px;
 }
 
 .recherche,
@@ -69,11 +69,65 @@ p {
     width: 80%;
 }
 
+/* Div API ville */
+
+#depart,
+#destination {
+    position: relative;
+}
+
+.suggestionsListDepart,
+.suggestionsListDestination {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 20%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#departDepot,
+#destinationDepot {
+    position: relative;
+}
+
+.suggestionsListDepartDepot,
+.suggestionsListDestinationDepot {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 20%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
 .depart,
 .destination,
+.departDepot,
+.destinationDepot,
 .date,
 .passager,
-.places {
+.places,
+.heure {
     border-radius: 5px;
     padding: 5px;
     background-color: #f2f2f2;
@@ -82,9 +136,20 @@ p {
     margin-top: 3px;
 }
 
+.depart,
+.destination,
+.passager {
+    width: 90%;
+}
+
+.voyage, .voyageProposer {
+    width: 90%;
+}
+
 .date,
 .passager,
-.places {
+.places,
+.heure {
     cursor: pointer;   
 }
 
@@ -222,15 +287,17 @@ input[type="radio"]:checked {
 
 @media (min-width: 500px) {
     .recherche {
-        margin-top: 1200px;
+        margin-top: 800px;
     }
 
     .depart,
     .destination,
+    .departDepot,
+    .destinationDepot,
     .date,
     .passager,
     .places {
-        width: 70%;
+        width: 90%;
     }
 }
 
@@ -242,7 +309,11 @@ input[type="radio"]:checked {
 
 @media (min-width: 768px) {
     .recherche {
-        margin-top: 1300px;
+        margin-top: 800px;
+    }
+    .voyage,
+    .voyageProposer {
+        width: 70%;
     }
     
 }
@@ -272,6 +343,8 @@ input[type="radio"]:checked {
 
     .depart,
     .destination,
+    .departDepot,
+    .destinationDepot,
     .date,
     .passager,
     .places {
@@ -280,8 +353,13 @@ input[type="radio"]:checked {
         background-color: #f2f2f2;
         border: 1px solid #71C4F1;
         margin-bottom: 20px;
-        width: 80%;
+        width: 90%;
         font-size: 1.2em;
+    }
+
+    .voyage,
+    .voyageProposer {
+        width: 50%;
     }
 
 }

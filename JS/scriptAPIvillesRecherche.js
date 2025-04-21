@@ -60,6 +60,7 @@ let inputVilleDestination = document.querySelector('.recherche .destination');
             suggestionsBoxDestination.innerHTML = '';
         }
     });
+    
 
     document.addEventListener('click', (event) => {
         if (!inputVille.contains(event.target) && !suggestionsBox.contains(event.target)) {

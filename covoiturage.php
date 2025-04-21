@@ -17,6 +17,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
+    <script src="JS/scriptAPIvillesDepot.js" defer></script>
+    <script src="JS/scriptAPIvillesRecherche.js" defer></script>
     <script src="JS/scriptCovoiturage.js" defer></script>
     <script src="JS/script.js" defer></script>
     <script src="JS/scriptCalendar.js" defer></script>
@@ -35,16 +37,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                 <h2>Rechercher un trajet</h2>
                 <form method="GET" action="resultatRecherche.php">
                     <p><strong>Départ :</strong></p>
-                    <input class="depart" type="text" name="depart" placeholder="Départ">
+                    <div class="inputForm">
+                        <input class="depart" type="text" name="depart" id="depart" placeholder="Départ" autocomplete="off">
+                        <div id="suggestionsDepart" class="suggestionsListDepart"></div>
+                    </div>
 
                     <p><strong>Destination :</strong></p>
-                    <input class="destination" type="text" name="destination" placeholder="Destination">
+                    <div class="inputForm">
+                        <input class="destination" type="text" name="destination" id="destination" placeholder="Destination" autocomplete="off">
+                        <div id="suggestionsDestination" class="suggestionsListDestination"></div>
+                    </div>
 
                     <p><strong>Date :</strong></p>
                     <input class="date" type="date" name="date" id="date">
 
                     <p><strong>Heure de départ :</strong></p>
-                    <input class="heure" type="time" name="heureProposer"><br><br>
+                    <input class="heure" type="time" name="heureProposer">
 
                     <p><strong>Nombre de passagers :</strong></p>
                     <select class="places" name="nombre_passagers">
@@ -65,6 +73,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                 </form>
             </section>
 
+
+
+
+
+
             <section class="proposer">
                 <h2>Proposer un trajet</h2>
 
@@ -74,16 +87,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                 <form id="formProposer" method="POST">
                     <input type="hidden" name="proposer_trajet" value="1">
                     <p><strong>Départ* :</strong></p>
-                    <input class="depart" type="text" name="departProposer" placeholder="Départ" required>
+                    <div class="inputForm">
+                        <input class="departDepot" type="text" name="depart" id="departDepot" placeholder="Départ" autocomplete="off" required>
+                        <div id="suggestionsDepartDepot" class="suggestionsListDepartDepot"></div>
+                    </div>
 
                     <p><strong>Destination* :</strong></p>
-                    <input class="destination" type="text" name="destinationProposer" placeholder="Destination" required>
+                    <div class="inputForm">
+                        <input class="destinationDepot" type="text" name="destination" id="destinationDepot" placeholder="Destination" autocomplete="off" required>
+                        <div id="suggestionsDestinationDepot" class="suggestionsListDestinationDepot"></div>
+                    </div>
 
                     <p><strong>Date* :</strong></p>
                     <input class="date" type="date" name="dateProposer" required>
 
                     <p><strong>Heure de départ :</strong></p>
-                    <input class="heure" type="time" name="heureProposer"><br><br>
+                    <input class="heure" type="time" name="heureProposer">
 
                     <p><strong>Nombre de places disponibles :</strong></p>
                     <select class="places" name="placesProposer" required>
@@ -125,4 +144,3 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
 </body>
 
 </html>
-

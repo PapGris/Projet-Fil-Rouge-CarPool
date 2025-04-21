@@ -406,7 +406,7 @@ a {
     .box:hover {
         transform: scale(1.1);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-        z-index: 2; /* Ajout du z-index pour élever l'élément .step au-dessus des autres */
+        z-index: 2; 
     }
     
     .box:not(:last-child)::after {
@@ -421,10 +421,9 @@ a {
         transform: translateY(-50%) rotate(45deg);
         transition: z-index 0.3s ease-in-out;
     }
-    
-    /* Lors du survol de .step, on élève la flèche au-dessus */
+
     .box:hover::after {
-        z-index: 3; /* Assure que la flèche est au-dessus des autres éléments */
+        z-index: 3; 
     }
 
     .texteInformatif {

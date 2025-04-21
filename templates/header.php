@@ -21,7 +21,7 @@
         </div>
         <ul>
             <li><a href="profilUtilisateur.php">Mon Profil</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="covoiturage.php">Trouver/Proposer un trajet</a></li>
             <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>
             <li><a href="modifProfil.php">Modifier mon profil</a></li>
