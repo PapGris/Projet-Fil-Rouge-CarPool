@@ -66,6 +66,16 @@ if ($depart && $destination && $date) {
             <?php if (count($trajets) > 0): ?>
                 <?php foreach ($trajets as $trajet): ?>
                     <div class="trajetCard">
+
+                        <!-- NOUVEAU : "Proposé par" tout en haut -->
+                        <div class="proposePar">
+                            <p><strong>🫡 Proposé par :</strong>
+                                <a class="profil" href="profilPublic.php?id=<?= urlencode($trajet['utilisateur_id']) ?>">
+                                    <?= htmlspecialchars($trajet['utilisateur_prenom'] . ' ' . $trajet['utilisateur_nom']) ?>
+                                </a>
+                            </p>
+                        </div>
+
                         <div class="infosTrajet">
                             <div class="left">
                                 <p><strong>🅰️ Départ :</strong> <?php echo htmlspecialchars($trajet['trajet_lieu_depart']); ?></p>
@@ -80,9 +90,8 @@ if ($depart && $destination && $date) {
                                     <p><strong>👤 Places disponibles :</strong> <?php echo htmlspecialchars($trajet['trajet_nombre_places_disponibles']); ?></p>
                                 <?php endif; ?>
                             </div>
-                            <div class="right">
-                                <p><strong>🫡 Proposé par :</strong> <?php echo htmlspecialchars($trajet['utilisateur_prenom'] . ' ' . $trajet['utilisateur_nom']); ?></p>
 
+                            <div class="right">
                                 <!-- Préférences utilisateur -->
                                 <p><strong>🚬 Fumeur :</strong> <?php echo ($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
                                 <p><strong>🍗 Nourriture acceptée :</strong> <?php echo ($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
@@ -104,6 +113,7 @@ if ($depart && $destination && $date) {
                                 </p>
                             </div>
                         </div>
+
                         <button type="button" class="demandeBtn">Faire une demande de covoiturage pour ce trajet</button>
                     </div>
                 <?php endforeach; ?>
@@ -111,7 +121,7 @@ if ($depart && $destination && $date) {
                 <p>Aucun trajet trouvé pour les critères sélectionnés.</p>
             <?php endif; ?>
 
-            <a href="covoiturage.php" class="retour">← Revenir à la recherche</a>
+            <a href="javascript:history.back()" class="retour">← Revenir à la recherche</a>
         </section>
     </main>
 

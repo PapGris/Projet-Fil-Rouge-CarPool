@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 let inputVille = document.querySelector('.proposer .departDepot');
-    const suggestionsBoxDepot = document.getElementById('suggestionsDepart'); 
+    const suggestionsBoxDepot = document.getElementById('suggestionsDepartDepot'); 
 
 let inputVilleDestination = document.querySelector('.proposer .destinationDepot');
     const suggestionsBoxDestinationDepot = document.getElementById('suggestionsDestinationDepot'); 

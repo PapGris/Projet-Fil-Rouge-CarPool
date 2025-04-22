@@ -56,10 +56,39 @@ h2 {
     border: solid 4px #c5dd8d;
 }
 
+.profil {
+    text-decoration: none;
+    color: #2d3e52;
+    font-size: bold;
+}
+
 .trajetCard p {
     margin: 8px 0;
     font-size: 1rem;
     color: #2d3e52;
+}
+
+.proposePar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.proposePar p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3e52;
+}
+
+.profil {
+    font-weight: bold;
+    color: #65892f;
+    text-decoration: underline;
+    font-size: 1.3rem;
+    transition: color 0.3s;
+}
+
+.profil:hover {
+    color: #9bb181;
 }
 
 .demandeBtn {
@@ -157,8 +186,16 @@ h2 {
     }
 
     .infosTrajet {
-    gap: 200px;
-}
+        gap: 200px;
+    }
+
+    .profil {
+        font-weight: bold;
+        color: #65892f;
+        text-decoration: underline;
+        font-size: 1.6rem;
+        transition: color 0.3s;
+    }
 }
 
 /*=============================================================================================================\
