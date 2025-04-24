@@ -105,9 +105,25 @@ function formsubmit(event) {
         }
     }
 
-    if(!allValid){    
-        event.preventDefault();  
-    } 
+        // MDP IDENTIQUE 
+
+    let confirmPass = document.getElementById("confirmer_mot_de_passe");
+    let champB = confirmPass.value;
+
+        if (inputPass.value !== champB) {
+            confirmPass.closest('div').classList.add('error');
+    
+            let div = document.createElement('div');
+            // div.style.color = "red";
+    
+            let text = document.createTextNode("Mot de passe différent");
+            
+            div.append(text);
+            confirmPass.closest('div').appendChild(div);
+
+            allValid = false;
+} 
+
 }
 
 // GESTION EMAIL AVEC AJAX
@@ -172,15 +188,3 @@ document.getElementById('form').addEventListener('submit',formsubmit);
 document.getElementById('btn').addEventListener('click',formsubmit);
 
 
-// MDP IDENTIQUE 
-
-function checkPass() {
-    var champA = document.getElementById("mot_de_passe").value;
-    var champB = document.getElementById("confirme_mot_de_passe").value;
-    var div_comp = document.getElementById("divcomp");
-
-        if(champA != champB)
-            {
-            div_comp.innerHTML = "Mot de passe différent !";
-        }
-}

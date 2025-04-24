@@ -36,7 +36,7 @@ if ($utilisateurId > 0) {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
     <script src="JS/script.js" defer></script>
-    <script src="JS/scriptModalMessage.js" defer></script>
+    <script src="JS/scriptModalEnvoiMessage.js" defer></script>
 </head>
 
 <body>
@@ -57,24 +57,24 @@ if ($utilisateurId > 0) {
                         <p class="icon">✉</p><strong>Email :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_email']) ?></span></p>
                         <p class="icon">📞</p><strong>Téléphone :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_telephone']) ?></span></p>
                         <p class="icon">👔</p><strong>Service :</strong> <span><?= htmlspecialchars($userPublic['poste_nom'] ?? 'Non défini') ?></span></p>
-                        <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= $userPublic['utilisateur_lieu'] ? htmlspecialchars($userPublic['utilisateur_lieu']) : '' ?></span></p>
+                        <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_lieu']) ? htmlspecialchars($userPublic['utilisateur_lieu']) : '' ?></span></p>
                     </div>
 
                     <div class="profileInfosBtn">
                         <div class="aPropos">
                             <p class="icon">🚗</p>
                             <strong>Conducteur :</strong>
-                            <span><?= $userPublic['utilisateur_conducteur'] ? 'Oui' : 'Non' ?></span>
+                            <span><?= htmlspecialchars($userPublic['utilisateur_conducteur']) ? 'Oui' : 'Non' ?></span>
                             <p class="icon">❤</p>
                             <strong>Préférences :</strong>
                             <span>
-                                <?= $userPublic['utilisateur_preference_fumeur'] == 1 ? ' Fumeur' : 'Non fumeur' ?>
-                                <?= $userPublic['utilisateur_preference_nourriture'] == 1 ? ', Nourriture' : ', Sans nourriture' ?>
-                                <?= $userPublic['utilisateur_preference_musique'] == 1 ? ', Musique' : ', Sans musique' ?>
+                                <?= htmlspecialchars($userPublic['utilisateur_preference_fumeur']) == 1 ? ' Fumeur' : 'Non fumeur' ?>
+                                <?= htmlspecialchars($userPublic['utilisateur_preference_nourriture']) == 1 ? ', Nourriture' : ', Sans nourriture' ?>
+                                <?= htmlspecialchars($userPublic['utilisateur_preference_musique']) == 1 ? ', Musique' : ', Sans musique' ?>
                             </span>
                         </div>
 
-                        <div class="profileActions">
+                        <div class="profilePublicActions">
                             <button class="boutonMessage" id="openModalBtn">Envoyer un message</button>
                             <a href="javascript:history.back()" class="boutonRetour">← Retour aux résultats</a>
                         </div>
@@ -83,9 +83,9 @@ if ($utilisateurId > 0) {
                         <div id="messageModal" class="modal">
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <h2>Envoyer un message à <?= htmlspecialchars($userPublic['utilisateur_pseudo']) ?></h2>
+                                <h3>Envoyer un message à <?= htmlspecialchars($userPublic['utilisateur_pseudo']) ?></h3>
                                 <form action="action/envoyerMessage.php" method="POST">
-                                    <input type="hidden" name="destinataire_id" value="<?= $userPublic['utilisateur_id'] ?>">
+                                    <input type="hidden" name="destinataire_id" value="<?= htmlspecialchars($userPublic['utilisateur_id']) ?>">
                                     <textarea name="message_contenu" rows="5" placeholder="Votre message..." required></textarea>
                                     <button type="submit" class="send-button">Envoyer</button>
                                 </form>

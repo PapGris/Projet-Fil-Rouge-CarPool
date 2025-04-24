@@ -48,9 +48,9 @@ require_once 'config/init.php';
                         <p class="icon">❤</p>
                         <strong>Préférences :</strong>
                         <span>
-                            <?= $user['utilisateur_preference_fumeur'] == 1 ? ' Fumeur' : 'Non fumeur' ?>
-                            <?= $user['utilisateur_preference_nourriture'] == 1 ? ', Nourriture' : ', Sans nourriture' ?>
-                            <?= $user['utilisateur_preference_musique'] == 1 ? ', Musique' : ', Sans musique' ?> 
+                            <?= htmlspecialchars($user['utilisateur_preference_fumeur']) == 1 ? ' Fumeur' : 'Non fumeur' ?>
+                            <?= htmlspecialchars($user['utilisateur_preference_nourriture']) == 1 ? ', Nourriture' : ', Sans nourriture' ?>
+                            <?= htmlspecialchars($user['utilisateur_preference_musique']) == 1 ? ', Musique' : ', Sans musique' ?> 
                         </span>
                     </div>
                     <div class="profileActions">

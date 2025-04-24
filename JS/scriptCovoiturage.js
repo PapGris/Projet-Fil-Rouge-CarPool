@@ -9,10 +9,10 @@ proposerBtn.addEventListener('click', function(event) {
     event.preventDefault();
     errorMessage.style.display = "none"; 
 
-    var depart = form.querySelector('.depart').value.trim();
-    var destination = form.querySelector('.destination').value.trim();
-    var date = form.querySelector('.date').value.trim();
-    var places = form.querySelector('.places').value.trim();
+        var depart = form.querySelector('.departDepot').value.trim();
+        var destination = form.querySelector('.destinationDepot').value.trim();
+        var date = form.querySelector('.date').value.trim();
+        var places = form.querySelector('.places').value.trim();
 
     var erreurs = [];
 

@@ -67,7 +67,6 @@ if ($depart && $destination && $date) {
                 <?php foreach ($trajets as $trajet): ?>
                     <div class="trajetCard">
 
-                        <!-- NOUVEAU : "Proposé par" tout en haut -->
                         <div class="proposePar">
                             <p><strong>🫡 Proposé par :</strong>
                                 <a class="profil" href="profilPublic.php?id=<?= urlencode($trajet['utilisateur_id']) ?>">
@@ -92,12 +91,11 @@ if ($depart && $destination && $date) {
                             </div>
 
                             <div class="right">
-                                <!-- Préférences utilisateur -->
-                                <p><strong>🚬 Fumeur :</strong> <?php echo ($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
-                                <p><strong>🍗 Nourriture acceptée :</strong> <?php echo ($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
-                                <p><strong>🎵 Musique acceptée :</strong> <?php echo ($trajet['utilisateur_preference_musique'] == 1) ? 'Oui' : 'Non'; ?></p>
-
-                                <!-- Type de voyage -->
+                                
+                                <p><strong>🚬 Fumeur :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
+                                <p><strong>🍗 Nourriture acceptée :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
+                                <p><strong>🎵 Musique acceptée :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_musique'] == 1) ? 'Oui' : 'Non'; ?></p>
+                            
                                 <p><strong>🚗 Type de trajet :</strong>
                                     <?php
                                     if ($trajet['trajet_aller_retour'] == 1) {

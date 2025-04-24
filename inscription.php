@@ -109,18 +109,17 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
                 </div>
                 <div>
                     <label for="confirmer_mot_de_passe">Confirmer le mot de passe<span class="required">*</span>:</label>
-                    <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" onBlur="checkPass()" autocomplete="new-password" required>
+                    <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" autocomplete="new-password" required>
 
-                </div>
-                <div id="divcomp"></div><br>
+                </div><br>
                 <div>
                     <input type="submit" id="btn" value="S'inscrire"><br><br>
-                    <!-- <a href="profilUtilisateur.php"><button class="boutonMdp" type="button">S'inscrire</button></a><br><br> -->
                     <a href="index.php"><button class="boutonAccueil" type="button">Retour à l'accueil</button></a><br><br>
                     <span class="champsObligatoires">*Champs obligatoires</span>
                 </div>
             </form>
         </div>
+
         <div id="modal">
             <div tabindex="-1">
                 <h2>Le mot de passe doit contenir :</h2>
@@ -134,6 +133,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
                 <button id="closeModal">OK</button>
             </div>
         </div>
+
     </main>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>

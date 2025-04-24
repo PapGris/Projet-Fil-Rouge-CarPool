@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <?php require_once 'templates/header.php'; ?>
+    <?php require_once 'templates/header.php'; ?>z
 
     <main>
         <div class="profileContainer">
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST" id="modifierPhotoForm" enctype="multipart/form-data">
                         <input type="file" id="photoUpload" name="photo" accept="image/*">
                         <button type="submit" name="save_photo" id="submitPhotoBtn">Upload</button>
-                        <img src="<?= $user['utilisateur_photo'] ? $user['utilisateur_photo'] : 'Images/photoProfilParDefaut.png' ?>" alt="Photo de profil" class="profile-pic">
+                        <img src="<?= htmlspecialchars($user['utilisateur_photo']) ? htmlspecialchars($user['utilisateur_photo']) : 'Images/photoProfilParDefaut.png' ?>" alt="Photo de profil" class="profile-pic">
                     </form>
                     <button type="button" class="editPhotoBtn">
                         <img src="Images/iconeModifier.png" alt="modifier pseudo" class="iconModif">
@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <h3>Changer la photo de profil</h3>
                         <form method="POST" enctype="multipart/form-data">
                             <input type="file" id="filePhoto" name="photo" accept="image/*" required >
-                            <button type="submit" name="save_photo">Envoyer</button>
+                            <button type="submit" name="save_photo">Accepter</button>
                         </form>
 
                         <form method="POST" id="deletePhotoForm">
@@ -200,23 +200,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="infoButton">
                         <div class="profileInfo">
                             <p class="icon">👤</p><strong>Nom :</strong>
-                            <input type="text" value="<?= $user['utilisateur_nom'] ?>" id="nom" name="nom"><br><br>
+                            <input type="text" value="<?= htmlspecialchars($user['utilisateur_nom']) ?>" id="nom" name="nom"><br><br>
 
                             <p class="icon">👤</p><strong>Prenom :</strong>
-                            <input type="text" value="<?= $user['utilisateur_prenom'] ?>" id="prenom" name="prenom"><br><br>
+                            <input type="text" value="<?= htmlspecialchars($user['utilisateur_prenom']) ?>" id="prenom" name="prenom"><br><br>
 
                             <p class="icon">✉</p><strong>Email :</strong>
-                            <input type="email" value="<?= $user['utilisateur_email'] ?>" id="email" name="email"><br><br>
+                            <input type="email" value="<?= htmlspecialchars($user['utilisateur_email']) ?>" id="email" name="email"><br><br>
 
                             <p class="icon">📞</p><strong>Téléphone :</strong>
-                            <input type="tel" value="<?= $user['utilisateur_telephone'] ?>" id="numero" name="numero"><br><br>
+                            <input type="tel" value="<?= htmlspecialchars($user['utilisateur_telephone']) ?>" id="numero" name="numero"><br><br>
 
                             <p class="icon">👔</p><strong>Service :</strong>
                             <select class="service" name="service">
                                 <?php
                                 $postes = ['Developpeur web', 'Technicien reseau', 'Cyber securite', 'Web designer'];
                                 foreach ($postes as $poste) {
-                                    $selected = ($user['poste_nom'] == $poste) ? 'selected' : '';
+                                    $selected = (htmlspecialchars($user['poste_nom']) == $poste) ? 'selected' : '';
                                     echo "<option value=\"$poste\" $selected>$poste</option>";
                                 }
                                 ?>
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <br><br>
 
                             <p class="icon">🌍</p><strong>Lieu :</strong>
-                            <input type="text" value="<?= $user['utilisateur_lieu'] ?>" id="lieu" name="lieu"><br><br>
+                            <input type="text" value="<?= htmlspecialchars($user['utilisateur_lieu']) ?>" id="lieu" name="lieu"><br><br>
                         </div>
 
                         <div class="profileInfosBtn">
@@ -234,10 +234,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <strong>Conducteur :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="conducteur" value="1" <?= (isset($user['utilisateur_conducteur']) && $user['utilisateur_conducteur'] == '1') ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="conducteur" value="1" <?= (isset(htmlspecialchars($user['utilisateur_conducteur'])) && $user['utilisateur_conducteur'] == '1') ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="conducteur" value="0" <?= (isset($user['utilisateur_conducteur']) && $user['utilisateur_conducteur'] == '0') ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="conducteur" value="0" <?= (isset(htmlspecialchars($user['utilisateur_conducteur'])) && $user['utilisateur_conducteur'] == '0') ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
 
@@ -247,21 +247,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="icon">🚬</p><strong>Fumeur :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="fumeur" value="1" <?= $user['utilisateur_preference_fumeur'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="fumeur" value="1" <?= htmlspecialchars($user['utilisateur_preference_fumeur']) == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="fumeur" value="0" <?= $user['utilisateur_preference_fumeur'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="fumeur" value="0" <?= htmlspecialchars($user['utilisateur_preference_fumeur']) == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
-
+(
                                 <!-- Nourriture -->
                                 <p class="icon">🍗</p><strong>Nourriture :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="nourriture" value="1" <?= $user['utilisateur_preference_nourriture'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="nourriture" value="1" <?= htmlspecialchars($user['utilisateur_preference_nourriture']) == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="nourriture" value="0" <?= $user['utilisateur_preference_nourriture'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="nourriture" value="0" <?= htmlspecialchars($user['utilisateur_preference_nourriture']) == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
 
@@ -269,10 +269,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="icon">🎵</p><strong>Musique :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="musique" value="1" <?= $user['utilisateur_preference_musique'] == '1' ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="musique" value="1" <?= htmlspecialchars($user['utilisateur_preference_musique']) == '1' ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="musique" value="0" <?= $user['utilisateur_preference_musique'] == '0' ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="musique" value="0" <?= htmlspecialchars($user['utilisateur_preference_musique']) == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
                             </div>

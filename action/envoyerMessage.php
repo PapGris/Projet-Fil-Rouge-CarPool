@@ -1,6 +1,6 @@
 <?php
-require_once 'config/db.php';
-require_once 'config/session.php';
+require_once '../config/db.php';
+require_once '../config/session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $destinataire_id = (int)$_POST['destinataire_id'];
@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $db->prepare($query);
         $stmt->bindValue(':contenu', $message_contenu);
-        $stmt->bindValue(':expediteur_id', $_SESSION['utilisateur']['utilisateur_id']);
+        $stmt->bindValue(':expediteur_id', $_SESSION['id']);
         $stmt->bindValue(':destinataire_id', $destinataire_id);
 
         if ($stmt->execute()) {
-            header('Location: profilPublic.php?id=' . $destinataire_id . '&message=envoye');
+            header('Location: ../profilPublic.php?id=' . $destinataire_id . '&message=envoye');
             exit();
         } else {
             echo "Erreur lors de l'envoi du message.";
@@ -25,6 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Tous les champs doivent être remplis.";
     }
 } else {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }

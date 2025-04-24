@@ -140,9 +140,16 @@ main {
     width: 100%;
 }
 
+.profilePublicActions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
 .profileActions a button,
-.boutonMessage,
-.boutonRetour{
+.profilePublicActions a button,
+.boutonMessage {
     background-color: #88b04b;
     color: white;
     border: none;
@@ -158,7 +165,23 @@ main {
     font-family: 'Nunito', sans-serif;
 }
 
+.boutonRetour {
+    background-color: #88b04b;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+}
+
 .profileActions a button:hover,
+.profilePublicActions a button:hover,
 .boutonMessage:hover,
 .boutonRetour:hover {
     background: #679436;
@@ -167,6 +190,7 @@ main {
 }
 
 .profileActions a button:active,
+.profilePublicActions a button:active,
 .boutonMessage:active,
 .boutonRetour:active {
     transform: translateY(2px);

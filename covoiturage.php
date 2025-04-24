@@ -88,13 +88,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
                     <input type="hidden" name="proposer_trajet" value="1">
                     <p><strong>Départ* :</strong></p>
                     <div class="inputForm">
-                        <input class="departDepot" type="text" name="depart" id="departDepot" placeholder="Départ" autocomplete="off" required>
+                        <input class="departDepot" type="text" name="departProposer" id="departDepot" placeholder="Départ" autocomplete="off" required>
                         <div id="suggestionsDepartDepot" class="suggestionsListDepartDepot"></div>
                     </div>
 
                     <p><strong>Destination* :</strong></p>
                     <div class="inputForm">
-                        <input class="destinationDepot" type="text" name="destination" id="destinationDepot" placeholder="Destination" autocomplete="off" required>
+                        <input class="destinationDepot" type="text" name="destinationProposer" id="destinationDepot" placeholder="Destination" autocomplete="off" required>
                         <div id="suggestionsDestinationDepot" class="suggestionsListDestinationDepot"></div>
                     </div>
 
