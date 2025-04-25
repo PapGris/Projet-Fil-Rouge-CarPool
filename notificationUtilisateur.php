@@ -1,6 +1,6 @@
 <?php
-require_once 'config/db.php';
-require_once 'config/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
 
 $utilisateurId = $_SESSION['id'];
 
@@ -34,7 +34,7 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-    <?php require_once 'templates/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
 

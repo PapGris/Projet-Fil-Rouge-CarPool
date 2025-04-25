@@ -1,5 +1,5 @@
 <?php
-require 'config/db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 
 
 if (isset($_POST['nom']) && $_POST['nom'] !== '' && 
@@ -72,7 +72,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
 <body>
 
     <?php
-    require_once 'templates/header.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
     ?>
 
     <main>

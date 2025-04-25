@@ -263,6 +263,12 @@ footer {
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
         margin-top: 3px;
         object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .profile-picMini:hover {
+        transform: scale(1.2);
+        z-index: 500;
     }
 
     header .btn {

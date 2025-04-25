@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <?php require_once 'templates/header.php'; ?>z
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>z
 
     <main>
         <div class="profileContainer">

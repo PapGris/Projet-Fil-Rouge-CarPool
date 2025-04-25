@@ -28,7 +28,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/action/depotTrajet.php';
 <body>
 
     <?php
-    require_once 'templates/header.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
     ?>
 
     <main>

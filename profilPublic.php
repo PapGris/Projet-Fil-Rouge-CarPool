@@ -1,7 +1,7 @@
 <?php
-require_once 'config/db.php';
-require_once 'config/session.php';
-require_once 'config/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 // Sécuriser l'ID
 $utilisateurId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -41,7 +41,7 @@ if ($utilisateurId > 0) {
 
 <body>
 
-    <?php require_once 'templates/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
         <div class="profileContainer">

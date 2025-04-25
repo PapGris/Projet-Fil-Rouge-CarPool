@@ -1,5 +1,5 @@
 <?php
-require 'config/db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 session_start();
 ?>
 
@@ -24,7 +24,7 @@ session_start();
 <body>
 
     <?php
-    require_once 'templates/header.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
     ?>
 
     <main>

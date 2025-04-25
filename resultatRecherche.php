@@ -51,7 +51,7 @@ if ($depart && $destination && $date) {
 </head>
 
 <body>
-    <?php require_once 'templates/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
         <section class="trajetContainer">

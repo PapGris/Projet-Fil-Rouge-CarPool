@@ -7,7 +7,8 @@ const menuBurger = document.querySelector('.burger');
 
 
 logoBurger.addEventListener('click', function(event) { 
-    menuBurger.classList.toggle('active');  
+    menuBurger.classList.toggle('active');
+    logoBurger.classList.toggle('active');  
 
     let rotationAngle = logoBurger.classList.contains('active') ? 360 : 0; 
     logoBurger.style.transition = "transform 0.8s"; 

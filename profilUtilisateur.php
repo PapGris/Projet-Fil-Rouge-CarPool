@@ -1,7 +1,7 @@
 <?php
-require_once 'config/db.php';
-require_once 'config/session.php';
-require_once 'config/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
 
 ?>
 
@@ -22,7 +22,7 @@ require_once 'config/init.php';
 
 <body>
 
-    <?php require_once 'templates/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
         <div class="profileContainer">
@@ -37,7 +37,7 @@ require_once 'config/init.php';
                     <p class="icon">✉</p><strong>Email :</strong> <span><?= htmlspecialchars($user['utilisateur_email']) ?></span></p>
                     <p class="icon">📞</p><strong>Téléphone :</strong> <span><?= htmlspecialchars($user['utilisateur_telephone']) ?></span></p>
                     <p class="icon">👔</p><strong>Service :</strong> <span><?= htmlspecialchars($user['poste_nom'] ?? 'Non défini') ?></span></p>
-                    <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= $user['utilisateur_lieu']? htmlspecialchars($user['utilisateur_lieu']):''?></span></p>
+                    <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= $user['utilisateur_lieu'] ? htmlspecialchars($user['utilisateur_lieu']) : '' ?></span></p>
                 </div>
 
                 <div class="profileInfosBtn">
@@ -50,7 +50,7 @@ require_once 'config/init.php';
                         <span>
                             <?= htmlspecialchars($user['utilisateur_preference_fumeur']) == 1 ? ' Fumeur' : 'Non fumeur' ?>
                             <?= htmlspecialchars($user['utilisateur_preference_nourriture']) == 1 ? ', Nourriture' : ', Sans nourriture' ?>
-                            <?= htmlspecialchars($user['utilisateur_preference_musique']) == 1 ? ', Musique' : ', Sans musique' ?> 
+                            <?= htmlspecialchars($user['utilisateur_preference_musique']) == 1 ? ', Musique' : ', Sans musique' ?>
                         </span>
                     </div>
                     <div class="profileActions">
@@ -58,7 +58,7 @@ require_once 'config/init.php';
                         <a href="historiqueUtilisateur.php"><button class="history-button">Historique des trajets</button></a>
                         <a href="notificationUtilisateur.php"><button class="notifications-button">Notifications</button></a>
                         <a href="backoffice.php"><button class="logout-button">Backoffice</button></a>
-                        <a href="index.php"><button class="logout-button">Déconnexion</button></a>
+                        <a href="/action/logout.php"><button class="logout-button">Déconnexion</button></a>
                     </div>
                 </div>
             </div>
