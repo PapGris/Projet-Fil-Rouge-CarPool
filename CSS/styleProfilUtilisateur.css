@@ -15,8 +15,10 @@ main {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+    background: linear-gradient(#f9f9f9, #acc572);
     background-color: #f9f9f9;
     border-radius: 8px;
+    border: #88b04b solid 2px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     
 }
@@ -59,10 +61,10 @@ main {
     color: #444;
     background-color: #d1ddb4;
     border-radius: 12px;
+    border: #88b04b solid 2px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 25px;
     margin-bottom: 30px;
-    border: 1px solid #e5e5e5;
     display: flex;
     gap: 1px;
     flex-direction: column;
@@ -111,13 +113,13 @@ main {
     color: #444;
     background-color: #d1ddb4;
     border-radius: 12px;
+    border: #88b04b solid 2px;
     padding: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     margin-top: 0;
-    border: 1px solid #e5e5e5;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease-in-out;
@@ -251,6 +253,11 @@ main {
 
     .profile-name {
         font-size: 3em;
+        background-color: #a7c95796;
+        border: #88b04b solid 2px;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     }
 
     .profilePic {

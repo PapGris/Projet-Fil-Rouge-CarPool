@@ -234,10 +234,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <strong>Conducteur :</strong>
                                 <span class="radio-group">
                                     <label>
-                                        <input type="radio" name="conducteur" value="1" <?= (isset(htmlspecialchars($user['utilisateur_conducteur'])) && $user['utilisateur_conducteur'] == '1') ? 'checked' : '' ?>> Oui
+                                        <input type="radio" name="conducteur" value="1" <?= (isset($user['utilisateur_conducteur']) && $user['utilisateur_conducteur'] == '1') ? 'checked' : '' ?>> Oui
                                     </label>
                                     <label>
-                                        <input type="radio" name="conducteur" value="0" <?= (isset(htmlspecialchars($user['utilisateur_conducteur'])) && $user['utilisateur_conducteur'] == '0') ? 'checked' : '' ?>> Non
+                                        <input type="radio" name="conducteur" value="0" <?= (isset($user['utilisateur_conducteur']) && $user['utilisateur_conducteur'] == '0') ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
 

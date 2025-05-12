@@ -14,8 +14,9 @@ main {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #f9f9f9;
+    background: linear-gradient(#f9f9f9, #acc572);
     border-radius: 8px;
+    border: #88b04b solid 2px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -25,8 +26,7 @@ main {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-bottom: 20px;
-    gap: 10px;
+    margin-bottom: -30px;
 }
 
 .profileContainer {
@@ -37,7 +37,7 @@ main {
 
 h2 {
     font-family: 'Pure Milk', sans-serif;
-    font-size: 3.0rem;
+    font-size: 2.0rem;
     letter-spacing: 3px;
     color: #2d3e52;
 }
@@ -71,11 +71,8 @@ h2 {
     display: none;
 }
 
-.photoEdit {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: end;
+#modifierPseudoForm {
+    gap : 10px;
 }
 
 #photoModal {
@@ -135,8 +132,7 @@ h2 {
 
 .editPhotoBtn {
     position: relative;
-    top: -5px;
-    right: 50%;
+    top: -35px;  
     z-index: 900;
 }
 
@@ -159,10 +155,10 @@ h2 {
     color: #444;
     background-color: #d1ddb4;
     border-radius: 12px;
+    border: #88b04b solid 2px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 25px;
     margin-bottom: 30px;
-    border: 1px solid #e5e5e5;
     display: flex;
     gap: 1px;
     flex-direction: column;
@@ -247,13 +243,13 @@ select.service {
     color: #444;
     background-color: #d1ddb4;
     border-radius: 12px;
+    border: #88b04b solid 2px;
     padding: 25px;
     padding-top: 10px;
     padding-bottom: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     margin-top: 0;
-    border: 1px solid #e5e5e5;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease-in-out;
@@ -438,15 +434,25 @@ input[type="radio"]:checked {
         padding-right: 70px;
     }
 
+    h2 {
+        font-size: 3.0rem;
+    }
+
     .profileHeader {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: -75px;
         gap: 280px;
     }
+
+    #modifierPseudoForm {
+        border: #88b04b solid 2px;
+        border-radius: 10px;
+        padding-left: 5px;
+        padding-right: 5px;   }
 
     .profileContainer {
         margin-top: 100px;

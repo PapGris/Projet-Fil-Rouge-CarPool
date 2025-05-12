@@ -20,7 +20,6 @@
             <a href="profilUtilisateur.php"><img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/photoProfilParDefaut.png') ?>" alt="Photo de profil" class="profile-picMini-burger"></a>
         </div>
         <ul>
-            <li><a href="profilUtilisateur.php">Mon Profil</a></li>
             <li><a href="covoiturage.php">Trouver/Proposer un trajet</a></li>
             <li><a href="notificationUtilisateur.php">Notifications</a></li>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>

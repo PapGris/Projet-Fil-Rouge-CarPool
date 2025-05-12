@@ -45,7 +45,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #71C4F1;
+    background: linear-gradient(#249fe2, #71C4F1);
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -132,7 +132,7 @@ header {
 
 footer {
     font-family: 'Nunito', sans-serif;
-    background-color: #71C4F1;
+    background: linear-gradient(#71C4F1, #249fe2);
     color: #2d3e52;
     display: flex;
     flex-direction: column;
