@@ -27,4 +27,22 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Menu deroulant header :
+
+document.addEventListener('DOMContentLoaded', function () {
+    const profileToggle = document.getElementById('profileToggle');
+    const dropdownContainer = document.querySelector('.profile-dropdown');
+
+    profileToggle.addEventListener('click', function (e) {
+        e.stopPropagation(); // Évite que ça se ferme immédiatement
+        dropdownContainer.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!dropdownContainer.contains(e.target)) {
+            dropdownContainer.classList.remove('active');
+        }
+    });
+});
+
 

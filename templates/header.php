@@ -1,7 +1,3 @@
-
-
-
-
 <div class="burger">
     <?php
 
@@ -51,7 +47,15 @@
             <?php
             } else {
             ?>
-                <a href="profilUtilisateur.php"><img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/photoProfilParDefaut.png') ?>" alt="Photo de profil" class="profile-picMini"></a>
+                <div class="profile-dropdown">
+                    <img src="<?= htmlspecialchars($user['utilisateur_photo'] ?? 'Images/photoProfilParDefaut.png') ?>" alt="Photo de profil" class="profile-picMini" id="profileToggle">
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="covoiturage.php">Trouver/Proposer un trajet</a>
+                        <a href="notificationUtilisateur.php">Notifications</a>
+                        <a href="historiqueUtilisateur.php">Historique</a>
+                        <a href="modifProfil.php">Modifier mon profil</a>
+                    </div>
+                </div>
                 <a href="profilUtilisateur.php"><button class="btn">Mon Profil</button></a>
                 <a href="../action/logout.php" class="btn">Déconnexion</a>
             <?php
