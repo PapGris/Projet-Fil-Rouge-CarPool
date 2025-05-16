@@ -2,7 +2,34 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/session.php';
 
-$utilisateurId = $_SESSION['id'];
+$utilisateurId = $_SESSION['id'] ?? null;
+
+// TRAITEMENT DU FORMULAIRE POST POUR ENVOYER UN MESSAGE
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $destinataireId = $_POST['destinataire_id'] ?? null;
+    $messageReponse = trim($_POST['message_reponse'] ?? '');
+
+    if ($utilisateurId && $destinataireId && $messageReponse !== '') {
+        $insert = $db->prepare("
+    INSERT INTO message (utilisateur_id, utilisateur_id_1, message_contenu, message_date, message_statut)
+    VALUES (:utilisateur_id, :utilisateur_id_1, :message_contenu, NOW(), :message_statut)
+    ");
+
+        $statut = 0; // Non lu par exemple
+
+        $insert->bindParam(':utilisateur_id', $utilisateurId, PDO::PARAM_INT);
+        $insert->bindParam(':utilisateur_id_1', $destinataireId, PDO::PARAM_INT);
+        $insert->bindParam(':message_contenu', $messageReponse, PDO::PARAM_STR);
+        $insert->bindParam(':message_statut', $statut, PDO::PARAM_INT);
+        $insert->execute();
+
+        // Redirection pour éviter le re-post du formulaire au refresh
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        $errorMessage = "Veuillez remplir tous les champs.";
+    }
+}
 
 $query = $db->prepare("
     SELECT m.message_id, m.message_contenu, m.message_date, u.utilisateur_pseudo, u.utilisateur_id, u.utilisateur_prenom, u.utilisateur_nom
@@ -38,6 +65,10 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <main>
 
+        <?php if (!empty($errorMessage)): ?>
+            <p style="color:red; text-align:center;"><?= htmlspecialchars($errorMessage) ?></p>
+        <?php endif; ?>
+
         <div class="notificationsContainer">
             <h2 class="page-title">Notifications</h2>
 
@@ -62,7 +93,8 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                                 <button
                                     class="openModalBtn"
                                     data-message="<?= htmlspecialchars($message['message_contenu']) ?>"
-                                    data-recu="<?= htmlspecialchars($message['utilisateur_pseudo']) ?>">
+                                    data-recu="<?= htmlspecialchars($message['utilisateur_pseudo']) ?>"
+                                    data-utilisateur-id="<?= $message['utilisateur_id'] ?>">
                                     Lire
                                 </button>
                             </div>
@@ -72,7 +104,6 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                     <p>Aucun message reçu pour l'instant.</p>
                 <?php endif; ?>
             </div>
-
         </div>
 
         <!-- MODAL -->
@@ -82,8 +113,16 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 <h2 id="modalRecu"></h2><br>
                 <div class="containerMessage">
                     <p id="modalMessage"></p>
+                </div><br>
+                <button class="repondre">Répondre</button>
+
+                <div id="repContainer" class="hidden">
+                    <form method="POST" action="" class="reponse">
+                        <input type="hidden" name="destinataire_id" id="destinataireId">
+                        <textarea name="message_reponse" placeholder="Votre message..." class="textRep" required></textarea>
+                        <button type="submit" class="envoyer">Envoyer</button>
+                    </form>
                 </div>
-                <button class="reply-button">Répondre</button>
             </div>
         </div>
 

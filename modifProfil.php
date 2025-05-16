@@ -214,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="icon">👔</p><strong>Service :</strong>
                             <select class="service" name="service">
                                 <?php
-                                $postes = ['Developpeur web', 'Technicien reseau', 'Cyber securite', 'Web designer'];
+                                $postes = ['Developpeur web', 'Technicien reseaux', 'Cyber securite', 'Web designer'];
                                 foreach ($postes as $poste) {
                                     $selected = (htmlspecialchars($user['poste_nom']) == $poste) ? 'selected' : '';
                                     echo "<option value=\"$poste\" $selected>$poste</option>";

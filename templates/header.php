@@ -6,7 +6,7 @@
         <ul>
             <li><a href="connexion.php">Connexion</a></li>
             <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="rechercheTrajet.php">Trouver/Proposer un trajet</a></li>
+            <li><a href="covoiturage.php">Trouver/Proposer un trajet</a></li>
         </ul>
     <?php
     } else {
