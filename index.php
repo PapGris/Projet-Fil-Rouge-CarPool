@@ -111,8 +111,8 @@ session_start();
     <?php if (!isset($_SESSION['id'])) : ?>
         <div id="modalConnexion" class="modal" style="display:none;">
             <div class="modal-content">
-                <span class="close" id="closeModal">&times;</span>
-                <p>Pour déposer ou chercher un trajet, tu dois d'abord t'inscrire ou te connecter.</p>
+                <span class="close" id="closeModal">&times;</span><br>
+                <p class="textModal">Pour déposer ou chercher un trajet, tu dois d'abord t'inscrire ou te connecter.</p>
                 <div class="btnsModale">
                     <a href="inscription.php">
                         <button class="btn-inscription">S'inscrire</button>
