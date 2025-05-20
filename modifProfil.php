@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <input type="radio" name="fumeur" value="0" <?= htmlspecialchars($user['utilisateur_preference_fumeur']) == '0' ? 'checked' : '' ?>> Non
                                     </label>
                                 </span>
-(
+
                                 <!-- Nourriture -->
                                 <p class="icon">🍗</p><strong>Nourriture :</strong>
                                 <span class="radio-group">

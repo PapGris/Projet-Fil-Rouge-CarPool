@@ -119,7 +119,7 @@ session_start();
             <div class="modal-content">
                 <div class="modalHeader">
                     <h3 class="attention-title">
-                        Attention<span class="dots-loading"><span>.</span><span>.</span><span>.</span></span>
+                        Attention<span class="dots-loading"><span>.</span><span>.</span><span>!</span></span>
                     </h3>
                     <span class="close" id="closeModal">&times;</span>
                 </div>

@@ -109,8 +109,10 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
         <!-- MODAL -->
         <div id="messageModal" class="modal hidden">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2 id="modalRecu"></h2><br>
+                <div class="modalHeader">
+                    <span class="close-btn">&times;</span>
+                    <h2 id="modalRecu"></h2><br>
+                </div>
                 <div class="containerMessage">
                     <p id="modalMessage"></p>
                 </div><br>

@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['proposer_trajet'])) {
 
             $trajet_id = $db->lastInsertId();
 
-            $query2 = "INSERT INTO utilisateur_trajet (utilisateur_id, trajet_id, date_demande, statut_demande) 
+            $query2 = "INSERT INTO utilisateur_trajet (utilisateur_id, trajet_id, date_depot, statut_depot) 
                     VALUES (:utilisateur_id, :trajet_id, NOW(), 1)";
 
             $stmt2 = $db->prepare($query2);

@@ -156,20 +156,20 @@ h2 {
 }
 
 .modal h2 {
-    font-size: 1.6em;
+    font-size: 1.2em;
 }
 
 .modal-content {
     background: linear-gradient(#9bcce7, #249fe2, #9bcce7);
     margin: 100px auto;
-    padding: 20px;
+    padding: 0 0 20px 0;
     border-radius: 12px;
     width: 80%;
     max-width: 400px;
     text-align: center;
     position: relative;
     animation: fadeIn 0.3s ease;
-    border: #88b04b solid 4px;
+    border: #a7c957 solid 4px;
 }
 
 #modalMessage {
@@ -178,9 +178,16 @@ h2 {
     margin: 10px;
 }
 
+.modalHeader {
+    background-color: #a7c957;
+    margin-bottom: 20px;
+    padding: 10px 10px 0 10px;
+
+}
+
 .containerMessage, .textRep {
     background-color: beige;
-    width: 100%;
+    margin-inline: 3.5px;
     border-radius: 5px;
     border: solid 1px #2d3e527c;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -192,10 +199,13 @@ h2 {
 }
 
 .textRep {
-    width: 95%;
+    width: 90%;
+    margin-inline: 20px;
     padding: 10px;
     margin-top: 10px;
     font-size: 1em;
+    resize: vertical;
+    min-height: 100px;
 }
 
 .close-btn {
@@ -309,6 +319,10 @@ h2 {
     }
     .notificationBtn {
         font-size: 14px;
+    }
+
+    .containerMessage {
+        margin-inline: 8px;
     }
 
     .textRep {

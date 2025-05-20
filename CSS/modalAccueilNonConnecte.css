@@ -11,13 +11,13 @@
 }
 
 .modal-content {
-    background: #71C4F1;
+    background: beige;
     margin: 30% auto;
-    padding: 20px;
+    padding: 0 0 20px 0;
     border-radius: 10px;
     width: 70%;
     max-width: 500px;
-    border: #2d3e52 solid 2px;
+    border: #71C4F1 solid 1.5px;
     font-family: 'Nunito', sans-serif;
     color: #2d3e52;
 }
@@ -82,6 +82,10 @@
 }
 
 .modalHeader {
+    border-radius: 10px 10px 0 0;
+    border-bottom: #71C4F1 solid 1.5px;
+    background-color: #71C4F1;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -143,4 +147,14 @@
     .modal-content {
         margin: 15% auto;   
     }
+
+    .modal-content {
+        border: #71C4F1 solid 3px;
+    }
+
+    .modalHeader {
+        border-bottom: #71C4F1 solid 3px;
+    }
+
+
 }
