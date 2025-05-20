@@ -1,17 +1,21 @@
-// Modal accueil si non connecté 
-
 const lienCovoiturage = document.getElementById("lienCovoiturage");
 const modal = document.getElementById("modalConnexion");
 const closeModal = document.getElementById("closeModal");
+const boutonRechercher = document.getElementById("btnRechercherNonConnecte");
 
 if (lienCovoiturage && modal && closeModal) {
     lienCovoiturage.addEventListener("click", function (e) {
-        e.preventDefault(); // Empêche la navigation
-        modal.style.display = "block"; // Affiche la modale
+        e.preventDefault();
+        modal.style.display = "block";
     });
 
     closeModal.addEventListener("click", function () {
         modal.style.display = "none";
-    }); 
+    });
+}
 
+if (boutonRechercher && modal) {
+    boutonRechercher.addEventListener("click", function () {
+        modal.style.display = "block";
+    });
 }

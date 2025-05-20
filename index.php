@@ -66,7 +66,11 @@ session_start();
                     </div>
 
                     <div class="inputForm">
-                        <button class="btnRechercher" type="submit">Rechercher</button>
+                        <?php if (isset($_SESSION['id'])) : ?>
+                            <button class="btnRechercher" type="submit">Rechercher</button>
+                        <?php else : ?>
+                            <button class="btnRechercher" id="btnRechercherNonConnecte" type="button">Rechercher</button>
+                        <?php endif; ?>
                     </div>
                 </form>
             </div>
@@ -74,8 +78,10 @@ session_start();
 
         <div class="texteInformatif">
             <p>
-                <strong>Inscris-toi !</strong><br /><br />
-                Crée ton compte en quelques clics pour commencer à profiter des avantages du covoiturage au sein de ton entreprise.<br /><br />
+                <?php if (!isset($_SESSION['id'])) : ?>
+                    <strong>Inscris-toi !</strong><br /><br />
+                    Crée ton compte en quelques clics pour commencer à profiter des avantages du covoiturage au sein de ton entreprise.<br /><br />
+                <?php endif; ?>
 
                 <strong>Cherche un trajet ou Propose un trajet</strong><br /><br />
                 Tu as un trajet quotidien à faire ? Cherche une offre de covoiturage ou propose ta propre place pour partager ton parcours avec tes collègues.<br /><br />
@@ -85,16 +91,16 @@ session_start();
             </p>
         </div>
         <section class="boxs">
-            <a href="inscription.php" class="box">
-                <div>Inscris toi !</div>
-            </a>
+            <?php if (!isset($_SESSION['id'])) : ?>
+                <a href="inscription.php" class="box">
+                    <div>Inscris toi !</div>
+                </a>
+            <?php endif; ?>
             <?php if (isset($_SESSION['id'])) : ?>
-                <!-- Utilisateur connecté : lien normal -->
                 <a href="covoiturage.php" class="box" id="lienCovoiturage">
                     <div>Cherche un trajet<br />ou<br />Propose un trajet</div>
                 </a>
             <?php else : ?>
-                <!-- Non connecté : lien ne fait rien (href="#") et on ajoute un id -->
                 <a href="#" class="box" id="lienCovoiturage">
                     <div>Cherche un trajet<br />ou<br />Propose un trajet</div>
                 </a>
@@ -111,7 +117,12 @@ session_start();
     <?php if (!isset($_SESSION['id'])) : ?>
         <div id="modalConnexion" class="modal" style="display:none;">
             <div class="modal-content">
-                <span class="close" id="closeModal">&times;</span><br>
+                <div class="modalHeader">
+                    <h3 class="attention-title">
+                        Attention<span class="dots-loading"><span>.</span><span>.</span><span>.</span></span>
+                    </h3>
+                    <span class="close" id="closeModal">&times;</span>
+                </div>
                 <p class="textModal">Pour déposer ou chercher un trajet, tu dois d'abord t'inscrire ou te connecter.</p>
                 <div class="btnsModale">
                     <a href="inscription.php">
