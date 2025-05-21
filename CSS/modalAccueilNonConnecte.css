@@ -1,3 +1,13 @@
+
+:root {
+    --bleuPolice: #2d3e52;
+    --vertTheme: #a7c957;
+    --vertFonce: #88b04b;
+    --bleuTheme: #71C4F1;
+    --bleuFormulaire: #71c4f19f;
+}
+
+
 .modal {
     display: none;
     position: fixed;
@@ -17,9 +27,9 @@
     border-radius: 10px;
     width: 70%;
     max-width: 500px;
-    border: #71C4F1 solid 1.5px;
+    border: var(--bleuTheme) solid 1.5px;
     font-family: 'Nunito', sans-serif;
-    color: #2d3e52;
+    color: var(--bleuPolice);
 }
 
 .textModal {
@@ -51,7 +61,7 @@
 .dots-loading span {
     opacity: 0;
     animation: blink 1.4s infinite;
-    color: #2d3e52;
+    color: var(--bleuPolice);
     font-weight: bold;
 }
 
@@ -83,8 +93,8 @@
 
 .modalHeader {
     border-radius: 10px 10px 0 0;
-    border-bottom: #71C4F1 solid 1.5px;
-    background-color: #71C4F1;
+    border-bottom: var(--bleuTheme) solid 1.5px;
+    background-color: var(--bleuTheme);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -92,7 +102,7 @@
 }
 
 .close {
-    color: #2d3e52;
+    color: var(--bleuPolice);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -111,8 +121,8 @@
     margin-top: 10px;
     padding: 10px;
     width: 100%;
-    background-color: #88b04b;
-    color: #2d3e52;
+    background-color: var(--vertFonce);
+    color: var(--bleuPolice);
     border: none;
     border-radius: 8px;
     font-size: 1em;
@@ -149,11 +159,11 @@
     }
 
     .modal-content {
-        border: #71C4F1 solid 3px;
+        border: var(--bleuTheme) solid 3px;
     }
 
     .modalHeader {
-        border-bottom: #71C4F1 solid 3px;
+        border-bottom: var(--bleuTheme) solid 3px;
     }
 
 
