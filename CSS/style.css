@@ -1,17 +1,12 @@
-/* COULEURS 
-police : #2d3e52
-bouttons : #a7c957
-theme bleu : #71C4F1
-*/
 
-/* COULEURS */
 :root {
-    --primary-color: #2d3e52;
-    /* Couleur principale de la police */
-    --button-color: #a7c957;
-    /* Couleur des boutons */
-    --blue-theme: #71C4F1;
-    /* Couleur bleue du thème */
+    --bleuPolice: #2d3e52;
+    --vertTheme: #a7c957;
+    --bleuTheme: #71C4F1;
+    --blancVert: #CFE0C3;
+    --blancCasse: #EBF5DF;
+    --blanc: #f2f2f2;
+    --bleuFormulaire: #71c4f19f;
 }
 
 /* ACCUEIL */
@@ -29,7 +24,7 @@ body {
     font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #CFE0C3;
+    background-color: var(--blancVert);
 }
 
 .acceuil {
@@ -55,18 +50,18 @@ body {
     font-weight: bold;
     font-family: 'Pure Milk', sans-serif;
     letter-spacing: 4px;
-    color: #EBF5DF;
+    color: var(--blancCasse);
 }
 
 .recherche {
-    background: #71c4f19f;
+    background: var(--bleuFormulaire);
     max-width: 60%;
     margin: 0px auto;
     border-radius: 15px;
     padding: 3px;  
     position: relative;
     top: 70px;
-    border: solid 2px #71C4F1;
+    border: solid 2px var(--bleuTheme);
 }
 
 .recherche form{
@@ -80,8 +75,8 @@ body {
 .depart, .destination, .date, .passager { 
     border-radius: 5px;
     padding: 5px;
-    background-color: #f2f2f2;
-    border: 1px solid #71C4F1;
+    background-color: var(--blanc);
+    border: 1px solid var(--bleuTheme);
     outline: none;
 } 
 
@@ -127,7 +122,7 @@ body {
 }
 
 .btnRechercher {
-    background-color:#a7c957 ;
+    background-color:var(--vertTheme) ;
     padding: 7px;
     border: none;
     border-radius: 10px;
@@ -151,7 +146,7 @@ body {
 
 .texteInformatif p {
     font-size: 0.8rem;
-    color: #2d3e52;
+    color: var(--bleuPolice);
     font-weight: 400;
     line-height: 1.2;
     max-width: 800px;
@@ -174,7 +169,7 @@ body {
 .box {
     width: 120px;
     height: 120px;
-    background: linear-gradient(135deg, #a7c957, #88b04b);
+    background: linear-gradient(135deg, var(--vertTheme), #88b04b);
     color: white;
     display: flex;
     align-items: center;
@@ -223,10 +218,7 @@ a {
 |                                                                                                              |
 \=============================================================================================================*/
 
-@media (min-width: 500px) {  
-    body {
-        border-top: 2px solid yellow;
-    }
+@media (min-width: 500px) { 
 }
 
 /*=============================================================================================================\
@@ -236,9 +228,6 @@ a {
 \=============================================================================================================*/
 
 @media (min-width: 768px) {
-    body {
-        border-top: 2px solid red;
-    }
 
     .slogan {
         position: absolute;
@@ -251,7 +240,7 @@ a {
         -3px 3px 2px #00000036,
         -3px -3px 0 #00000036,
         3px -3px 0 #00000036;
-        color: #EBF5DF;
+        color: var(--blancCasse);
     }
 
     .recherche {
@@ -279,9 +268,6 @@ a {
 \=============================================================================================================*/
 
 @media (min-width: 992px) { 
-    body {
-        border-top: 2px solid blue;
-    }
 
     .slogan {
         position: absolute;
@@ -359,7 +345,7 @@ a {
 
     .btnRechercher {
         font-size: large;
-        background-color: #a7c957;
+        background-color: var(--vertTheme);
         width: 100%;
         padding: 10px;
         border-radius: 20px 50px 50px 20px;
@@ -389,7 +375,7 @@ a {
     .box {
         width: 240px;
         height: 140px;
-        background: linear-gradient(135deg, #a7c957, #88b04b);
+        background: linear-gradient(135deg, var(--vertTheme), #88b04b);
         color: white;
         display: flex;
         align-items: center;
@@ -443,10 +429,6 @@ a {
 \=============================================================================================================*/
 
 @media (min-width: 1199px) {
-    
-    body {
-        border-top: 2px solid pink;
-    }
 
     .acceuil { 
         height: 600px;
