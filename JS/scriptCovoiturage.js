@@ -1,20 +1,20 @@
-var modal = document.getElementById("confirmationModal");
-var proposerBtn = document.querySelector('.btnProposer');
-var confirmBtn = document.getElementById("confirmBtn");
-var form = document.getElementById("formProposer");
-var errorMessage = document.getElementById("error-message");
+let modal = document.getElementById("confirmationModal");
+let proposerBtn = document.querySelector('.btnProposer');
+let confirmBtn = document.getElementById("confirmBtn");
+let form = document.getElementById("formProposer");
+let errorMessage = document.getElementById("error-message");
 
 
 proposerBtn.addEventListener('click', function(event) {
     event.preventDefault();
     errorMessage.style.display = "none"; 
 
-        var depart = form.querySelector('.departDepot').value.trim();
-        var destination = form.querySelector('.destinationDepot').value.trim();
-        var date = form.querySelector('.date').value.trim();
-        var places = form.querySelector('.places').value.trim();
+        let depart = form.querySelector('.departDepot').value.trim();
+        let destination = form.querySelector('.destinationDepot').value.trim();
+        let date = form.querySelector('.date').value.trim();
+        let places = form.querySelector('.places').value.trim();
 
-    var erreurs = [];
+    let erreurs = [];
 
     if (depart === "") {
         erreurs.push("Départ");

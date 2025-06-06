@@ -1,11 +1,8 @@
 /* COULEURS */
 :root {
-    --primary-color: #2d3e52;
-    /* Couleur principale de la police */
-    --button-color: #a7c957;
-    /* Couleur des boutons */
-    --blue-theme: #71C4F1;
-    /* Couleur bleue du thème */
+    --bleuPolice: #2d3e52;
+    --vertTheme: #a7c957;
+    --bleuTheme: #71C4F1;
 }
 
 
@@ -41,7 +38,7 @@ main {
 }
 
 h2 {
-    color: var(--primary-color);
+    color: var(#2d3e52);
     text-align: center;
     font-family: 'Pure Milk';
     letter-spacing: 3px;
