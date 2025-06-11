@@ -155,8 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="photoEdit">
                     <form method="POST" id="modifierPhotoForm" enctype="multipart/form-data">
                         <input type="file" id="photoUpload" name="photo" accept="image/*">
-                        <button type="submit" name="save_photo" id="submitPhotoBtn">Upload</button>
-                        <img src="<?= htmlspecialchars($user['utilisateur_photo']) ? htmlspecialchars($user['utilisateur_photo']) : 'Images/photoProfilParDefaut.png' ?>" alt="Photo de profil" class="profile-pic">
+                        <button type="submit" name="save_photo" id="submitPhotoBtn">Upload</button> 
+                        <img src="<?= (!empty($user['utilisateur_photo'])) ? htmlspecialchars($user['utilisateur_photo']) : 'Images/photoProfilParDefaut.png' ?>" alt="Photo de profil" class="profile-pic">
                     </form>
                     <button type="button" class="editPhotoBtn">
                         <img src="Images/iconeModifier.png" alt="modifier pseudo" class="iconModif">
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <br><br>
 
                             <p class="icon">🌍</p><strong>Lieu :</strong>
-                            <input type="text" value="<?= htmlspecialchars($user['utilisateur_lieu']) ?>" id="lieu" name="lieu"><br><br>
+                            <input type="text" value="<?= !empty($user['utilisateur_lieu']) ? htmlspecialchars($user['utilisateur_lieu']) : ""; ?>" id="lieu" name="lieu"><br><br>
                         </div>
 
                         <div class="profileInfosBtn">

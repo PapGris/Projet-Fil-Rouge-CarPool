@@ -11,11 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($utilisateurId && $destinataireId && $messageReponse !== '') {
         $insert = $db->prepare("
-    INSERT INTO message (utilisateur_id, utilisateur_id_1, message_contenu, message_date, message_statut)
-    VALUES (:utilisateur_id, :utilisateur_id_1, :message_contenu, NOW(), :message_statut)
-    ");
-
-        $statut = 0; // Non lu par exemple
+            INSERT INTO message (utilisateur_id, utilisateur_id_1, message_contenu, message_date, message_statut)
+            VALUES (:utilisateur_id, :utilisateur_id_1, :message_contenu, NOW(), :message_statut)
+        ");
+        $statut = 0;
 
         $insert->bindParam(':utilisateur_id', $utilisateurId, PDO::PARAM_INT);
         $insert->bindParam(':utilisateur_id_1', $destinataireId, PDO::PARAM_INT);
@@ -23,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insert->bindParam(':message_statut', $statut, PDO::PARAM_INT);
         $insert->execute();
 
-        // Redirection pour éviter le re-post du formulaire au refresh
         header('Location: ' . $_SERVER['PHP_SELF']);
         exit;
     } else {
@@ -31,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Récupération des messages
 $query = $db->prepare("
     SELECT m.message_id, m.message_contenu, m.message_date, u.utilisateur_pseudo, u.utilisateur_id, u.utilisateur_prenom, u.utilisateur_nom
     FROM message m
@@ -41,6 +40,18 @@ $query = $db->prepare("
 $query->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
 $query->execute();
 $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// Récupération des demandes de trajet
+$requeteDemandes = $db->prepare("
+    SELECT d.*, u.utilisateur_prenom, u.utilisateur_nom, u.utilisateur_pseudo, t.trajet_lieu_depart, t.trajet_lieu_arrivee
+    FROM demande_trajet d
+    JOIN utilisateur u ON d.utilisateur_id = u.utilisateur_id
+    JOIN trajet t ON d.trajet_id = t.trajet_id
+    WHERE d.utilisateur_id_1 = :conducteur_id AND d.statut = 'en_attente'
+    ORDER BY d.date_demande DESC
+");
+$requeteDemandes->execute([':conducteur_id' => $utilisateurId]);
+$demandes = $requeteDemandes->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -53,18 +64,15 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="CSS/styleNotificationUtilisateur.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
     <script src="JS/script.js" defer></script>
     <script src="JS/scriptModalMessage.js" defer></script>
 </head>
 
 <body>
-
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
-
         <?php if (!empty($errorMessage)): ?>
             <p style="color:red; text-align:center;"><?= htmlspecialchars($errorMessage) ?></p>
         <?php endif; ?>
@@ -73,6 +81,7 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
             <h2 class="page-title">Notifications</h2>
 
             <div class="notificationsList">
+                <!-- 🔹 MESSAGES -->
                 <?php if ($messages): ?>
                     <?php foreach ($messages as $message): ?>
                         <div class="notification">
@@ -103,10 +112,35 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 <?php else: ?>
                     <p>Aucun message reçu pour l'instant.</p>
                 <?php endif; ?>
+
+                <!-- 🔹 DEMANDES DE TRAJET -->
+                <?php if ($demandes): ?>
+                    <?php foreach ($demandes as $demande): ?>
+                        <div class="notification">
+                            <div class="notificationHeader">
+                                <p class="notificationIcon">📝</p>
+                                <strong>Demande de réservation de :</strong>
+                                <?= htmlspecialchars($demande['utilisateur_prenom'] . ' ' . $demande['utilisateur_nom']) ?>
+                                (<?= htmlspecialchars($demande['utilisateur_pseudo']) ?>)
+                            </div>
+                            <p>Trajet : <?= htmlspecialchars($demande['trajet_lieu_depart']) ?> → <?= htmlspecialchars($demande['trajet_lieu_arrivee']) ?></p>
+                            <p>Nombre de places demandées : <?= (int) $demande['nombre_places'] ?></p>
+                            <form method="POST" action="config/traiterDemande.php">
+                                <input type="hidden" name="demande_id" value="<?= $demande['demande_trajet_id'] ?>">
+                                <input type="hidden" name="trajet_id" value="<?= $demande['trajet_id'] ?>">
+                                <input type="hidden" name="nombre_places" value="<?= $demande['nombre_places'] ?>">
+                                <button type="submit" name="action" value="accepter">✅ Accepter</button>
+                                <button type="submit" name="action" value="refuser">❌ Refuser</button>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Aucune demande de réservation pour le moment.</p>
+                <?php endif; ?>
             </div>
         </div>
 
-        <!-- MODAL -->
+        <!-- MODAL MESSAGE -->
         <div id="messageModal" class="modal hidden">
             <div class="modal-content">
                 <div class="modalHeader">
@@ -127,11 +161,9 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-
     </main>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>
-
 </body>
 
 </html>

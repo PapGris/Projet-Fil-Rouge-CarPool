@@ -53,6 +53,7 @@ if ($depart && $destination && $date) {
 <body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
+
     <main>
         <section class="trajetContainer">
             <h2>Trajets disponibles</h2>
@@ -85,17 +86,19 @@ if ($depart && $destination && $date) {
                                     <p><strong>🕰️ Heure de départ :</strong> <?php echo htmlspecialchars($trajet['trajet_heure_depart']); ?></p>
                                 <?php endif; ?>
 
-                                <?php if (!empty($trajet['trajet_nombre_places_disponibles'])): ?>
-                                    <p><strong>👤 Places disponibles :</strong> <?php echo htmlspecialchars($trajet['trajet_nombre_places_disponibles']); ?></p>
+                                <?php if ($trajet['trajet_nombre_places_disponibles'] > 0): ?>
+                                    <p><strong>👤 Places disponibles :</strong> <?= (int) $trajet['trajet_nombre_places_disponibles']; ?></p>
+                                <?php else: ?>
+                                    <p><strong>👤 Places disponibles :</strong> <span style="color: red;">Plus de place disponibles</span></p>
                                 <?php endif; ?>
                             </div>
 
                             <div class="right">
-                                
+
                                 <p><strong>🚬 Fumeur :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_fumeur'] == 1) ? 'Oui' : 'Non'; ?></p>
                                 <p><strong>🍗 Nourriture acceptée :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_nourriture'] == 1) ? 'Oui' : 'Non'; ?></p>
                                 <p><strong>🎵 Musique acceptée :</strong> <?php echo htmlspecialchars($trajet['utilisateur_preference_musique'] == 1) ? 'Oui' : 'Non'; ?></p>
-                            
+
                                 <p><strong>🚗 Type de trajet :</strong>
                                     <?php
                                     if ($trajet['trajet_aller_retour'] == 1) {
@@ -112,7 +115,12 @@ if ($depart && $destination && $date) {
                             </div>
                         </div>
 
-                        <button type="button" class="demandeBtn">Faire une demande de covoiturage pour ce trajet</button>
+                        <form method="POST" action="action/faireDemande.php">
+                            <input type="hidden" name="trajet_id" value="<?= $trajet['trajet_id'] ?>">
+                            <input type="hidden" name="conducteur_id" value="<?= $trajet['utilisateur_id'] ?>">
+                            <input type="hidden" name="nombre_places" value="<?= $nbPlaces ?>">
+                            <button type="submit" class="demandeBtn">Faire une demande de covoiturage pour ce trajet</button>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
