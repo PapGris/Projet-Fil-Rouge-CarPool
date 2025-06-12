@@ -17,6 +17,9 @@
         <ul>
             <li><a href="covoiturage.php">Trouver/Proposer un trajet</a></li>
             <li><a href="notificationUtilisateur.php">Notifications</a></li>
+            <?php if ($user['role_id'] == 1): ?>
+                <li><a href="backoffice.php">Backoffice</a></li>
+            <?php endif; ?>
             <li><a href="historiqueUtilisateur.php">Historique</a></li>
             <li><a href="modifProfil.php">Modifier mon profil</a></li>
             <li><a href="../action/logout.php">Déconnexion</a></li>

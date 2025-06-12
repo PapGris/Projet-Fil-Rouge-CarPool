@@ -31,7 +31,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
         if($resultat){
             $erreur = "Le pseudo existe déjà !";
         }else{
-            $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique)");
+            $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique, role_id) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique, :role_id)");
             $query->bindValue(":nom", $nom);
             $query->bindValue(":prenom", $prenom);
             $query->bindValue(":email", $email);
@@ -42,6 +42,7 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
             $query->bindValue(":preferenceFumeur", 0);
             $query->bindValue(":preferenceNourriture", 0);
             $query->bindValue(":preferenceMusique", 0);
+            $query->bindValue(":role_id", 2); // rôle utilisateur par défaut
             $query->execute();
 
             $id = $db->lastInsertId();

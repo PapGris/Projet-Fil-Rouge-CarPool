@@ -120,8 +120,9 @@ $demandes = $requeteDemandes->fetchAll(PDO::FETCH_ASSOC);
                             <div class="notificationHeader">
                                 <p class="notificationIcon">📝</p>
                                 <strong>Demande de réservation de :</strong>
-                                <?= htmlspecialchars($demande['utilisateur_prenom'] . ' ' . $demande['utilisateur_nom']) ?>
-                                (<?= htmlspecialchars($demande['utilisateur_pseudo']) ?>)
+                                <a class="profil" href="profilPublic.php?id=<?= urlencode($demande['utilisateur_id']) ?>">
+                                    <?= htmlspecialchars($demande['utilisateur_prenom'] . ' ' . $demande['utilisateur_nom']) ?>
+                                </a>
                             </div>
                             <p>Trajet : <?= htmlspecialchars($demande['trajet_lieu_depart']) ?> → <?= htmlspecialchars($demande['trajet_lieu_arrivee']) ?></p>
                             <p>Nombre de places demandées : <?= (int) $demande['nombre_places'] ?></p>

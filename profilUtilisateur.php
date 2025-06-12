@@ -34,6 +34,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
             <div class="infoButton">
                 <div class="profileInfo">
                     <p class="icon">👤</p><strong>Nom :</strong> <span><?= htmlspecialchars($user['utilisateur_nom'] . ' ' . $user['utilisateur_prenom']) ?></span></p>
+                    <p class="icon">🧠</p><strong>Rôle :</strong><span><?= htmlspecialchars($user['role_nom']) ?></span></p>
                     <p class="icon">✉</p><strong>Email :</strong> <span><?= htmlspecialchars($user['utilisateur_email']) ?></span></p>
                     <p class="icon">📞</p><strong>Téléphone :</strong> <span><?= htmlspecialchars($user['utilisateur_telephone']) ?></span></p>
                     <p class="icon">👔</p><strong>Service :</strong> <span><?= htmlspecialchars($user['poste_nom'] ?? 'Non défini') ?></span></p>
@@ -57,7 +58,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
                         <a href="modifProfil.php"><button class="edit-button">Modifier le profil</button></a>
                         <a href="historiqueUtilisateur.php"><button class="history-button">Historique des trajets</button></a>
                         <a href="notificationUtilisateur.php"><button class="notifications-button">Notifications</button></a>
-                        <a href="backoffice.php"><button class="logout-button">Backoffice</button></a>
+                        <?php if ($user['role_id'] == 1): ?>
+                            <a href="backoffice.php"><button class="logout-button">Backoffice</button></a>
+                        <?php endif; ?>
                         <a href="/action/logout.php"><button class="logout-button">Déconnexion</button></a>
                     </div>
                 </div>
