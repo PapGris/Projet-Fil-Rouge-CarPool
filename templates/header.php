@@ -55,6 +55,9 @@
                         <a href="covoiturage.php">Trouver/Proposer un trajet</a>
                         <a href="notificationUtilisateur.php">Notifications</a>
                         <a href="historiqueUtilisateur.php">Historique</a>
+                        <?php if ($user['role_id'] == 1): ?>
+                            <a href="backoffice.php">Backoffice</a>
+                        <?php endif; ?>
                         <a href="modifProfil.php">Modifier mon profil</a>
                     </div>
                 </div>

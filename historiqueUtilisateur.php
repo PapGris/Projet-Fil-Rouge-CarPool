@@ -6,7 +6,7 @@ $utilisateur_id = $_SESSION['id'];
 $aujourdhui = date('Y-m-d');
 
 // --- Requête générique pour les trajets ---
-function getTrajets($db, $utilisateur_id, $sens = 'passe', $aujourdhui)
+function getTrajets($db, $utilisateur_id, $aujourdhui, $sens = 'passe')
 {
     $comparateur = $sens === 'passe' ? '<' : '>=';
 
@@ -49,8 +49,8 @@ function getTrajets($db, $utilisateur_id, $sens = 'passe', $aujourdhui)
     return $resultats;
 }
 
-$trajetsPasses = getTrajets($db, $utilisateur_id, 'passe', $aujourdhui);
-$trajetsFuturs = getTrajets($db, $utilisateur_id, 'futur', $aujourdhui);
+$trajetsPasses = getTrajets($db, $utilisateur_id, $aujourdhui, 'passe');
+$trajetsFuturs = getTrajets($db, $utilisateur_id, $aujourdhui, 'futur');
 ?>
 
 <!DOCTYPE html>
@@ -59,25 +59,13 @@ $trajetsFuturs = getTrajets($db, $utilisateur_id, 'futur', $aujourdhui);
 <head>
     <meta charset="UTF-8">
     <title>Carpool - Historique</title>
-    <link rel="stylesheet" href="CSS/sytleHistoriqueUtilisateur.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="CSS/styleHistoriqueUtilisateur.css">
     <link rel="stylesheet" href="CSS/styleHeaderBurgerFooterConnecte.css">
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        .role-conducteur {
-            color: #007bff;
-            font-weight: bold;
-        }
 
-        .role-passager {
-            color: #ff8000;
-            font-weight: bold;
-        }
-
-        h2 {
-            margin-top: 40px;
-        }
-    </style>
 </head>
 
 <body>

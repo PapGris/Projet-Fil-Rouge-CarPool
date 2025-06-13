@@ -27,7 +27,71 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
-    max-width: 100%;
+    max-width: 90%;
+}
+
+.profil-link {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profil-link:hover {
+    color: var(--bleuTheme);
+    text-decoration: none;
+}
+
+/* MODAL */
+
+.modale-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modale-contenu {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modale-boutons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-modale {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-oui {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-non {
+    background-color: var(--bleuTheme);
+    color: white;
+}
+
+.fa-trash-can, .fa-pencil {
+    margin-right: 5px;
 }
 
 
@@ -94,7 +158,9 @@ h2 {
 }
 
 .btn-modifier,
-.btn-supprimer {
+.btn-supprimer,
+.btn-valider,
+.btn-annuler {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
@@ -102,6 +168,12 @@ h2 {
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
     width: auto;
+    
+}
+
+.btn-modifier,
+.btn-supprimer {
+    display: flex;
 }
 
 .btn-supprimer {
@@ -126,6 +198,36 @@ h2 {
     background-color: #f9c74f;
     transform: translateY(-4px);
 }
+
+.btn-annuler {
+
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-valider {
+    background-color: #50d56a;
+
+    color: white;
+}
+
+
+.btn-annuler:hover {
+    background-color: #d56c69;
+    transform: translateY(-4px);
+}
+
+.btn-valider:hover {
+    background-color: #7cd58e;
+    transform: translateY(-4px);
+}
+
+.input-modif {
+    font-size: 0.9rem;
+    padding: 8px;
+    border-radius: 5px;
+}
+
 /* Media Queries */
 @media (min-width: 500px) {}
 
@@ -141,7 +243,7 @@ h2 {
 
     .userTable th,
     .userTable td {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -167,7 +269,7 @@ h2 {
 
     .userTable th,
     .userTable td {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
