@@ -5,6 +5,13 @@
     --bleuTheme: #71C4F1;
 }
 
+@font-face {
+    font-family: 'Pure Milk';
+    src: url('../fonts/PureMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 /* BACKOFFICE DES UTILISATEURS */
 body {

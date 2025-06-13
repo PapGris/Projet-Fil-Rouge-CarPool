@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Pure Milk';
+    src: url('../fonts/PureMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* PAGE DES STATISTIQUES */
 body {
     background: url(../Images/backgroundAcceuil.jpg);

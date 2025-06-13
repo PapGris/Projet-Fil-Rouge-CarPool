@@ -127,12 +127,12 @@ $demandes = $requeteDemandes->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <p>Trajet : <?= htmlspecialchars($demande['trajet_lieu_depart']) ?> → <?= htmlspecialchars($demande['trajet_lieu_arrivee']) ?></p>
                             <p>Nombre de places demandées : <?= (int) $demande['nombre_places'] ?></p>
-                            <form method="POST" action="config/traiterDemande.php">
+                            <form class="AccepterRefuser" method="POST" action="config/traiterDemande.php">
                                 <input type="hidden" name="demande_id" value="<?= $demande['demande_trajet_id'] ?>">
                                 <input type="hidden" name="trajet_id" value="<?= $demande['trajet_id'] ?>">
                                 <input type="hidden" name="nombre_places" value="<?= $demande['nombre_places'] ?>">
-                                <button type="submit" name="action" value="accepter">✅ Accepter</button>
-                                <button type="submit" name="action" value="refuser">❌ Refuser</button>
+                                <button class="btn-accepter" type="submit" name="action" value="accepter">✅ Accepter</button>
+                                <button class="btn-refuser" type="submit" name="action" value="refuser">❌ Refuser</button>
                             </form>
                         </div>
                     <?php endforeach; ?>

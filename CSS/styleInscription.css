@@ -8,6 +8,13 @@
     /* Couleur bleue du thème */
 }
 
+@font-face {
+    font-family: 'Pure Milk';
+    src: url('../fonts/PureMilk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* MODAL */
 #modal {
     display: none;
