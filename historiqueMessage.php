@@ -45,7 +45,8 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
-
+    
+    <main>
     <h2>Historique des messages</h2>
     <div class="messagesHistorique">
         <?php if ($messages): ?>
@@ -63,6 +64,7 @@ $messages = $query->fetchAll(PDO::FETCH_ASSOC);
     <div>
         <a href="notificationUtilisateur.php"><button class="retour">Retour aux notifications</button></a>
     </div>
+    </main>
 
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>

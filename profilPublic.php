@@ -57,14 +57,15 @@ if ($utilisateurId > 0) {
                         <p class="icon">✉</p><strong>Email :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_email']) ?></span></p>
                         <p class="icon">📞</p><strong>Téléphone :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_telephone']) ?></span></p>
                         <p class="icon">👔</p><strong>Service :</strong> <span><?= htmlspecialchars($userPublic['poste_nom'] ?? 'Non défini') ?></span></p>
-                        <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= htmlspecialchars($userPublic['utilisateur_lieu']) ? htmlspecialchars($userPublic['utilisateur_lieu']) : '' ?></span></p>
+                        <p class="icon">🌍</p><strong>Lieu :</strong> <span><?= !empty($userPublic['utilisateur_lieu']) ? htmlspecialchars($userPublic['utilisateur_lieu']) : '' ?>
+                        </span></p>
                     </div>
 
                     <div class="profileInfosBtn">
                         <div class="aPropos">
                             <p class="icon">🚗</p>
                             <strong>Conducteur :</strong>
-                            <span><?= htmlspecialchars($userPublic['utilisateur_conducteur']) ? 'Oui' : 'Non' ?></span>
+                            <span><?= !empty($userPublic['utilisateur_conducteur']) ? 'Oui' : 'Non' ?></span>
                             <p class="icon">❤</p>
                             <strong>Préférences :</strong>
                             <span>

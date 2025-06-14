@@ -79,7 +79,7 @@ p {
     background-color: rgb(255, 255, 255);
     max-height: 200px;
     overflow-y: auto;
-    width: 20%;
+    width: 75%;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -95,7 +95,7 @@ p {
     background-color: rgb(255, 255, 255);
     max-height: 200px;
     overflow-y: auto;
-    width: 20%;
+    width: 75%;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -132,6 +132,11 @@ p {
 .depart,
 .destination,
 .passager {
+    width: 90%;
+}
+
+.departDepot,
+.destinationDepot {
     width: 90%;
 }
 
@@ -292,6 +297,7 @@ input[type="radio"]:checked {
     .places {
         width: 90%;
     }
+    
 }
 
 /*=============================================================================================================\  
@@ -309,6 +315,15 @@ input[type="radio"]:checked {
         width: 70%;
     }
     
+    .suggestionsListDepart,
+    .suggestionsListDestination {
+        width: 50%;
+    }
+
+    .suggestionsListDepartDepot,
+    .suggestionsListDestinationDepot {
+        width: 50%;
+    }
 }
 
 /*=============================================================================================================\  
@@ -353,6 +368,16 @@ input[type="radio"]:checked {
     .voyage,
     .voyageProposer {
         width: 50%;
+    }
+
+    .suggestionsListDepart,
+    .suggestionsListDestination {
+        width: 20%;
+    }
+
+    .suggestionsListDepartDepot,
+    .suggestionsListDestinationDepot {
+        width: 20%;
     }
 
 }
