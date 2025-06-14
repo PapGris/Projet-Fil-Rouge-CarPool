@@ -11,15 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($utilisateurId && $destinataireId && $messageReponse !== '') {
         $insert = $db->prepare("
-            INSERT INTO message (utilisateur_id, utilisateur_id_1, message_contenu, message_date, message_statut)
-            VALUES (:utilisateur_id, :utilisateur_id_1, :message_contenu, NOW(), :message_statut)
+            INSERT INTO message (utilisateur_id, utilisateur_id_1, message_contenu, message_date, message_statut, message_lu)
+            VALUES (:utilisateur_id, :utilisateur_id_1, :message_contenu, NOW(), 0, 0)
         ");
-        $statut = 0;
-
         $insert->bindParam(':utilisateur_id', $utilisateurId, PDO::PARAM_INT);
         $insert->bindParam(':utilisateur_id_1', $destinataireId, PDO::PARAM_INT);
         $insert->bindParam(':message_contenu', $messageReponse, PDO::PARAM_STR);
-        $insert->bindParam(':message_statut', $statut, PDO::PARAM_INT);
         $insert->execute();
 
         header('Location: ' . $_SERVER['PHP_SELF']);
@@ -29,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Récupération des messages
+// Récupération des messages visibles
 $query = $db->prepare("
-    SELECT m.message_id, m.message_contenu, m.message_date, u.utilisateur_pseudo, u.utilisateur_id, u.utilisateur_prenom, u.utilisateur_nom
+    SELECT m.message_id, m.message_contenu, m.message_date, m.message_lu, u.utilisateur_pseudo, u.utilisateur_id, u.utilisateur_prenom, u.utilisateur_nom
     FROM message m
     JOIN utilisateur u ON m.utilisateur_id = u.utilisateur_id
-    WHERE m.utilisateur_id_1 = :utilisateurId
+    WHERE m.utilisateur_id_1 = :utilisateurId AND m.message_statut = 0
     ORDER BY m.message_date DESC
 ");
 $query->bindParam(':utilisateurId', $utilisateurId, PDO::PARAM_INT);
@@ -86,15 +83,25 @@ $demandes = $requeteDemandes->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($messages): ?>
                     <?php foreach ($messages as $message): ?>
                         <div class="notification">
+                            <input type="hidden" class="messageIdHidden" value="<?= $message['message_id'] ?>">
+
+                            <form method="POST" action="config/masquerMessage.php" class="formSupprimerMessage">
+                                <input type="hidden" name="message_id" value="<?= $message['message_id'] ?>">
+                                <button class="btnFermerNotification" title="Masquer ce message">×</button>
+                            </form>
+
                             <div class="notificationHeader">
                                 <p class="notificationIcon">💬</p>
                                 <strong>Message de :</strong>
                                 <a class="profil" href="profilPublic.php?id=<?= urlencode($message['utilisateur_id']) ?>">
                                     <?= htmlspecialchars($message['utilisateur_prenom'] . ' ' . $message['utilisateur_nom']) ?>
                                 </a>
+                                <span class="etatLu <?= $message['message_lu'] ? 'badge-lu' : 'badge-nonlu' ?>">
+                                    <?= $message['message_lu'] ? 'Lu' : 'Non lu' ?>
+                                </span>
                             </div>
                             <p class="notificationContent">
-                                <?= htmlspecialchars(mb_strimwidth($message['message_contenu'], 0, 50, '...')) ?>
+                                <?= htmlspecialchars(substr($message['message_contenu'], 0, 50)) ?>...
                             </p>
                             <p class="notificationDate">
                                 Envoyé le <?= date('d/m/Y à H:i', strtotime($message['message_date'])) ?>
@@ -107,6 +114,9 @@ $demandes = $requeteDemandes->fetchAll(PDO::FETCH_ASSOC);
                                     data-utilisateur-id="<?= $message['utilisateur_id'] ?>">
                                     Lire
                                 </button>
+                                <a href="historiqueMessage.php?id=<?= $message['utilisateur_id'] ?>">
+                                    <button class="historiqueBtn">Historique</button>
+                                </a>
                             </div>
                         </div>
                     <?php endforeach; ?>

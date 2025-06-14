@@ -18,3 +18,21 @@ $sql = "SELECT
 $stmt = $db->prepare($sql);
 $stmt->execute(['id' => $utilisateur_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$notificationCount = 0;
+
+if (isset($_SESSION['id'])) {
+    $utilisateurId = $_SESSION['id'];
+
+    // Messages non lus visibles
+    $stmt = $db->prepare("SELECT COUNT(*) FROM message WHERE utilisateur_id_1 = :id AND message_lu = 0 AND message_statut = 0");
+    $stmt->execute([':id' => $utilisateurId]);
+    $nbMessagesNonLus = $stmt->fetchColumn();
+
+    // Demandes de trajet en attente (en tant que conducteur)
+    $stmt2 = $db->prepare("SELECT COUNT(*) FROM demande_trajet WHERE utilisateur_id_1 = :id AND statut = 'en_attente'");
+    $stmt2->execute([':id' => $utilisateurId]);
+    $nbDemandes = $stmt2->fetchColumn();
+
+    $notificationCount = $nbMessagesNonLus + $nbDemandes;
+}

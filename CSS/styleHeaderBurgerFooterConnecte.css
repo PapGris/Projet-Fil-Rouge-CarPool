@@ -74,6 +74,26 @@ a {
     font-family: 'Nunito', sans-serif;
 }
 
+.notif-bulle {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+    right: -8px;
+    z-index: 10;
+    line-height: 1;
+}
+
+#notifAlert {
+    position: relative;
+    display: inline-block;
+}
+
 
 /* BURGER */
 

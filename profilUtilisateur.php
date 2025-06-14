@@ -55,9 +55,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/init.php';
                         </span>
                     </div>
                     <div class="profileActions">
-                        <a href="modifProfil.php"><button class="edit-button">Modifier le profil</button></a>
-                        <a href="historiqueUtilisateur.php"><button class="history-button">Historique des trajets</button></a>
-                        <a href="notificationUtilisateur.php"><button class="notifications-button">Notifications</button></a>
+                        <a href="modifProfil.php"><button class="edit-button">Modifier profil</button></a>
+                        <a href="historiqueUtilisateur.php"><button class="history-button">Mes trajets</button></a>
+                        <a href="notificationUtilisateur.php" id="notifAlert"><button class="notifications-button">Notifications</button>
+                            <?php if (!empty($notificationCount)): ?>
+                                <span class="notif-bulle"><?= $notificationCount ?></span>
+                            <?php endif; ?>
+                        </a>
                         <?php if ($user['role_id'] == 1): ?>
                             <a href="backoffice.php"><button class="logout-button">Backoffice</button></a>
                         <?php endif; ?>

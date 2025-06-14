@@ -65,7 +65,8 @@ $trajetsFuturs = getTrajets($db, $utilisateur_id, $aujourdhui, 'futur');
     <link rel="icon" type="image/png" href="Images/favicon.ico" sizes="96x96" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search_hands_free" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
+    <script src="JS/script.js" defer></script>
+    
 </head>
 
 <body>

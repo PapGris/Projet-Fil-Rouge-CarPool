@@ -35,3 +35,29 @@ document.addEventListener('DOMContentLoaded', function () {
         replyButton.classList.add('hidden');
     });
 });
+
+// Message Lu :
+
+document.querySelectorAll('.openModalBtn').forEach(button => {
+    button.addEventListener('click', () => {
+        const notification = button.closest('.notification');
+        const messageId = notification.querySelector('.messageIdHidden')?.value;
+        const badge = notification.querySelector('.etatLu');
+
+        if (messageId) {
+            fetch('config/marquerMessageLu.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'message_id=' + encodeURIComponent(messageId)
+            }).then(response => {
+                if (response.ok && badge) {
+                    badge.textContent = 'Lu';
+                    badge.classList.remove('badge-nonlu');
+                    badge.classList.add('badge-lu');
+                }
+            });
+        }
+    });
+});
