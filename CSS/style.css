@@ -98,7 +98,7 @@ body {
     background-color: rgb(255, 255, 255);
     max-height: 200px;
     overflow-y: auto;
-    width: 20%;
+    width: 85%;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -243,6 +243,11 @@ a {
         color: var(--blancCasse);
     }
 
+    .suggestionsListDepart,
+    .suggestionsListDestination {
+        width: 70%;
+    }
+
     .recherche {
         margin-top: 20px;
     }
@@ -334,6 +339,11 @@ a {
     .recherche form .btnRechercher {
         border-radius: 15px 50px 50px 15px;
         width: 90%;
+    }
+
+    .suggestionsListDepart,
+    .suggestionsListDestination {
+        width: 20%;
     }
 
     .depart {

@@ -1,57 +1,84 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/config/db.php';
 
+$erreurs = [];
 
-if (isset($_POST['nom']) && $_POST['nom'] !== '' && 
-    isset($_POST['prenom']) && $_POST['prenom'] !== '' && 
-    isset($_POST['email']) && $_POST['email'] !== '' &&  
-    isset($_POST['numero']) && $_POST['numero'] !== '' &&
-    isset($_POST['pseudo']) && $_POST['pseudo'] !== '' &&
-    isset($_POST['mot_de_passe']) && $_POST['mot_de_passe'] !== '' && 
-    isset($_POST['confirmer_mot_de_passe']) && $_POST['confirmer_mot_de_passe'] !== '') {
+if (
+    isset(
+        $_POST['nom'],
+        $_POST['prenom'],
+        $_POST['email'],
+        $_POST['numero'],
+        $_POST['pseudo'],
+        $_POST['mot_de_passe'],
+        $_POST['confirmer_mot_de_passe']
+    ) &&
+    $_POST['nom'] !== '' && $_POST['prenom'] !== '' && $_POST['email'] !== '' &&
+    $_POST['numero'] !== '' && $_POST['pseudo'] !== '' &&
+    $_POST['mot_de_passe'] !== '' && $_POST['confirmer_mot_de_passe'] !== ''
+) {
+    $nom = htmlspecialchars($_POST['nom']);
+    $prenom = htmlspecialchars($_POST['prenom']);
+    $email = htmlspecialchars($_POST['email']);
+    $numero = htmlspecialchars($_POST['numero']);
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    $password = htmlspecialchars($_POST['mot_de_passe']);
+    $confirmPassword = htmlspecialchars($_POST['confirmer_mot_de_passe']);
+    $conducteur = 0;
 
+    if ($password !== $confirmPassword) {
+        $erreurs['mot_de_passe'] = "Les mots de passe ne correspondent pas.";
+    }
 
-        $nom = htmlspecialchars($_POST['nom']);
-        $prenom = htmlspecialchars($_POST['prenom']);
-        $email = htmlspecialchars($_POST['email']);
-        $numero = htmlspecialchars($_POST['numero']);
-        $pseudo = htmlspecialchars($_POST['pseudo']);
-        $password = htmlspecialchars($_POST['mot_de_passe']);
-        $confirmPassword = htmlspecialchars($_POST['confirmer_mot_de_passe']);
-        $conducteur = 0;
-
-        $password = password_hash($password, PASSWORD_DEFAULT);
-
-        $query = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_pseudo = :user');
-        $query->bindValue(':user', $pseudo);
+    if (empty($erreurs)) {
+        $query = $db->prepare('SELECT * FROM utilisateur WHERE utilisateur_pseudo = :pseudo OR utilisateur_email = :email OR utilisateur_telephone = :numero');
+        $query->bindValue(':pseudo', $pseudo);
+        $query->bindValue(':email', $email);
+        $query->bindValue(':numero', $numero);
         $query->execute();
 
         $resultat = $query->fetch();
-        
-        if($resultat){
-            $erreur = "Le pseudo existe déjà !";
-        }else{
-            $query = $db->prepare("INSERT INTO utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique, role_id) VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique, :role_id)");
-            $query->bindValue(":nom", $nom);
-            $query->bindValue(":prenom", $prenom);
-            $query->bindValue(":email", $email);
-            $query->bindValue(":numero", $numero);
-            $query->bindValue(":pseudo", $pseudo);
-            $query->bindValue(":password", $password);
-            $query->bindValue(":conducteur", $conducteur);
-            $query->bindValue(":preferenceFumeur", 0);
-            $query->bindValue(":preferenceNourriture", 0);
-            $query->bindValue(":preferenceMusique", 0);
-            $query->bindValue(":role_id", 2); // rôle utilisateur par défaut
-            $query->execute();
 
-            $id = $db->lastInsertId();
+        if ($resultat) {
+            if ($resultat['utilisateur_pseudo'] === $pseudo) {
+                $erreurs['pseudo'] = "Ce pseudo est déjà utilisé.";
+            }
+            if ($resultat['utilisateur_email'] === $email) {
+                $erreurs['email'] = "Cet email est déjà utilisé.";
+            }
+            if ($resultat['utilisateur_telephone'] === $numero) {
+                $erreurs['numero'] = "Ce numéro est déjà utilisé.";
+            }
+        } else {
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-            header("Location: connexion.php");
-            exit;
-        } 
+            try {
+                $query = $db->prepare("INSERT INTO utilisateur 
+                    (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_telephone, utilisateur_pseudo, utilisateur_mdp, utilisateur_conducteur, utilisateur_preference_fumeur, utilisateur_preference_nourriture, utilisateur_preference_musique, role_id)
+                    VALUES (:nom, :prenom, :email, :numero, :pseudo, :password, :conducteur, :preferenceFumeur, :preferenceNourriture, :preferenceMusique, :role_id)");
+
+                $query->bindValue(":nom", $nom);
+                $query->bindValue(":prenom", $prenom);
+                $query->bindValue(":email", $email);
+                $query->bindValue(":numero", $numero);
+                $query->bindValue(":pseudo", $pseudo);
+                $query->bindValue(":password", $passwordHash);
+                $query->bindValue(":conducteur", $conducteur);
+                $query->bindValue(":preferenceFumeur", 0);
+                $query->bindValue(":preferenceNourriture", 0);
+                $query->bindValue(":preferenceMusique", 0);
+                $query->bindValue(":role_id", 2);
+                $query->execute();
+
+                header("Location: connexion.php");
+                exit;
+            } catch (PDOException $e) {
+                $erreurs['general'] = "Erreur lors de l'inscription. Veuillez réessayer.";
+                // log ou debug possible : error_log($e->getMessage());
+            }
+        }
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -72,46 +99,56 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
 
 <body>
 
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
-    ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 
     <main>
-
         <div class="formI-container">
             <form method="post" id="form">
+                <?php if (!empty($erreurs['general'])): ?>
+                    <div class="error"><?= $erreurs['general'] ?></div>
+                <?php endif; ?>
                 <div>
                     <label for="nom">Nom <span class="required">*</span>:</label>
-                    <input type="text" id="nom" name="nom" required>
+                    <input type="text" id="nom" name="nom" required value="<?= htmlspecialchars($_POST['nom'] ?? '') ?>">
                 </div>
                 <div>
                     <label for="prenom">Prénom <span class="required">*</span>:</label>
-                    <input type="text" id="prenom" name="prenom" required>
+                    <input type="text" id="prenom" name="prenom" required value="<?= htmlspecialchars($_POST['prenom'] ?? '') ?>">
                 </div>
                 <div>
                     <label for="email">Email<span class="required">*</span>:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                     <span class="exemple">ex: email.vous@gmail.fr</span>
+                    <?php if (!empty($erreurs['email'])): ?>
+                        <div class="error"><?= $erreurs['email'] ?></div>
+                    <?php endif; ?>
                 </div>
                 <div>
-                    <label for="numbero">Tél <span class="required">*</span>:</label>
-                    <input type="tel" id="numero" name="numero" required><br>
-                    <span class="exemple">ex: + 33 6 03 30 03 33</span>
+                    <label for="numero">Tél <span class="required">*</span>:</label>
+                    <input type="tel" id="numero" name="numero" required value="<?= htmlspecialchars($_POST['numero'] ?? '') ?>">
+                    <span class="exemple">ex: +33 6 03 30 03 33</span>
+                    <?php if (!empty($erreurs['numero'])): ?>
+                        <div class="error"><?= $erreurs['numero'] ?></div>
+                    <?php endif; ?>
                 </div>
                 <div>
-                    <?php if(!empty($erreur)) { echo $erreur; } ?>
                     <label for="pseudo">Pseudo<span class="required">*</span> :</label>
-                    <input type="text" id="pseudo" name="pseudo" required>
+                    <input type="text" id="pseudo" name="pseudo" required value="<?= htmlspecialchars($_POST['pseudo'] ?? '') ?>">
+                    <?php if (!empty($erreurs['pseudo'])): ?>
+                        <div class="error"><?= $erreurs['pseudo'] ?></div>
+                    <?php endif; ?>
                 </div>
                 <div>
                     <label for="mot_de_passe">Mot de passe<span class="required">*</span> :</label>
                     <input type="password" id="mot_de_passe" name="mot_de_passe" autocomplete="new-password" required>
                     <button class="butonCond" type="button" id="displayModal">conditions MDP</button>
+                    <?php if (!empty($erreurs['mot_de_passe'])): ?>
+                        <div class="error"><?= $erreurs['mot_de_passe'] ?></div>
+                    <?php endif; ?>
                 </div>
                 <div>
                     <label for="confirmer_mot_de_passe">Confirmer le mot de passe<span class="required">*</span>:</label>
                     <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" autocomplete="new-password" required>
-
                 </div><br>
                 <div>
                     <input type="submit" id="btn" value="S'inscrire"><br><br>
@@ -134,7 +171,6 @@ if (isset($_POST['nom']) && $_POST['nom'] !== '' &&
                 <button id="closeModal">OK</button>
             </div>
         </div>
-
     </main>
 
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php'; ?>

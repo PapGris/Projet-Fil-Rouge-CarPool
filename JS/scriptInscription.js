@@ -1,12 +1,12 @@
 // fenêtre MODAL 
 
-document.getElementById("displayModal").addEventListener("click", function() { 
-    document.getElementById("modal").style.display = "flex";  
-    document.querySelector("#modal > div").focus(); 
+document.getElementById("displayModal").addEventListener("click", function () {
+    document.getElementById("modal").style.display = "flex";
+    document.querySelector("#modal > div").focus();
 });
 
-document.getElementById("closeModal").addEventListener("click", function() { 
-    document.getElementById("modal").style.display = "none";   
+document.getElementById("closeModal").addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
 });
 
 document.getElementById('mot_de_passe').addEventListener('input', function () {
@@ -16,10 +16,10 @@ document.getElementById('mot_de_passe').addEventListener('input', function () {
         let element = document.getElementById(id);
         if (condition) {
             element.style.color = "green";
-            element.innerText = "✅ " + element.innerText.slice(2); 
+            element.innerText = "✅ " + element.innerText.slice(2);
         } else {
             element.style.color = "red";
-            element.innerText = "❌ " + element.innerText.slice(2); 
+            element.innerText = "❌ " + element.innerText.slice(2);
         }
     }
 
@@ -33,10 +33,9 @@ document.getElementById('mot_de_passe').addEventListener('input', function () {
 // FORMULAIRE 
 
 function formsubmit(event) {
-
     // Suppression des anciennes erreurs
-    document.getElementById("form").querySelectorAll(".error").forEach(function(divError) {
-        divError.classList.remove("error"); 
+    document.getElementById("form").querySelectorAll(".error").forEach(function (divError) {
+        divError.classList.remove("error");
         let errDiv = divError.querySelector('div');
         if (errDiv) {
             divError.removeChild(errDiv);
@@ -45,30 +44,28 @@ function formsubmit(event) {
 
     let allValid = true;
 
-    // Correction des attributs required (il faut juste input[required], textarea[required], select[required])
-    document.getElementById('form').querySelectorAll('input[required], textarea[required], select[required]').forEach(function(input) { 
-        if (input.value.trim() === "") { 
-            input.closest('div').classList.add('error'); 
-            let div = document.createElement('div'); 
-            div.textContent = 'Attention, champ obligatoire'; 
-            input.closest('div').appendChild(div); 
+    // required
+    document.getElementById('form').querySelectorAll('input[required], textarea[required], select[required]').forEach(function (input) {
+        if (input.value.trim() === "") {
+            input.closest('div').classList.add('error');
+            let div = document.createElement('div');
+            div.textContent = 'Attention, champ obligatoire';
+            input.closest('div').appendChild(div);
 
-            allValid = false; 
+            allValid = false;
         }
     });
 
     // EMAIL
-    let inputMail = document.getElementById('email'); 
+    let inputMail = document.getElementById('email');
     if (inputMail.value.trim() !== "") {
-        const regex = /^[A-Za-z0-9.\-_+]+@[A-Za-z0-9.\-]+\.[A-Za-z0-9]{2,}$/i; 
-
-        if (!regex.test(inputMail.value)) { 
-            inputMail.closest('div').classList.add('error'); 
-            let div = document.createElement('div'); 
-            div.textContent = 'Email invalide'; 
-            inputMail.closest('div').appendChild(div); 
-
-            allValid = false; 
+        const regex = /^[A-Za-z0-9.\-_+]+@[A-Za-z0-9.\-]+\.[A-Za-z0-9]{2,}$/i;
+        if (!regex.test(inputMail.value)) {
+            inputMail.closest('div').classList.add('error');
+            let div = document.createElement('div');
+            div.textContent = 'Email invalide';
+            inputMail.closest('div').appendChild(div);
+            allValid = false;
         }
     }
 
@@ -87,100 +84,125 @@ function formsubmit(event) {
             let div = document.createElement('div');
             div.textContent = 'Mot de passe invalide: ' + errors.join(', ');
             inputPass.closest('div').appendChild(div);
-
             allValid = false;
         }
     }
 
-    // MDP IDENTIQUE 
+    // CONFIRM MDP
     let confirmPass = document.getElementById("confirmer_mot_de_passe");
     if (inputPass.value !== confirmPass.value) {
         confirmPass.closest('div').classList.add('error');
         let div = document.createElement('div');
         div.textContent = "Mot de passe différent";
         confirmPass.closest('div').appendChild(div);
-
         allValid = false;
-    } 
+    }
 
-    // **IMPORTANT** : Bloquer la soumission si invalides
     if (!allValid) {
         event.preventDefault();
         return false;
     }
 }
 
-// GESTION EMAIL AVEC AJAX
-
+// EMAIL AJAX
 let inputEmail = document.getElementById('email');
-inputEmail.addEventListener('blur', function() {
+inputEmail.addEventListener('blur', function () {
     let formData = new FormData();
     formData.append('email', this.value);
     fetch('ajax/checkEmail.php', {
-        method: 'POST',       
+        method: 'POST',
         body: formData
     })
-    .then(response => response.text())
-    .then(data => { 
-        if (inputEmail.value !== "") {
-            // Supprimer l’erreur précédente si elle existe
-            let prevError = inputEmail.closest('div').querySelector('.error');
-            if (prevError) prevError.remove();
+        .then(response => response.text())
+        .then(data => {
+            if (inputEmail.value !== "") {
+                let prevError = inputEmail.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
 
-            if (data.trim() !== '') {
-                let div = document.createElement('div'); 
-                div.classList.add('error');
-                div.textContent = data; 
-                inputEmail.closest('div').appendChild(div); 
+                if (data.trim() !== '') {
+                    let div = document.createElement('div');
+                    div.classList.add('error');
+                    div.textContent = data;
+                    inputEmail.closest('div').appendChild(div);
+                }
+            } else {
+                let prevError = inputEmail.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
             }
-        } else {
-            let prevError = inputEmail.closest('div').querySelector('.error');
-            if (prevError) prevError.remove();
-        }
-    })
-}); 
+        });
+});
 
-inputEmail.addEventListener('click', function() {
+inputEmail.addEventListener('click', function () {
     let prevError = inputEmail.closest('div').querySelector('.error');
     if (prevError) prevError.remove();
 });
 
-// GESTION PSEUDO AVEC AJAX 
+// PSEUDO AJAX
 let inputPseudo = document.getElementById('pseudo');
-inputPseudo.addEventListener('blur', function() {
+inputPseudo.addEventListener('blur', function () {
     let formData = new FormData();
     formData.append('pseudo', this.value);
     fetch('ajax/checkPseudo.php', {
-        method: 'POST',       
+        method: 'POST',
         body: formData
     })
-    .then(response => response.text())
-    .then(data => { 
-        if (inputPseudo.value !== "") {
-            // Supprimer erreur précédente
-            let prevError = inputPseudo.closest('div').querySelector('.error');
-            if (prevError) prevError.remove();
+        .then(response => response.text())
+        .then(data => {
+            if (inputPseudo.value !== "") {
+                let prevError = inputPseudo.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
 
-            if (data.trim() !== '') {
-                let div = document.createElement('div'); 
-                div.classList.add('error');
-                div.textContent = data; 
-                inputPseudo.closest('div').appendChild(div); 
+                if (data.trim() !== '') {
+                    let div = document.createElement('div');
+                    div.classList.add('error');
+                    div.textContent = data;
+                    inputPseudo.closest('div').appendChild(div);
+                }
+            } else {
+                let prevError = inputPseudo.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
             }
-        } else {
-            let prevError = inputPseudo.closest('div').querySelector('.error');
-            if (prevError) prevError.remove();
-        }
-    })
-}); 
+        });
+});
 
-inputPseudo.addEventListener('click', function() {
+inputPseudo.addEventListener('click', function () {
     let prevError = inputPseudo.closest('div').querySelector('.error');
     if (prevError) prevError.remove();
 });
 
-// Écouteur sur formulaire
-document.getElementById('form').addEventListener('submit', formsubmit);
+// NUMÉRO AJAX
+let inputNumero = document.getElementById('numero');
+inputNumero.addEventListener('blur', function () {
+    let formData = new FormData();
+    formData.append('numero', this.value);
+    fetch('ajax/checkNumero.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.text())
+        .then(data => {
+            if (inputNumero.value !== "") {
+                let prevError = inputNumero.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
 
-// Tu peux supprimer cette ligne si le bouton appelle le submit natif
+                if (data.trim() !== '') {
+                    let div = document.createElement('div');
+                    div.classList.add('error');
+                    div.textContent = data;
+                    inputNumero.closest('div').appendChild(div);
+                }
+            } else {
+                let prevError = inputNumero.closest('div').querySelector('.error');
+                if (prevError) prevError.remove();
+            }
+        });
+});
+
+inputNumero.addEventListener('click', function () {
+    let prevError = inputNumero.closest('div').querySelector('.error');
+    if (prevError) prevError.remove();
+});
+
+// SUBMIT
+document.getElementById('form').addEventListener('submit', formsubmit);
 document.getElementById('btn').addEventListener('click', formsubmit);

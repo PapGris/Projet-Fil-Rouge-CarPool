@@ -308,7 +308,7 @@ input[type="radio"]:checked {
 
 @media (min-width: 768px) {
     .recherche {
-        margin-top: 700px;
+        margin-top: 750px;
     }
     .voyage,
     .voyageProposer {
@@ -346,7 +346,7 @@ input[type="radio"]:checked {
     .recherche,
     .proposer {
         width: 45%;
-        margin-top: 250px;
+        margin-top: 350px;
     }
 
     .depart,
@@ -397,7 +397,7 @@ input[type="radio"]:checked {
 
     .recherche,
     .proposer {
-        margin-top: 250px;
+        margin-top: 350px;
         padding-top: 0px;
     }
 
